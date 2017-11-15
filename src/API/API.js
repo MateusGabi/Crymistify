@@ -56,6 +56,7 @@ export default class Service {
                     titulo: child.val().titulo,
                     created_at: child.val().created_at,
                     descricao: child.val().descricao,
+                    until_at: child.val().until_at,
                     _key: child.key
                 });
             });

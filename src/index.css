@@ -24,8 +24,16 @@ divider color: #BDBDBD
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
     align-items: flex-start;
+}
+
+.mdl-card__title {
+  padding: 5px 10px;
+}
+
+.mdl-card__supporting-text {
+  padding: 0 10px;
 }
 
 .Loading {
@@ -44,6 +52,7 @@ divider color: #BDBDBD
     background: #fff;
     border: 1px solid #f5f5f5;
     border-radius: 10px;
+    min-height: 0px;
 }
 
 .fab {

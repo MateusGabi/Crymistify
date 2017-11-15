@@ -8,7 +8,8 @@ export default class TodoCard extends Component {
         super(props);
 
         this.state = {
-            created_at: ''
+            created_at: '',
+            to_date: ''
         };
 
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
@@ -36,7 +37,8 @@ export default class TodoCard extends Component {
 
     coolFormatDate() : string {
         let diff = moment(this.props.todo.created_at).fromNow();
-        return this.setState({ created_at: diff});
+        let diff1 = moment(this.props.todo.until_at).fromNow();
+        return this.setState({ created_at: diff, to_date: diff1});
     }
 
     render(){
@@ -44,11 +46,10 @@ export default class TodoCard extends Component {
             <li className="mdl-list__item">
                 <div className="mdl-card">
                     <div className="mdl-card__title">
-                        <h6>{this.props.todo.titulo}</h6>
+                        <p>{this.props.todo.titulo}</p>
                     </div>
                     <div className="mdl-card__supporting-text">
-                        <p>{this.props.todo.descricao}</p>
-                        <p><em>criado {this.state.created_at}</em></p>
+                        <p><small>🕐 {this.state.to_date}</small></p>
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
                         <button onClick={this.handleMarkAsDone} class="mdl-button mdl-js-button mdl-button--accent">
