@@ -1,0 +1,51 @@
+/*
+dark primary color: #512DA8
+light primary color: #D1C4E9
+primary color: #673AB7
+text/icons : #FFFFFF
+accent color: #FF4081
+primary text: #212121
+secundary text: #757575
+divider color: #BDBDBD
+*/
+
+@import "./../node_modules/material-design-lite/dist/material.lime-green.min.css";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
+}
+
+.mdl-layout__content {
+    background: #f2f8ff;
+}
+
+.mdl-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.Loading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: calc(100vh - 116px);
+}
+
+.mdl-card {
+    background: #fff;
+    border: 1px solid #f5f5f5;
+    border-radius: 10px;
+}
+
+.fab {
+    position: fixed;
+    right: 50px;
+    bottom: 70px;
+    z-index: 1;
+}
