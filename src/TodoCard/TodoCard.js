@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Service from './../API/API'
+import moment from 'moment'
 
 export default class TodoCard extends Component {
 
@@ -16,6 +17,10 @@ export default class TodoCard extends Component {
         }
     }
 
+    coolFormatDate() : string {
+        return moment(this.props.todo.created_at).fromNow();
+    }
+
     render(){
         return (
             <li className="mdl-list__item">
@@ -25,7 +30,7 @@ export default class TodoCard extends Component {
                     </div>
                     <div className="mdl-card__supporting-text">
                         <p>{this.props.todo.descricao}</p>
-                        <p><em>em {this.props.todo.data}</em></p>
+                        <p><em>criado {this.coolFormatDate()}</em></p>
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
                         <button onClick={this.handleMarkAsDone} class="mdl-button mdl-js-button mdl-button--accent">

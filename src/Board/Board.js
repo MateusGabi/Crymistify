@@ -51,7 +51,7 @@ export default class Board extends Component {
         let TODO = {
             titulo: this.state.novoTODO__titulo,
             descricao: this.state.novoTODO__descricao,
-            data: moment().format('l')
+            created_at: moment().format()
         };
 
         Service.addTodo(TODO).then(res => {

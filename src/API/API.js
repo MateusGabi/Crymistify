@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 import {Observable, ReplaySubject} from 'rxjs'
+import __ from 'lodash'
 
 const config = {
     apiKey: "AIzaSyAkww8x2nbDwsB9MjUltMn43Erft3LVYCE",
@@ -29,7 +30,12 @@ export default class Service {
 
     static addTodo(todo) : Promise<boolean> {
 
-        database.child('privateTodos').push(todo);
+        Service.getUser().subscribe(user => {
+            todo = {...todo, user: user.uid, done: false}
+            
+            database.child('privateTodos').push(todo);
+        });
+
 
         return Promise.resolve(true);
 
@@ -43,13 +49,12 @@ export default class Service {
 
         let result = new ReplaySubject();
 
-        Service.getTodosRef().on('value', (dataSnapshot) => {
+        Service.getTodosRef().orderByChild('done').equalTo(false).on('value', (dataSnapshot) => {
             var tasks = [];
             dataSnapshot.forEach((child) => {
                 tasks.push({
                     titulo: child.val().titulo,
-                    data: child.val().data,
-                    estado: child.val().estado,
+                    created_at: child.val().created_at,
                     descricao: child.val().descricao,
                     _key: child.key
                 });
@@ -61,7 +66,17 @@ export default class Service {
     }
 
     static remover(todo) {
-        database.child('privateTodos').child(todo._key).remove();
+        todo = {...todo, done: true}
+        todo = Service.purify(todo)
+        database.child('privateTodos').child(todo._key).set(todo);
+    }
+
+    /**
+     * Removes attributes that has null and undefined as value
+     * @param {*} todo 
+     */
+    static purify(obj: Object) {
+        return __.pickBy(obj, undefined || null)
     }
 
     static loginWithGoogle() : Observable<boolean> {
