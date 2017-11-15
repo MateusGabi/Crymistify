@@ -19,7 +19,7 @@ export default class Logging extends Component {
 
     render() {
         return (
-            <div className='Loading'>
+            <div className='Loading Wrapper'>
                 <div>
                     <h3>Welcome back!</h3>
                 </div>

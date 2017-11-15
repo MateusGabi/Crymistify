@@ -33,8 +33,11 @@ divider color: #BDBDBD
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: calc(100vh - 116px);
+}
+
+.Wrapper {
+  min-width: 100vw;
+  min-height: calc(100vh - 116px);
 }
 
 .mdl-card {

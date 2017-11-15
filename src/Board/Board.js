@@ -74,13 +74,25 @@ export default class Board extends Component {
     }
 
     render() {
+
+        let message = "";
+
+        if(this.props.todos.length < 1) {
+            message = "Não há TODOS"
+        }
+
         return (
-            <div className="board">
+            <div className="board Wrapper">
             <div className="mdl-grid mdl-typography--text-center">
                 <div className="mdl-cell mdl-cell--12-col">
                     <h3>Olá, <strong>{this.state.userName}</strong>! <span role="img" aria-label="">✌</span></h3>
                 </div>
             </div>
+
+            <div>
+                <h4 className='mdl-typography--text-center'>{message}</h4>
+            </div>
+
             <ul className="mdl-list">
             {
                 this.props.todos.map(
