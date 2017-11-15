@@ -13,11 +13,26 @@ export default class Logging extends Component {
         API
             .loginWithGoogle()
             .subscribe(user => {
-                if(user) this.props.loggingHandler(true);
+                if (user) this.props.loggingHandler(true);
             });
     }
 
     render() {
-        return (<p onClick={this.btnLogingWithGoogle}>Entrar com o Google</p>)
+        return (
+            <div className='Loading'>
+                <div>
+                    <h3>Welcome back!</h3>
+                </div>
+                <div>
+                <button onClick={this.btnLogingWithGoogle} className="loginBtn loginBtn--google">
+                    Login with Google
+                </button>
+                <br/>
+                    <button onClick={(e) => alert('Not avaible yet :c')} className="loginBtn loginBtn--facebook">
+                        Login with Facebook
+                    </button>
+                </div>
+            </div>
+        )
     }
 }
