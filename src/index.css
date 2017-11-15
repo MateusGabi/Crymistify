@@ -50,9 +50,11 @@ divider color: #BDBDBD
 
 .mdl-card {
     background: #fff;
-    border: 1px solid #f5f5f5;
+    border: 1px solid rgba(0,0,0,.1);
     border-radius: 10px;
     min-height: 0px;
+    min-width: 0px;
+    max-width: 300px;
 }
 
 .fab {

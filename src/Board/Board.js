@@ -13,7 +13,8 @@ export default class Board extends Component {
         super(props);
 
         this.state = {
-            userName: ''
+            userName: '',
+            todos: []
         };
 
         this.showAddTODO = this.showAddTODO.bind(this);
@@ -29,6 +30,11 @@ export default class Board extends Component {
         Service.getUser().subscribe(
             user => this.setState({ userName: user.displayName })
         );
+
+        let __todos = this.props.todos;
+        __todos.sort(this.order__timeToDone);
+
+        this.setState({todos: __todos});
     }
 
     handleChangeTitulo(event) {
@@ -43,7 +49,7 @@ export default class Board extends Component {
 
         let date : Date = new Date(event.target.value);
         
-        date = moment(date).format();
+        date = moment(date).add(12, 'hours').format();
 
         this.setState({ novoTODO__toDate: date });
     }
@@ -84,29 +90,37 @@ export default class Board extends Component {
 
     }
 
+    order__timeToDone(a, b) {
+
+        let times_a = moment(a.until_at || Number.MAX_VALUE).valueOf();
+        let times_b = moment(b.until_at || Number.MAX_VALUE).valueOf();
+
+        return times_a - times_b;
+    }
+
     render() {
 
         let message = "";
 
         if (this.props.todos.length < 1) {
-            message = "Não há TODOS"
+            message = (<div>
+            <h4 className='mdl-typography--text-center'>Não há TODOS</h4>
+        </div>)
         }
 
         return (
             <div className="board Wrapper">
-                <div className="mdl-grid mdl-typography--text-center">
+                <div className="mdl-grid">
                     <div className="mdl-cell mdl-cell--12-col">
-                        <h3>Olá, <strong>{this.state.userName}</strong>! <span role="img" aria-label="">✌</span></h3>
+                        <h4>Olá, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>
                     </div>
                 </div>
 
-                <div>
-                    <h4 className='mdl-typography--text-center'>{message}</h4>
-                </div>
+                {message}
 
                 <ul className="mdl-list">
                     {
-                        this.props.todos.map(
+                        this.props.todos.sort(this.order__timeToDone).map(
                             (todo, i) => (<TodoCard todo={todo} />)
                         )
                     }

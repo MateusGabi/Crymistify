@@ -31,6 +31,8 @@ export default class Service {
     static addTodo(todo) : Promise<boolean> {
 
         Service.getUser().subscribe(user => {
+
+            todo = Service.purify(todo)
             todo = {...todo, user: user.uid, done: false}
             
             database.child('privateTodos').push(todo);
@@ -60,6 +62,7 @@ export default class Service {
                     _key: child.key
                 });
             });
+
             result.next(tasks);
         });
 
