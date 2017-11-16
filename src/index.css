@@ -89,10 +89,18 @@ divider color: #BDBDBD
 .mdl-card {
     background: #fff;
     border: 1px solid rgba(0,0,0,.1);
-    border-radius: 10px;
+    border-radius: 5px;
     min-height: 0px;
     min-width: 0px;
     max-width: 300px;
+}
+
+.mdl-card .material-icons {
+  font-size: 18px;
+}
+
+.mdl-card .mdl-card__actions {
+  padding: 0;
 }
 
 .TodoCard__title p {

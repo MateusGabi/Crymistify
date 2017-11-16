@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Service from './../API/API'
+import Log from './../Services/Log'
 import moment from 'moment'
 
 export default class TodoCard extends Component {
@@ -36,6 +37,9 @@ export default class TodoCard extends Component {
         let _confirm = window.confirm(`Marcar ${this.props.todo.titulo} como feito ?`);
         if (_confirm) {
             Service.remover(this.props.todo);
+            Log.log('user marked a todo as done', { todo_key: this.props.todo._key })
+        } else {
+            Log.log('user give up to mark a todo as done', { todo_key: this.props.todo._key })
         }
     }
 
@@ -93,7 +97,7 @@ export default class TodoCard extends Component {
                 </p>
             ) : (<div></div>);
 
-        let descriptionDIV = this.props.todo.until_at !== undefined ?
+        let descriptionDIV = this.props.todo.descricao !== undefined ?
             (
                 <p>{this.props.todo.descricao}</p>
             ) : (<div></div>);

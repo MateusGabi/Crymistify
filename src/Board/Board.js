@@ -180,7 +180,7 @@ export default class Board extends Component {
                 <ul className="mdl-list">
                     {
                         __.sortBy(this.props.todos, this.state.sortBy).map(
-                            (todo, i) => (<TodoCard todo={todo} />)
+                            (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
                         )
                     }
                 </ul>

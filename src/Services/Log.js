@@ -2,22 +2,40 @@ import __ from 'lodash'
 
 export default class Log {
 
-    apiKey;
-    user = "anonymous";
+    api_key;
+    user_key = "anonymous";
+    session_id = "";
 
-    static init(apiKey: string) {
-        Log.apiKey = apiKey;
-        Log.log('initialized app', {apiKey: apiKey});
+    static init(api_key: string) {
+        Log.api_key = api_key;
+        
+        Log.setSessionId();
+
+        Log.log('initialized app', { api_key: api_key, session_id: Log.session_id });
+    }
+
+    static setSessionId() {
+
+        let _sessionid = window.localStorage.getItem('Logger.session_id');
+
+        Log.session_id = _sessionid;
+
+        if(!_sessionid) {
+            Log.session_id = Log.makeid(100);
+            window.localStorage.setItem('Logger.session_id', Log.session_id);
+        }
+
+        
     }
 
     static setUser(user: Object) {
-        Log.user = user
+        Log.user_key = user.uid
 
-        Log.log('user connected', {user: user});
+        Log.log('user connected', { user: user.uid });
     }
 
     static log(message: string, payload?: Object) {
-        let obj = {message: message, payload: payload};
+        let obj = { message: message, payload: payload };
         Log.next('log', obj);
     }
 
@@ -30,7 +48,7 @@ export default class Log {
     }
 
     static error(message: string, payload: Object) {
-        let obj = {message: message, payload: payload};
+        let obj = { message: message, payload: payload };
         Log.next('error', obj);
     }
 
@@ -40,7 +58,9 @@ export default class Log {
 
     static next(type: string, obj: Object) {
         let storageLog = {
-            user: Log.user,
+            api_key: Log.api_key,
+            session_id: Log.session_id,
+            user_key: Log.user_key,
             type: type,
             message: obj.message,
             payload: obj.payload,
@@ -49,12 +69,22 @@ export default class Log {
 
         storageLog = Log.purify(storageLog);
 
-        if(type === 'log') console.log(storageLog);
-        else if(type === 'error') console.error(storageLog);
+        if (type === 'log') console.log(storageLog);
+        else if (type === 'error') console.error(storageLog);
     }
 
     static purify(obj: Object) {
         return __.pickBy(obj, undefined || null)
+    }
+
+    static makeid(length: number) : string {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < length; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
     }
 
 }

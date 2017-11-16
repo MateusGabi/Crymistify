@@ -21,7 +21,7 @@ export default class Navbar extends Component {
                     <div class="mdl-layout-spacer"></div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
                         <label class="mdl-button mdl-js-button mdl-button--icon"
-                            for="waterfall-exp">
+                        htmlFor="waterfall-exp">
                             <i class="material-icons">search</i>
                         </label>
                         <div class="mdl-textfield__expandable-holder">
