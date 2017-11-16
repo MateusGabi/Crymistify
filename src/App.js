@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import __ from 'lodash'
+
 import API from './API/API'
 import Navbar from './Navbar/Navbar';
 import Board from './Board/Board';
@@ -13,6 +15,7 @@ export default class App extends Component {
 
         this.state = {
             todos: [],
+            todosDone: [],
             isLoading: true,
             isLogged: false,
         };
@@ -58,8 +61,15 @@ export default class App extends Component {
 
     getTodos() {
         API.getTodos().subscribe(todos => {
+
+            // do a partition in array
+            // return[0] => true
+            // return[1] => false
+            todos = __.partition(todos, (t) => !t.done);
+
             this.setState({
-                todos: todos,
+                todos: todos[0],
+                todosDone: todos[1],
                 isLoading: false
             });
         });

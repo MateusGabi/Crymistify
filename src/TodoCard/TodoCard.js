@@ -32,7 +32,7 @@ export default class TodoCard extends Component {
     }
 
     handleMarkAsDone() {
-        let _confirm = window.confirm(`Remover ${this.props.todo.titulo} ?`);
+        let _confirm = window.confirm(`Marcar ${this.props.todo.titulo} como feito ?`);
         if (_confirm) {
             Service.remover(this.props.todo);
         }

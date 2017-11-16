@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TodoCard from './../TodoCard/TodoCard'
 import moment from 'moment'
 import Service from './../API/API'
+import __ from 'lodash'
 
 window['dialogPolyfill'] = {
     registerDialog: () => { }
@@ -14,7 +15,8 @@ export default class Board extends Component {
 
         this.state = {
             userName: '',
-            todos: []
+            todos: [],
+            sortBy: ['until_at']
         };
 
         this.showAddTODO = this.showAddTODO.bind(this);
@@ -24,6 +26,8 @@ export default class Board extends Component {
         this.handleChangeTitulo = this.handleChangeTitulo.bind(this);
         this.handleChangeDescricao = this.handleChangeDescricao.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
+
+        this.handleChangeSort = this.handleChangeSort.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +38,7 @@ export default class Board extends Component {
         let __todos = this.props.todos;
         __todos.sort(this.order__timeToDone);
 
-        this.setState({todos: __todos});
+        this.setState({ todos: __todos });
     }
 
     handleChangeTitulo(event) {
@@ -47,11 +51,30 @@ export default class Board extends Component {
 
     handleChangeDate(event) {
 
-        let date : Date = new Date(event.target.value);
-        
+        let date: Date = new Date(event.target.value);
+
         date = moment(date).add(12, 'hours').format();
 
         this.setState({ novoTODO__toDate: date });
+    }
+
+    handleChangeSort(event) {
+        let value = event.target.value
+
+        switch (value) {
+            case 'date':
+                this.setState({ sortBy: ['until_at'] })
+                break;
+            case 'insert':
+                this.setState({ sortBy: ['created_at'] })
+                break;
+            case 'alfa':
+                this.setState({ sortBy: ['titulo'] })
+                break;
+            default:
+                this.setState({ sortBy: ['until_at'] })
+                break;
+        }
     }
 
     showAddTODO() {
@@ -90,29 +113,35 @@ export default class Board extends Component {
 
     }
 
-    order__timeToDone(a, b) {
-
-        let times_a = moment(a.until_at || Number.MAX_VALUE).valueOf();
-        let times_b = moment(b.until_at || Number.MAX_VALUE).valueOf();
-
-        return times_a - times_b;
-    }
-
     render() {
 
         let message = "";
 
         if (this.props.todos.length < 1) {
             message = (<div>
-            <h4 className='mdl-typography--text-center'>Não há TODOS</h4>
-        </div>)
+                <h4 className='mdl-typography--text-center'>Não há TODOS</h4>
+            </div>)
         }
 
         return (
             <div className="board Wrapper">
-                <div className="mdl-grid">
-                    <div className="mdl-cell mdl-cell--12-col">
+                <div className="Board-top mdl-grid">
+                    <div className="mdl-cell mdl-cell--8-col">
                         <h4>Olá, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>
+                    </div>
+
+                    <div className="Board-top-sort mdl-cell mdl-cell--4-col">
+                        <div>
+                            <p>Ordenar por: </p>
+                        </div>
+                        <div><span class="Chai-Select">
+                            <select onChange={this.handleChangeSort}>
+                                <option value="date">Data Entrega</option>
+                                <option value="insert">Criação</option>
+                                <option value="alfa">Alfabética (Título)</option>
+                            </select>
+                        </span>
+                        </div>
                     </div>
                 </div>
 
@@ -120,7 +149,7 @@ export default class Board extends Component {
 
                 <ul className="mdl-list">
                     {
-                        this.props.todos.sort(this.order__timeToDone).map(
+                        __.sortBy(this.props.todos, this.state.sortBy).map(
                             (todo, i) => (<TodoCard todo={todo} />)
                         )
                     }

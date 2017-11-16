@@ -43,6 +43,39 @@ divider color: #BDBDBD
     align-items: center;
 }
 
+.Board-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.Board-top-sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.Board-top-sort > div {
+  padding: 0 7px;
+}
+
+.Board-top-sort p {
+  margin: 0;
+  padding: 0;
+}
+
+.Chai-Select select {
+  border: none;
+  font-size: 16px;
+  color: rgba(0, 0, 0, .5);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  padding: 15px;
+  cursor: pointer;
+}
+
 .Wrapper {
   min-width: 100vw;
   min-height: calc(100vh - 116px);

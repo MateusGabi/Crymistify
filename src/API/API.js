@@ -51,20 +51,26 @@ export default class Service {
 
         let result = new ReplaySubject();
 
-        Service.getTodosRef().orderByChild('done').equalTo(false).on('value', (dataSnapshot) => {
-            var tasks = [];
-            dataSnapshot.forEach((child) => {
-                tasks.push({
-                    titulo: child.val().titulo,
-                    created_at: child.val().created_at,
-                    descricao: child.val().descricao,
-                    until_at: child.val().until_at,
-                    _key: child.key
-                });
-            });
+        Service.getUser().subscribe(user => {
 
-            result.next(tasks);
-        });
+            Service.getTodosRef().orderByChild('user').equalTo(user.uid).on('value', (dataSnapshot) => {
+                var tasks = [];
+                dataSnapshot.forEach((child) => {
+                    tasks.push({
+                        titulo: child.val().titulo,
+                        created_at: child.val().created_at,
+                        descricao: child.val().descricao,
+                        until_at: child.val().until_at,
+                        done: child.val().done,
+                        _key: child.key
+                    });
+                });
+    
+                result.next(tasks);
+            });
+    
+
+        })
 
         return result.asObservable();
     }
