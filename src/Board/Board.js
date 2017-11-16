@@ -113,6 +113,29 @@ export default class Board extends Component {
 
     }
 
+    getGreeting() {
+
+        let now = new Date();
+        let h = now.getHours();
+
+        console.log('its ' + h);
+
+        // 23..7 good hacking
+        // 7..12 good morning
+        // 12..18 good afternoon
+        // 18..23 good evening
+        if(h >= 23 || ( h >= 0 && h < 7)) {
+            return (<h4>Good hacking, <strong>{this.state.userName}</strong>! <span role="img" aria-label="nerd">🤓</span></h4>);
+        } else if(h >= 7 && h < 12) {
+            return (<h4>Good morning, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>);            
+        } else if(h >= 12 && h < 18) {
+            return (<h4>Good afternoon, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">🤗</span></h4>);            
+        } else if(h >= 19 && h < 23) {
+            return (<h4>Good evening, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">👋</span></h4>);            
+        }
+
+    }
+
     render() {
 
         let message = "";
@@ -127,7 +150,7 @@ export default class Board extends Component {
             <div className="board Wrapper">
                 <div className="Board-top mdl-grid">
                     <div className="mdl-cell mdl-cell--8-col">
-                        <h4>Olá, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>
+                        {this.getGreeting()}
                     </div>
 
                     <div className="Board-top-sort mdl-cell mdl-cell--4-col">
