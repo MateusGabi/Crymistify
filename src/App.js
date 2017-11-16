@@ -47,8 +47,6 @@ export default class App extends Component {
             return titulo.indexOf(query) > -1 || descricao.indexOf(query) > -1;
         });
 
-        console.log(found);
-
         this.setState({todos: found});
     }
 

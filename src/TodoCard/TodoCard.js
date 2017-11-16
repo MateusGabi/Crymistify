@@ -109,6 +109,9 @@ export default class TodoCard extends Component {
                         {timeToDoneDIV}
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
+                        <button onClick={(e) => e} class="mdl-button mdl-js-button mdl-button--colored">
+                            <i class="material-icons">edit</i>
+                        </button>
                         <button onClick={this.handleMarkAsDone} class="mdl-button mdl-js-button mdl-button--colored">
                             <i class="material-icons">check</i>
                         </button>
