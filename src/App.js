@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import __ from 'lodash'
+import LogRocket from 'logrocket'
 
 import API from './API/API'
 import Navbar from './Navbar/Navbar';
@@ -66,6 +67,11 @@ export default class App extends Component {
 
                 this.getTodos();
                 this.setState({ isLogged: true });
+
+                LogRocket.identify(user.uid, {
+                    name: user.displayName,
+                    email: user.email
+                  });
 
                 Log.setUser(user);
 
