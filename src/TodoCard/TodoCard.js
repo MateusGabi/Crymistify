@@ -101,7 +101,7 @@ export default class TodoCard extends Component {
         return (
             <li className="mdl-list__item">
                 <div className="mdl-card">
-                    <div className="mdl-card__title">
+                    <div className="TodoCard__title mdl-card__title">
                         <p><strong>{this.props.todo.titulo}</strong></p>
                     </div>
                     <div className="mdl-card__supporting-text">

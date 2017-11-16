@@ -10,7 +10,11 @@ divider color: #BDBDBD
 */
 
 @import "./../node_modules/material-design-lite/dist/material.lime-green.min.css";
-@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons|Rubik";
+
+* {
+  font-family: 'Rubik', sans-serif;
+}
 
 .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
   padding-right: 0;
@@ -53,9 +57,10 @@ divider color: #BDBDBD
 .Board-top-sort {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-content: center;
   align-items: center;
+  padding-right: 20px;
 }
 
 .Board-top-sort > div {
@@ -88,6 +93,10 @@ divider color: #BDBDBD
     min-height: 0px;
     min-width: 0px;
     max-width: 300px;
+}
+
+.TodoCard__title p {
+  margin: 0;
 }
 
 .fab {

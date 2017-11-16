@@ -137,7 +137,7 @@ export default class Board extends Component {
                         <div><span class="Chai-Select">
                             <select onChange={this.handleChangeSort}>
                                 <option value="date">Data Entrega</option>
-                                <option value="insert">Criação</option>
+                                <option value="insert">Data Criação</option>
                                 <option value="alfa">Alfabética (Título)</option>
                             </select>
                         </span>
