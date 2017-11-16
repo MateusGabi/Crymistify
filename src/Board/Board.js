@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TodoCard from './../TodoCard/TodoCard'
 import moment from 'moment'
 import Service from './../API/API'
+import Log from './../Services/Log'
 import __ from 'lodash'
 
 window['dialogPolyfill'] = {
@@ -28,6 +29,10 @@ export default class Board extends Component {
         this.handleChangeDate = this.handleChangeDate.bind(this);
 
         this.handleChangeSort = this.handleChangeSort.bind(this);
+    }
+
+    componentDidCatch(error, info) {
+        Log.error(error, info);
     }
 
     componentDidMount() {
@@ -75,10 +80,14 @@ export default class Board extends Component {
                 this.setState({ sortBy: ['until_at'] })
                 break;
         }
+
+        Log.log('switch sorter', {sortBy: this.state.sortBy[0]});
     }
 
     showAddTODO() {
         this.getRgisteredDialog().then(d => d.showModal());
+        
+        Log.log(`clicked on fab 'add todo'`);
     }
 
     fecharAddTODO() {
@@ -118,20 +127,18 @@ export default class Board extends Component {
         let now = new Date();
         let h = now.getHours();
 
-        console.log('its ' + h);
-
         // 23..7 good hacking
         // 7..12 good morning
         // 12..18 good afternoon
         // 18..23 good evening
-        if(h >= 23 || ( h >= 0 && h < 7)) {
+        if (h >= 23 || (h >= 0 && h < 7)) {
             return (<h4>Good hacking, <strong>{this.state.userName}</strong>! <span role="img" aria-label="nerd">🤓</span></h4>);
-        } else if(h >= 7 && h < 12) {
-            return (<h4>Good morning, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>);            
-        } else if(h >= 12 && h < 18) {
-            return (<h4>Good afternoon, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">🤗</span></h4>);            
-        } else if(h >= 19 && h < 23) {
-            return (<h4>Good evening, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">👋</span></h4>);            
+        } else if (h >= 7 && h < 12) {
+            return (<h4>Good morning, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>);
+        } else if (h >= 12 && h < 18) {
+            return (<h4>Good afternoon, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">🤗</span></h4>);
+        } else if (h >= 19 && h < 23) {
+            return (<h4>Good evening, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">👋</span></h4>);
         }
 
     }

@@ -6,6 +6,7 @@ import Navbar from './Navbar/Navbar';
 import Board from './Board/Board';
 import Loading from './Loading/Loading';
 import Logging from './Logging/Logging'
+import Log from './Services/Log'
 import './App.css';
 
 export default class App extends Component {
@@ -38,6 +39,8 @@ export default class App extends Component {
 
     searchHandler(query: string) {
 
+        Log.log('search todo', {query: query});
+
         let found = __.filter(this.state.originalTodos, (t) =>{
 
             query = __.lowerCase(query);
@@ -63,6 +66,8 @@ export default class App extends Component {
 
                 this.getTodos();
                 this.setState({ isLogged: true });
+
+                Log.setUser(user);
 
             } else {
                 this.setState({ isLoading: false });
