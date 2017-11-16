@@ -73,7 +73,10 @@ export default class Log {
         if (type === 'log') console.log(storageLog);
         else if (type === 'error') console.error(storageLog);
 
-        API.log(storageLog);
+
+        if(process.env.NODE_ENV !== "development") {
+            API.log(storageLog);
+        }
     }
 
     static purify(obj: Object) {
