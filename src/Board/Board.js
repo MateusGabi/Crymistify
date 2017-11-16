@@ -137,7 +137,7 @@ export default class Board extends Component {
             return (<h4>Good morning, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>);
         } else if (h >= 12 && h < 18) {
             return (<h4>Good afternoon, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">🤗</span></h4>);
-        } else if (h >= 19 && h < 23) {
+        } else if (h >= 18 && h < 23) {
             return (<h4>Good evening, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">👋</span></h4>);
         }
 
