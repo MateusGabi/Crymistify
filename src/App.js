@@ -18,6 +18,7 @@ export default class App extends Component {
             todosDone: [],
             isLoading: true,
             isLogged: false,
+            originalTodos: []
         };
 
         // this.loggingHandler = this.loggingHandler.bind(this);
@@ -33,6 +34,22 @@ export default class App extends Component {
 
         this.getTodos();
 
+    }
+
+    searchHandler(query: string) {
+
+        let found = __.filter(this.state.originalTodos, (t) =>{
+
+            query = __.lowerCase(query);
+            let titulo = __.lowerCase(t.titulo);
+            let descricao = __.lowerCase(t.descricao);
+            
+            return titulo.indexOf(query) > -1 || descricao.indexOf(query) > -1;
+        });
+
+        console.log(found);
+
+        this.setState({todos: found});
     }
 
     btnLogoutHandler() {
@@ -70,7 +87,8 @@ export default class App extends Component {
             this.setState({
                 todos: todos[0],
                 todosDone: todos[1],
-                isLoading: false
+                isLoading: false,
+                originalTodos: todos[0]
             });
         });
     }
@@ -96,7 +114,7 @@ export default class App extends Component {
         return (
             <div className="app">
                 <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
-                    <Navbar />
+                    <Navbar searchHandler={this.searchHandler.bind(this)} />
                     <div class="mdl-layout__drawer">
                         <span class="mdl-layout-title">Remind!</span>
                         <nav class="mdl-navigation">

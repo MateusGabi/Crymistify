@@ -20,6 +20,7 @@ export default class TodoCard extends Component {
         this.timer = setInterval(
             () => {
                 this.coolFormatDate();
+                this.setBackgroundColor();
             },
             1000
         );
