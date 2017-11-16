@@ -1,4 +1,5 @@
 import __ from 'lodash'
+import API from './../API/API'
 
 export default class Log {
 
@@ -71,6 +72,8 @@ export default class Log {
 
         if (type === 'log') console.log(storageLog);
         else if (type === 'error') console.error(storageLog);
+
+        API.log(storageLog);
     }
 
     static purify(obj: Object) {

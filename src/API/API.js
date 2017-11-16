@@ -123,4 +123,11 @@ export default class Service {
         return result.asObservable();
     }
 
+
+
+
+    static log(log) {
+        database.child('log').push(log)
+    }
+
 }
