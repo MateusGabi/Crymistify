@@ -1,6 +1,10 @@
 import __ from 'lodash'
 import API from './../API/API'
 
+const Logger = (log) => {
+    console.log('[GabiWatcher]', log);
+};
+
 export default class Log {
 
     api_key;
@@ -70,8 +74,10 @@ export default class Log {
 
         storageLog = Log.purify(storageLog);
 
-        if (type === 'log') console.log(storageLog);
-        else if (type === 'error') console.error(storageLog);
+        // if (type === 'log') console.log(storageLog);
+        // else if (type === 'error') console.error(storageLog);
+
+        Logger(storageLog);
 
 
         if(process.env.NODE_ENV !== "development") {
