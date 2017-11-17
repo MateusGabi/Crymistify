@@ -45,7 +45,7 @@ export default class TodoCard extends Component {
 
     coolFormatDate(): string {
         let diff = moment(this.props.todo.created_at).fromNow();
-        let diff1 = moment(this.props.todo.until_at).fromNow();
+        let diff1 = moment(this.props.todo.until_at).calendar();
         return this.setState({ created_at: diff, to_date: diff1 });
     }
 
