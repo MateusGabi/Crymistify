@@ -138,7 +138,7 @@ export default class App extends Component {
                             {main}
                         </div>
                         <footer className='mdl-mega-footer  mdl-typography--text-right'>
-                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong>
+                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.24
                         </footer>
                     </main>
                 </div>
