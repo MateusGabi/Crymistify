@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import {Observable, ReplaySubject} from 'rxjs'
+import { Observable, ReplaySubject } from 'rxjs'
 import __ from 'lodash'
 
 const config = {
@@ -12,14 +12,14 @@ const config = {
 
 
 const database = firebase
-.initializeApp(config)
-.database()
-.ref();
+    .initializeApp(config)
+    .database()
+    .ref();
 
 
 export default class Service {
 
-    static getUser() : Observable<any> {
+    static getUser(): Observable<any> {
 
         let subject = new ReplaySubject();
         firebase.auth().onAuthStateChanged(user => {
@@ -28,13 +28,13 @@ export default class Service {
         return subject.asObservable();
     }
 
-    static addTodo(todo) : Promise<boolean> {
+    static addTodo(todo): Promise<boolean> {
 
         Service.getUser().subscribe(user => {
 
             todo = Service.purify(todo)
-            todo = {...todo, user: user.uid, done: false}
-            
+            todo = { ...todo, user: user.uid, done: false }
+
             database.child('privateTodos').push(todo);
         });
 
@@ -47,7 +47,7 @@ export default class Service {
         return database.child('privateTodos');
     }
 
-    static getTodos() : Observable<any[]> {
+    static getTodos(): Observable<any[]> {
 
         let result = new ReplaySubject();
 
@@ -65,10 +65,10 @@ export default class Service {
                         _key: child.key
                     });
                 });
-    
+
                 result.next(tasks);
             });
-    
+
 
         })
 
@@ -76,7 +76,7 @@ export default class Service {
     }
 
     static remover(todo) {
-        todo = {...todo, done: true}
+        todo = { ...todo, done: true }
         todo = Service.purify(todo)
         database.child('privateTodos').child(todo._key).set(todo);
     }
@@ -89,7 +89,7 @@ export default class Service {
         return __.pickBy(obj, undefined || null)
     }
 
-    static loginWithGoogle() : Observable<boolean> {
+    static loginWithGoogle(): Observable<boolean> {
 
         let result = new ReplaySubject();
 
@@ -97,7 +97,7 @@ export default class Service {
             .auth()
             .setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .then(() => {
-                
+
                 let provider = new firebase.auth.GoogleAuthProvider();
                 firebase
                     .auth()
@@ -111,7 +111,7 @@ export default class Service {
         return result.asObservable();
     }
 
-    static logout() : Observable<boolean> {
+    static logout(): Observable<boolean> {
         let result = new ReplaySubject();
 
         firebase
