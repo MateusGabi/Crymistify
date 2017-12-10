@@ -15,8 +15,9 @@ export default class TodoCard extends Component {
             backgroundColor: '#d0ccd0'
         };
 
-        this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
-        this.handleEditTitle = this.handleEditTitle.bind(this);
+        this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
+        this.handleEditTitle = this.handleEditTitle.bind(this)
+        this.handleEditDescription = this.handleEditDescription.bind(this)
     }
 
     componentDidMount() {
@@ -47,10 +48,18 @@ export default class TodoCard extends Component {
 
     handleEditTitle(event) {
         this.state.todo.titulo = event.target.value
-        Log.log('user set todo title', { todo_key: this.state.todo_key })
+        Log.log('user set todo title', { todo_key: this.state.todo._key })
 
         // possível grande demeon aqui!!
         // essa coisa de que a cada type salva no banco não é bom!
+        Service.editTodo(this.state.todo)
+    }
+
+    handleEditDescription(event) {
+
+        this.state.todo.descricao = event.target.value
+        Log.log('user set todo description', { todo_key: this.state.todo._key })
+
         Service.editTodo(this.state.todo)
     }
 
@@ -110,7 +119,7 @@ export default class TodoCard extends Component {
 
         let descriptionDIV = this.state.todo.descricao !== undefined ?
             (
-                <p>{this.state.todo.descricao}</p>
+                <textarea onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
             ) : (<div></div>);
 
         return (
