@@ -43,6 +43,21 @@ export default class Service {
 
     }
 
+    static editTodo(todo): Promise<boolean> {
+
+        Service.getUser().subscribe(user => {
+
+            todo = Service.purify(todo)
+            todo = { ...todo, user: user.uid, done: false }
+
+            database.child('privateTodos').child(todo._key).set(todo);
+        });
+
+
+        return Promise.resolve(true);
+
+    }
+
     static getTodosRef() {
         return database.child('privateTodos');
     }

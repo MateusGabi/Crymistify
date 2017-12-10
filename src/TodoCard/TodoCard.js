@@ -9,12 +9,14 @@ export default class TodoCard extends Component {
         super(props);
 
         this.state = {
+            todo: this.props.todo,
             created_at: 'calculando...',
             to_date: 'calculando...',
             backgroundColor: '#d0ccd0'
         };
 
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
+        this.handleEditTitle = this.handleEditTitle.bind(this);
     }
 
     componentDidMount() {
@@ -34,18 +36,27 @@ export default class TodoCard extends Component {
     }
 
     handleMarkAsDone() {
-        let _confirm = window.confirm(`Marcar ${this.props.todo.titulo} como feito ?`);
+        let _confirm = window.confirm(`Marcar ${this.state.todo.titulo} como feito ?`);
         if (_confirm) {
-            Service.remover(this.props.todo);
-            Log.log('user marked a todo as done', { todo_key: this.props.todo._key })
+            Service.remover(this.state.todo);
+            Log.log('user marked a todo as done', { todo_key: this.state.todo._key })
         } else {
-            Log.log('user give up to mark a todo as done', { todo_key: this.props.todo._key })
+            Log.log('user give up to mark a todo as done', { todo_key: this.state.todo._key })
         }
     }
 
+    handleEditTitle(event) {
+        this.state.todo.titulo = event.target.value
+        Log.log('user set todo title', { todo_key: this.state.todo_key })
+
+        // possível grande demeon aqui!!
+        // essa coisa de que a cada type salva no banco não é bom!
+        Service.editTodo(this.state.todo)
+    }
+
     coolFormatDate(): string {
-        let diff = moment(this.props.todo.created_at).fromNow();
-        let diff1 = moment(this.props.todo.until_at).calendar();
+        let diff = moment(this.state.todo.created_at).fromNow();
+        let diff1 = moment(this.state.todo.until_at).calendar();
         return this.setState({ created_at: diff, to_date: diff1 });
     }
 
@@ -53,7 +64,7 @@ export default class TodoCard extends Component {
 
         let oneday = 1000 * 60 * 60 * 24;
         let now = moment().valueOf();
-        let day_to_end = moment(this.props.todo.until_at).valueOf();
+        let day_to_end = moment(this.state.todo.until_at).valueOf();
 
         let rest = Math.round((day_to_end - now) / oneday).valueOf();
 
@@ -87,7 +98,7 @@ export default class TodoCard extends Component {
             textShadow: '0px 0px 0px black'
         };
 
-        let timeToDoneDIV = this.props.todo.until_at !== undefined ?
+        let timeToDoneDIV = this.state.todo.until_at !== undefined ?
             (
                 <p><small>
                     <span style={restTimeStyle}>
@@ -97,16 +108,16 @@ export default class TodoCard extends Component {
                 </p>
             ) : (<div></div>);
 
-        let descriptionDIV = this.props.todo.descricao !== undefined ?
+        let descriptionDIV = this.state.todo.descricao !== undefined ?
             (
-                <p>{this.props.todo.descricao}</p>
+                <p>{this.state.todo.descricao}</p>
             ) : (<div></div>);
 
         return (
             <li className="mdl-list__item">
                 <div className="mdl-card">
                     <div className="TodoCard__title mdl-card__title">
-                        <p><strong>{this.props.todo.titulo}</strong></p>
+                        <input onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
                     <div className="mdl-card__supporting-text">
                         {descriptionDIV}

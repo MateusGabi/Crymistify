@@ -40,22 +40,22 @@ export default class App extends Component {
 
     searchHandler(query: string) {
 
-        Log.log('search todo', {query: query});
+        Log.log('search todo', { query: query });
 
-        let found = __.filter(this.state.originalTodos, (t) =>{
+        let found = __.filter(this.state.originalTodos, (t) => {
 
             query = __.lowerCase(query);
             let titulo = __.lowerCase(t.titulo);
             let descricao = __.lowerCase(t.descricao);
-            
+
             return titulo.indexOf(query) > -1 || descricao.indexOf(query) > -1;
         });
 
-        this.setState({todos: found});
+        this.setState({ todos: found });
     }
 
     btnLogoutHandler() {
-        API.logout().subscribe(success => this.setState({isLogged: false}));
+        API.logout().subscribe(success => this.setState({ isLogged: false }));
     }
 
     componentDidMount() {
@@ -71,7 +71,7 @@ export default class App extends Component {
                 LogRocket.identify(user.uid, {
                     name: user.displayName,
                     email: user.email
-                  });
+                });
 
                 Log.setUser(user);
 
@@ -138,7 +138,7 @@ export default class App extends Component {
                             {main}
                         </div>
                         <footer className='mdl-mega-footer  mdl-typography--text-right'>
-                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.24
+                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.25
                         </footer>
                     </main>
                 </div>

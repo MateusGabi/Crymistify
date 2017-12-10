@@ -103,8 +103,11 @@ divider color: #BDBDBD
   padding: 0;
 }
 
-.TodoCard__title p {
-  margin: 0;
+.TodoCard__title input {
+    border: 0px;
+    font-weight: bolder;
+    padding: 10px 0px;
+    width: 300px;
 }
 
 .fab {
