@@ -81,12 +81,12 @@ export default class Board extends Component {
                 break;
         }
 
-        Log.log('switch sorter', {sortBy: this.state.sortBy[0]});
+        Log.log('switch sorter', { sortBy: this.state.sortBy[0] });
     }
 
     showAddTODO() {
         this.getRgisteredDialog().then(d => d.showModal());
-        
+
         Log.log(`clicked on fab 'add todo'`);
     }
 

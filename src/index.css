@@ -10,10 +10,10 @@ divider color: #BDBDBD
 */
 
 @import "./../node_modules/material-design-lite/dist/material.lime-green.min.css";
-@import "https://fonts.googleapis.com/icon?family=Material+Icons|Rubik";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons|Rubik|Roboto";
 
 * {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Roboto', 'Rubik', sans-serif;
 }
 
 .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
@@ -30,14 +30,6 @@ divider color: #BDBDBD
     flex-wrap: wrap;
     justify-content: left;
     align-items: flex-start;
-}
-
-.mdl-card__title {
-  padding: 5px 10px;
-}
-
-.mdl-card__supporting-text {
-  padding: 0 10px;
 }
 
 .Loading {
@@ -88,11 +80,18 @@ divider color: #BDBDBD
 
 .mdl-card {
     background: #fff;
-    border: 1px solid rgba(0,0,0,.1);
-    border-radius: 5px;
+    /* border: 1px solid rgba(0,0,0,.1); */
     min-height: 0px;
     min-width: 0px;
     max-width: 300px;
+}
+
+.mdl-card__title {
+  padding: 5px 10px;
+}
+
+.mdl-card__supporting-text {
+  padding: 0 10px;
 }
 
 .mdl-card .material-icons {
@@ -121,12 +120,12 @@ divider color: #BDBDBD
   padding: 10px 5px;
   resize: none;
   overflow-y: hidden;
+  transition: height .1s ease;
 }
 
 .mdl-card__supporting-text textarea:focus {
   font-size: 110%;
   line-height: 2em;
-  height: 300px;
   transition: height 2s ease;
 }
 

@@ -26,11 +26,10 @@ export default class TodoCard extends Component {
             () => {
                 this.coolFormatDate();
                 this.setBackgroundColor();
+                this.resize();
             },
             1000
         );
-
-        this.setBackgroundColor();
     }
 
     componentWillUnmount() {
@@ -103,8 +102,13 @@ export default class TodoCard extends Component {
         }
 
         this.setState({ backgroundColor: color });
+    }
 
+    resize() {
+        let textarea = document.querySelector('#' + this.state.todo._key + ' textarea')
 
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
     }
 
     render() {
@@ -114,7 +118,8 @@ export default class TodoCard extends Component {
             padding: '5px',
             borderRadius: '3px',
             color: '#fff',
-            textShadow: '0px 0px 0px black'
+            textShadow: '0px 0px 0px black',
+            cursor: 'pointer'
         };
 
         let timeToDoneDIV =
@@ -129,12 +134,12 @@ export default class TodoCard extends Component {
 
         let descriptionDIV =
             (
-                <textarea onChange={this.handleEditDescription}>{this.state.todo.descricao || 'Adicionar descrição'}</textarea>
+                <textarea placeholder='Adicionar descrição' onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
             );
 
         return (
             <li className="mdl-list__item">
-                <div className="mdl-card">
+                <div id={this.state.todo._key} className="mdl-card mdl-shadow--3dp">
                     <div className="TodoCard__title mdl-card__title">
                         <input onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
