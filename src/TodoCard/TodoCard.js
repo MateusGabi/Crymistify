@@ -18,6 +18,7 @@ export default class TodoCard extends Component {
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
         this.handleEditTitle = this.handleEditTitle.bind(this)
         this.handleEditDescription = this.handleEditDescription.bind(this)
+        this.handleClickEditData = this.handleClickEditData.bind(this)
     }
 
     componentDidMount() {
@@ -63,6 +64,10 @@ export default class TodoCard extends Component {
         Service.editTodo(this.state.todo)
     }
 
+    handleClickEditData(event) {
+        alert('Uhh... Nos desculpe, mas essa função não disponível.')
+    }
+
     coolFormatDate(): string {
         let diff = moment(this.state.todo.created_at).fromNow();
         let diff1 = moment(this.state.todo.until_at).calendar();
@@ -81,6 +86,11 @@ export default class TodoCard extends Component {
 
         if (rest <= 1) {
             color = "red";
+
+            if (this.state.todo.until_at === undefined) {
+                this.setState({ to_date: undefined })
+                color = "#737373";
+            }
         }
         else if (rest > 1 && rest <= 3) {
             color = "#ff9800";
@@ -107,20 +117,20 @@ export default class TodoCard extends Component {
             textShadow: '0px 0px 0px black'
         };
 
-        let timeToDoneDIV = this.state.todo.until_at !== undefined ?
+        let timeToDoneDIV =
             (
                 <p><small>
-                    <span style={restTimeStyle}>
-                        <span role='img'>🕐</span> {this.state.to_date}
+                    <span onClick={this.handleClickEditData} style={restTimeStyle}>
+                        <span role='img'>🕐</span> {this.state.to_date || 'Adicinar data de entrega'}
                     </span>
                 </small>
                 </p>
-            ) : (<div></div>);
+            );
 
-        let descriptionDIV = this.state.todo.descricao !== undefined ?
+        let descriptionDIV =
             (
-                <textarea onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
-            ) : (<div></div>);
+                <textarea onChange={this.handleEditDescription}>{this.state.todo.descricao || 'Adicionar descrição'}</textarea>
+            );
 
         return (
             <li className="mdl-list__item">
@@ -133,9 +143,6 @@ export default class TodoCard extends Component {
                         {timeToDoneDIV}
                     </div>
                     <div className="mdl-card__actions mdl-card--border">
-                        <button onClick={(e) => e} class="mdl-button mdl-js-button mdl-button--colored">
-                            <i class="material-icons">edit</i>
-                        </button>
                         <button onClick={this.handleMarkAsDone} class="mdl-button mdl-js-button mdl-button--colored">
                             <i class="material-icons">check</i>
                         </button>
