@@ -1,8 +1,10 @@
+//@ts-check
 import React, { Component } from 'react'
 import TodoCard from './../TodoCard/TodoCard'
 import moment from 'moment'
 import Service from './../API/API'
 import Log from './../Services/Log'
+import SnackbarService from './../Services/Snackbar'
 import __ from 'lodash'
 
 window['dialogPolyfill'] = {
@@ -105,10 +107,10 @@ export default class Board extends Component {
 
         Service.addTodo(TODO).then(res => {
             if (res) {
-                alert('Todo inserido!');
-                this.fecharAddTODO();
+                SnackbarService.showMessage(`Item adicionado 😉`)
+                this.fecharAddTODO()
             }
-            else alert('um erro ocorreu');
+            else SnackbarService.showMessage(`Um erro ocorreu 😔`)
 
         });
     }

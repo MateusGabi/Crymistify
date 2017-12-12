@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Service from './../API/API'
 import Log from './../Services/Log'
+import SnackbarService from './../Services/Snackbar'
 import moment from 'moment'
 
 export default class TodoCard extends Component {
@@ -19,6 +20,7 @@ export default class TodoCard extends Component {
         this.handleEditTitle = this.handleEditTitle.bind(this)
         this.handleEditDescription = this.handleEditDescription.bind(this)
         this.handleClickEditData = this.handleClickEditData.bind(this)
+        this.showSnackbar = this.showSnackbar.bind(this)
     }
 
     componentDidMount() {
@@ -39,7 +41,9 @@ export default class TodoCard extends Component {
     handleMarkAsDone() {
         let _confirm = window.confirm(`Marcar ${this.state.todo.titulo} como feito ?`);
         if (_confirm) {
-            Service.remover(this.state.todo);
+            Service.remover(this.state.todo)
+            SnackbarService.showMessage(`Item '${this.state.todo.titulo}' removido!'`)
+
             Log.log('user marked a todo as done', { todo_key: this.state.todo._key })
         } else {
             Log.log('user give up to mark a todo as done', { todo_key: this.state.todo._key })
@@ -64,7 +68,11 @@ export default class TodoCard extends Component {
     }
 
     handleClickEditData(event) {
-        alert('Uhh... Nos desculpe, mas essa função não disponível.')
+        SnackbarService.showMessage(`Uhh... Nos desculpe, mas essa função não disponível.`)
+    }
+
+    showSnackbar(event) {
+        SnackbarService.showMessage(`Item '${this.state.todo.titulo}' editado!`)
     }
 
     coolFormatDate(): string {
@@ -134,14 +142,14 @@ export default class TodoCard extends Component {
 
         let descriptionDIV =
             (
-                <textarea placeholder='Adicionar descrição' onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
+                <textarea onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
             );
 
         return (
             <li className="mdl-list__item">
                 <div id={this.state.todo._key} className="mdl-card mdl-shadow--3dp">
                     <div className="TodoCard__title mdl-card__title">
-                        <input onChange={this.handleEditTitle} value={this.state.todo.titulo} />
+                        <input onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
                     <div className="mdl-card__supporting-text">
                         {descriptionDIV}

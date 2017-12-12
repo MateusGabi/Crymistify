@@ -5,6 +5,7 @@ import LogRocket from 'logrocket'
 import API from './API/API'
 import Navbar from './Navbar/Navbar';
 import Board from './Board/Board';
+import Snackbar from './Snackbar/Snackbar';
 import Loading from './Loading/Loading';
 import Logging from './Logging/Logging'
 import Log from './Services/Log'
@@ -138,9 +139,10 @@ export default class App extends Component {
                             {main}
                         </div>
                         <footer className='mdl-mega-footer  mdl-typography--text-right'>
-                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.25
+                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
                         </footer>
                     </main>
+                    <Snackbar />
                 </div>
             </div>
         );
