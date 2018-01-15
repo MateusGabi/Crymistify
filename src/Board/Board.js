@@ -156,31 +156,35 @@ export default class Board extends Component {
             </div>)
         }
 
+        const style =
+            {
+                width: '100%',
+                marginBottom: '1rem'
+            }
+
         const corpoModal = (
-            <div className="mdl-dialog__content">
-                <div className="mdl-textfield mdl-js-textfield">
-                    <input className="mdl-textfield__input" type="text" id="sample3" value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
-                    <label className="mdl-textfield__label" htmlFor="sample3">Titulo...</label>
+            <div className="layout vertical form">
+                <div className="">
+                    <input className="input h5" style={style} type="text" placeholder='Titulo' value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
                 </div>
-                <div className="mdl-textfield mdl-js-textfield">
-                    <textarea className="mdl-textfield__input" type="text" rows="3" id="sample5" value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
-                    <label className="mdl-textfield__label" htmlFor="sample5">Descrição...</label>
+                <div className="">
+                    <textarea className="input h6" style={style} type="text" rows="3" placeholder='Descrição...' value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
                 </div>
-                <div className="mdl-textfield mdl-js-textfield">
-                    <input className="mdl-textfield__input" type="date" id="sample6" onChange={this.handleChangeDate} />
+                <div className="">
+                    <input className="input h6" style={style} type="date" onChange={this.handleChangeDate} />
                 </div>
-            </div>
+            </div >
         )
 
         const rodapeModal = (
-            <div className="mdl-dialog__actions">
-                <button onClick={this.fecharAddTODO} type="button" className="mdl-button">Fechar</button>
-                <button onClick={this.adicionarTODO} type="button" className="mdl-button">Adidiconar</button>
+            <div className="layout horizontal center">
+                <button onClick={this.adicionarTODO} type="button" style={{ marginRight: '1rem' }} className="button button-success">Adidiconar</button>
+                <button onClick={this.fecharAddTODO} type="button" className="button">Fechar</button>
             </div>
         )
 
         return (
-            <div className="container">
+            <div className="container" >
                 <div className="layout horizontal center justified h-200">
                     <div className="mdl-cell mdl-cell--8-col">
                         {this.getGreeting()}
@@ -203,7 +207,7 @@ export default class Board extends Component {
 
                 {message}
 
-                <ul className="">
+                <ul className="" >
                     {
                         __.sortBy(this.props.todos, this.state.sortBy).map(
                             (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
