@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import API from './../API/API'
 import SnackbarService from './../Services/Snackbar'
+import Icon from './../Icon/Icon'
 
 export default class Logging extends Component {
 
@@ -20,17 +21,13 @@ export default class Logging extends Component {
 
     render() {
         return (
-            <div className='Loading Wrapper'>
+            <div style={{ height: 'calc(100vh - 240px)' }} className='layout vertical center-center'>
                 <div>
                     <h3 class="text-ghost">Welcome back!</h3>
                 </div>
                 <div>
-                    <button onClick={this.btnLogingWithGoogle} className="loginBtn loginBtn--google">
-                        Login with Google
-                </button>
-                    <br />
-                    <button onClick={(e) => SnackbarService.showMessage('Função não disponível :c')} className="loginBtn loginBtn--facebook">
-                        Login with Facebook
+                    <button onClick={this.btnLogingWithGoogle} className="button button-google">
+                        <Icon name='user' /> Login with Google
                     </button>
                 </div>
             </div>

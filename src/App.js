@@ -123,7 +123,7 @@ export default class App extends Component {
 
         return (
             <div className="app">
-                <div className="demo-layout-waterfall mdl-layout mdl-js-layout">
+                <div className="">
                     <Navbar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
                     <main className="mdl-layout__content">
                         <div className="page-content">
@@ -131,7 +131,7 @@ export default class App extends Component {
                         </div>
                         <footer className='footer'>
                             <div className='container'>
-                                Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
+                                &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
                             </div>
                         </footer>
                     </main>
