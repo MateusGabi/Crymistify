@@ -123,10 +123,10 @@ export default class App extends Component {
 
         return (
             <div className="app">
-                <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+                <div className="demo-layout-waterfall mdl-layout mdl-js-layout">
                     <Navbar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
-                    <main class="mdl-layout__content">
-                        <div class="page-content">
+                    <main className="mdl-layout__content">
+                        <div className="page-content">
                             {main}
                         </div>
                         <footer className='footer'>

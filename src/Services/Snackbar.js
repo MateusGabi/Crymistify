@@ -22,6 +22,8 @@ export default class SnackbarService {
             timeout: 5000
         }
         // SnackbarService.instance.MaterialSnackbar.showSnackbar(data)
+
+        Log.log('message to user', { message: data.message });
     }
 
 }

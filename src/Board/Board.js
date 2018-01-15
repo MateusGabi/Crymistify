@@ -166,8 +166,8 @@ export default class Board extends Component {
                         <div>
                             <p>Ordenar por: </p>
                         </div>
-                        <div><span class="Chai-Select">
-                            <select onChange={this.handleChangeSort}>
+                        <div><span className="form">
+                            <select className='select' onChange={this.handleChangeSort}>
                                 <option value="date">Data Entrega</option>
                                 <option value="insert">Data Criação</option>
                                 <option value="alfa">Alfabética (Título)</option>
@@ -186,27 +186,27 @@ export default class Board extends Component {
                         )
                     }
                 </ul>
-                <button onClick={this.showAddTODO} class="fab mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                    <i class="material-icons">add</i>
+                <button onClick={this.showAddTODO} className="button button-primary fab">
+                    <i className="icon"><i data-feather='add' /></i>
                 </button>
-                <dialog id="dialog" class="mdl-dialog">
-                    <h4 class="mdl-dialog__title">Novo Item</h4>
-                    <div class="mdl-dialog__content">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" id="sample3" value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
-                            <label class="mdl-textfield__label" for="sample3">Titulo...</label>
+                <dialog id="dialog" className="mdl-dialog">
+                    <h4 className="mdl-dialog__title">Novo Item</h4>
+                    <div className="mdl-dialog__content">
+                        <div className="mdl-textfield mdl-js-textfield">
+                            <input className="mdl-textfield__input" type="text" id="sample3" value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
+                            <label className="mdl-textfield__label" htmlFor="sample3">Titulo...</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <textarea class="mdl-textfield__input" type="text" rows="3" id="sample5" value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
-                            <label class="mdl-textfield__label" for="sample5">Descrição...</label>
+                        <div className="mdl-textfield mdl-js-textfield">
+                            <textarea className="mdl-textfield__input" type="text" rows="3" id="sample5" value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
+                            <label className="mdl-textfield__label" htmlFor="sample5">Descrição...</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="date" id="sample6" onChange={this.handleChangeDate} />
+                        <div className="mdl-textfield mdl-js-textfield">
+                            <input className="mdl-textfield__input" type="date" id="sample6" onChange={this.handleChangeDate} />
                         </div>
                     </div>
-                    <div class="mdl-dialog__actions">
-                        <button onClick={this.fecharAddTODO} type="button" class="mdl-button">Fechar</button>
-                        <button onClick={this.adicionarTODO} type="button" class="mdl-button">Adidiconar</button>
+                    <div className="mdl-dialog__actions">
+                        <button onClick={this.fecharAddTODO} type="button" className="mdl-button">Fechar</button>
+                        <button onClick={this.adicionarTODO} type="button" className="mdl-button">Adidiconar</button>
                     </div>
                 </dialog>
             </div>

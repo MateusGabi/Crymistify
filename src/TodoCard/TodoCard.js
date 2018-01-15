@@ -51,7 +51,10 @@ export default class TodoCard extends Component {
     }
 
     handleEditTitle(event) {
-        this.state.todo.titulo = event.target.value
+        this.setState({
+            todo:
+                { titulo: event.target.value }
+        })
         Log.log('user set todo title', { todo_key: this.state.todo._key })
 
         // possível grande demeon aqui!!
@@ -60,8 +63,11 @@ export default class TodoCard extends Component {
     }
 
     handleEditDescription(event) {
+        this.setState({
+            todo:
+                { descricao: event.target.value }
+        })
 
-        this.state.todo.descricao = event.target.value
         Log.log('user set todo description', { todo_key: this.state.todo._key })
 
         Service.editTodo(this.state.todo)
@@ -132,9 +138,9 @@ export default class TodoCard extends Component {
 
         let timeToDoneDIV =
             (
-                <p><small>
+                <p className='grid-cell'><small>
                     <span onClick={this.handleClickEditData} style={restTimeStyle}>
-                        <span role='img'>🕐</span> {this.state.to_date || 'Adicinar data de entrega'}
+                        <span role='img' aria-label='clock'>🕐</span> {this.state.to_date || 'Adicinar data de entrega'}
                     </span>
                 </small>
                 </p>
@@ -142,28 +148,32 @@ export default class TodoCard extends Component {
 
         let descriptionDIV =
             (
-                <textarea className='input' onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
+                <textarea className='input p grid-cell' onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription} defaultValue={this.state.todo.descricao} />
             );
 
         return (
-            <li className="">
+            <li className="card">
                 <div id={this.state.todo._key} className="form">
-                    <div className="">
-                        <input className='input h4' onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
+                    <div className="grid-wrapper">
+                        <input className='input h5 grid-cell' onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
-                    <div className="mdl-card__supporting-text">
+                    <div className="grid-wrapper">
                         {descriptionDIV}
+                    </div>
+                    <div className="grid-wrapper">
                         {timeToDoneDIV}
                     </div>
-                    <div className="">
-                        <a onClick={this.handleMarkAsDone} class="button button-primary">
-                            <i class="icon">
-                                <i data-feather="check" />
-                            </i>
+                    <div className="grid-wrapper">
+                        <div className='grid-cell'>
+                            <a onClick={this.handleMarkAsDone} className="button button-primary">
+                                <i className="icon">
+                                    <i data-feather="check"></i>
+                                </i>
 
-                            <span>Feito</span>
+                                <span>Feito</span>
 
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </li>

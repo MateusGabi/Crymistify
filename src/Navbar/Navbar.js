@@ -19,19 +19,19 @@ export default class Navbar extends Component {
     render() {
 
         return (
-            <header class="navbar">
-                <div class="container">
-                    <span class="brand">Remind! <span role="img" aria-label="">💭</span></span>
+            <header className="navbar">
+                <div className="container">
+                    <span className="brand">Remind! <span role="img" aria-label="">💭</span></span>
 
-                    <div class="menu">
-                        <label class="mdl-button mdl-js-button mdl-button--icon"
+                    <div className="menu">
+                        <label className="mdl-button mdl-js-button mdl-button--icon"
                             htmlFor="waterfall-exp">
                             <i data-feather="search"></i>
                         </label>
-                        <div class="mdl-textfield__expandable-holder">
-                            <input onChange={this.__searchHandler} class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" />
+                        <div className="form no-margin">
+                            <input className='input' onChange={this.__searchHandler} type="text" name="sample" id="waterfall-exp" />
                         </div>
-                        <a className='button' onClick={this.__logoutHandler}> <i class="icon"><i data-feather="search" /></i> Sair</a>
+                        <a className='button' onClick={this.__logoutHandler}> <i className="icon"><i data-feather="search" /></i> Sair</a>
                     </div>
                 </div>
             </header>
