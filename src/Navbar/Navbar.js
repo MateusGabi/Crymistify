@@ -31,7 +31,7 @@ export default class Navbar extends Component {
                         <div class="mdl-textfield__expandable-holder">
                             <input onChange={this.__searchHandler} class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" />
                         </div>
-                        <a className='button' onClick={this.__logoutHandler}> <i data-feather="search"></i> Sair</a>
+                        <a className='button' onClick={this.__logoutHandler}> <i class="icon"><i data-feather="search" /></i> Sair</a>
                     </div>
                 </div>
             </header>

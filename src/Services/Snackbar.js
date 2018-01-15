@@ -21,7 +21,7 @@ export default class SnackbarService {
             message: message,
             timeout: 5000
         }
-        SnackbarService.instance.MaterialSnackbar.showSnackbar(data)
+        // SnackbarService.instance.MaterialSnackbar.showSnackbar(data)
     }
 
 }

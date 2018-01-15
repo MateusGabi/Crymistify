@@ -125,20 +125,14 @@ export default class App extends Component {
             <div className="app">
                 <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
                     <Navbar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
-                    <div class="mdl-layout__drawer">
-                        <span class="mdl-layout-title">Remind!</span>
-                        <nav class="mdl-navigation">
-                            <a class="mdl-navigation__link" href="">Link</a>
-                            <a class="mdl-navigation__link" href="">Link</a>
-                            <a class="mdl-navigation__link" href="">Link</a>
-                        </nav>
-                    </div>
                     <main class="mdl-layout__content">
                         <div class="page-content">
                             {main}
                         </div>
-                        <footer className='mdl-mega-footer  mdl-typography--text-right'>
-                            Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
+                        <footer className='footer'>
+                            <div className='container'>
+                                Copyrights &copy; 2017 built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
+                            </div>
                         </footer>
                     </main>
                     <Snackbar />

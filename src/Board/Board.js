@@ -157,7 +157,7 @@ export default class Board extends Component {
 
         return (
             <div className="container">
-                <div className="layout horizontal center wrap">
+                <div className="layout horizontal center justified">
                     <div className="mdl-cell mdl-cell--8-col">
                         {this.getGreeting()}
                     </div>
@@ -179,7 +179,7 @@ export default class Board extends Component {
 
                 {message}
 
-                <ul className="mdl-list">
+                <ul className="">
                     {
                         __.sortBy(this.props.todos, this.state.sortBy).map(
                             (todo, i) => (<TodoCard key={todo._key} todo={todo} />)

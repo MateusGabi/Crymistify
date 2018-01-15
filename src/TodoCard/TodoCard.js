@@ -142,23 +142,28 @@ export default class TodoCard extends Component {
 
         let descriptionDIV =
             (
-                <textarea onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
+                <textarea className='input' onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription}>{this.state.todo.descricao}</textarea>
             );
 
         return (
-            <li className="mdl-list__item">
-                <div id={this.state.todo._key} className="mdl-card mdl-shadow--3dp">
-                    <div className="TodoCard__title mdl-card__title">
-                        <input onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
+            <li className="">
+                <div id={this.state.todo._key} className="form">
+                    <div className="">
+                        <input className='input h4' onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
                     <div className="mdl-card__supporting-text">
                         {descriptionDIV}
                         {timeToDoneDIV}
                     </div>
-                    <div className="mdl-card__actions mdl-card--border">
-                        <button onClick={this.handleMarkAsDone} class="mdl-button mdl-js-button mdl-button--colored">
-                            <i class="material-icons">check</i>
-                        </button>
+                    <div className="">
+                        <a onClick={this.handleMarkAsDone} class="button button-primary">
+                            <i class="icon">
+                                <i data-feather="check" />
+                            </i>
+
+                            <span>Feito</span>
+
+                        </a>
                     </div>
                 </div>
             </li>
