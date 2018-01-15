@@ -156,8 +156,8 @@ export default class Board extends Component {
         }
 
         return (
-            <div className="board Wrapper">
-                <div className="Board-top mdl-grid">
+            <div className="container">
+                <div className="layout horizontal center wrap">
                     <div className="mdl-cell mdl-cell--8-col">
                         {this.getGreeting()}
                     </div>

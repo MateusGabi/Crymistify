@@ -25,7 +25,7 @@ export default class App extends Component {
         };
 
         // this.loggingHandler = this.loggingHandler.bind(this);
-        this.btnLogoutHandler = this.btnLogoutHandler.bind(this);
+        // this.btnLogoutHandler = this.btnLogoutHandler.bind(this);
     }
 
     loggingHandler(success: boolean) {
@@ -124,14 +124,13 @@ export default class App extends Component {
         return (
             <div className="app">
                 <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
-                    <Navbar searchHandler={this.searchHandler.bind(this)} />
+                    <Navbar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
                     <div class="mdl-layout__drawer">
                         <span class="mdl-layout-title">Remind!</span>
                         <nav class="mdl-navigation">
                             <a class="mdl-navigation__link" href="">Link</a>
                             <a class="mdl-navigation__link" href="">Link</a>
                             <a class="mdl-navigation__link" href="">Link</a>
-                            <a class="mdl-navigation__link" onClick={this.btnLogoutHandler}>Sair</a>
                         </nav>
                     </div>
                     <main class="mdl-layout__content">
