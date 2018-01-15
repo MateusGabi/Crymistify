@@ -148,7 +148,7 @@ export default class TodoCard extends Component {
 
         let descriptionDIV =
             (
-                <textarea className='input p grid-cell' onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription} defaultValue={this.state.todo.descricao} />
+                <textarea className='input h6 grid-cell' onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription} defaultValue={this.state.todo.descricao} />
             );
 
         return (

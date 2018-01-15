@@ -157,7 +157,7 @@ export default class Board extends Component {
 
         return (
             <div className="container">
-                <div className="layout horizontal center justified">
+                <div className="layout horizontal center justified h-200">
                     <div className="mdl-cell mdl-cell--8-col">
                         {this.getGreeting()}
                     </div>
