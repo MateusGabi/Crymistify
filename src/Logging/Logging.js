@@ -22,7 +22,7 @@ export default class Logging extends Component {
         return (
             <div className='Loading Wrapper'>
                 <div>
-                    <h3>Welcome back!</h3>
+                    <h3 class="text-ghost">Welcome back!</h3>
                 </div>
                 <div>
                     <button onClick={this.btnLogingWithGoogle} className="loginBtn loginBtn--google">

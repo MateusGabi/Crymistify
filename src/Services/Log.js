@@ -13,7 +13,7 @@ export default class Log {
 
     static init(api_key: string) {
         Log.api_key = api_key;
-        
+
         Log.setSessionId();
 
         Log.log('initialized app', { api_key: api_key, session_id: Log.session_id });
@@ -25,12 +25,12 @@ export default class Log {
 
         Log.session_id = _sessionid;
 
-        if(!_sessionid) {
+        if (!_sessionid) {
             Log.session_id = Log.makeid(100);
             window.localStorage.setItem('Logger.session_id', Log.session_id);
         }
 
-        
+
     }
 
     static setUser(user: Object) {
@@ -80,7 +80,7 @@ export default class Log {
         Logger(storageLog);
 
 
-        if(process.env.NODE_ENV !== "development") {
+        if (process.env.NODE_ENV !== "development") {
             API.log(storageLog);
         }
     }
@@ -89,7 +89,7 @@ export default class Log {
         return __.pickBy(obj, undefined || null)
     }
 
-    static makeid(length: number) : string {
+    static makeid(length: number): string {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
