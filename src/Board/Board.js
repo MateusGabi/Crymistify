@@ -178,7 +178,7 @@ export default class Board extends Component {
 
         const rodapeModal = (
             <div className="layout horizontal center">
-                <button onClick={this.adicionarTODO} type="button" style={{ marginRight: '1rem' }} className="button button-success">Adidiconar</button>
+                <button onClick={this.adicionarTODO} type="button" style={{ marginRight: '1rem' }} className="button button-primary">Adidiconar</button>
                 <button onClick={this.fecharAddTODO} type="button" className="button">Fechar</button>
             </div>
         )
