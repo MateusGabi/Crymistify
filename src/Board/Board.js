@@ -104,7 +104,6 @@ export default class Board extends Component {
     }
 
     fecharAddTODO() {
-        this.getRgisteredDialog().then(d => d.close());
         this.setState({ novoTODO__titulo: "", novoTODO__descricao: "" });
     }
 
