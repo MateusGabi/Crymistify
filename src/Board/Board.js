@@ -207,7 +207,7 @@ export default class Board extends Component {
 
                 {message}
 
-                <ul className="" >
+                <ul className="layout horizontal wrap" >
                     {
                         __.sortBy(this.props.todos, this.state.sortBy).map(
                             (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
