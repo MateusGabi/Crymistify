@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Icon from './../Icon/Icon'
 
 export default class Navbar extends Component {
 
@@ -24,14 +25,11 @@ export default class Navbar extends Component {
                     <span className="brand">Remind! <span role="img" aria-label="">💭</span></span>
 
                     <div className="menu">
-                        <label className="mdl-button mdl-js-button mdl-button--icon"
-                            htmlFor="waterfall-exp">
-                            <i data-feather="search"></i>
-                        </label>
                         <div className="form no-margin">
+                            <Icon name='search' />
                             <input className='input' onChange={this.__searchHandler} type="text" name="sample" id="waterfall-exp" />
                         </div>
-                        <a className='button' onClick={this.__logoutHandler}> <i className="icon"><i data-feather="search" /></i> Sair</a>
+                        <a className='button' onClick={this.__logoutHandler}> <Icon name='log-out' /> Sair</a>
                     </div>
                 </div>
             </header>

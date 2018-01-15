@@ -3,6 +3,7 @@ import Service from './../API/API'
 import Log from './../Services/Log'
 import SnackbarService from './../Services/Snackbar'
 import moment from 'moment'
+import Icon from './../Icon/Icon'
 
 export default class TodoCard extends Component {
 
@@ -129,21 +130,16 @@ export default class TodoCard extends Component {
 
         const restTimeStyle = {
             backgroundColor: this.state.backgroundColor,
-            padding: '5px',
-            borderRadius: '3px',
             color: '#fff',
-            textShadow: '0px 0px 0px black',
-            cursor: 'pointer'
         };
 
         let timeToDoneDIV =
             (
-                <p className='grid-cell'><small>
-                    <span onClick={this.handleClickEditData} style={restTimeStyle}>
-                        <span role='img' aria-label='clock'>🕐</span> {this.state.to_date || 'Adicinar data de entrega'}
+                <div className=''>
+                    <span onClick={this.handleClickEditData} style={restTimeStyle} className='button'>
+                        <Icon name='clock' /> {this.state.to_date || 'Adicinar data de entrega'}
                     </span>
-                </small>
-                </p>
+                </div>
             );
 
         let descriptionDIV =
@@ -160,23 +156,18 @@ export default class TodoCard extends Component {
                     <div className="grid-wrapper">
                         {descriptionDIV}
                     </div>
-                    <div className="grid-wrapper">
-                        {timeToDoneDIV}
-                    </div>
-                    <div className="grid-wrapper">
-                        <div className='grid-cell'>
+                    <div className="layout horizontal">
+                        <div style={{ marginRight: '1rem' }}>
                             <a onClick={this.handleMarkAsDone} className="button button-primary">
-                                <i className="icon">
-                                    <i data-feather="check"></i>
-                                </i>
-
+                                <Icon name='check' />
                                 <span>Feito</span>
 
                             </a>
                         </div>
+                        {timeToDoneDIV}
                     </div>
                 </div>
-            </li>
+            </li >
         );
     }
 }

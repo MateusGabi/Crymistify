@@ -6,10 +6,8 @@ import Service from './../API/API'
 import Log from './../Services/Log'
 import SnackbarService from './../Services/Snackbar'
 import __ from 'lodash'
-
-window['dialogPolyfill'] = {
-    registerDialog: () => { }
-};
+import Icon from './../Icon/Icon'
+import Modal from './../Modal/Modal'
 
 export default class Board extends Component {
 
@@ -17,6 +15,7 @@ export default class Board extends Component {
         super(props);
 
         this.state = {
+            modal_id: this.getRandomID(),
             userName: '',
             todos: [],
             sortBy: ['until_at']
@@ -86,8 +85,20 @@ export default class Board extends Component {
         Log.log('switch sorter', { sortBy: this.state.sortBy[0] });
     }
 
+
+    getRandomID(prefix: string) {
+
+        prefix = prefix || 'modal'
+
+        let id = Math.random().toString(36);
+
+        return `${prefix}-${id}`;
+    }
+
     showAddTODO() {
-        this.getRgisteredDialog().then(d => d.showModal());
+
+
+        document.getElementById(this.state.modal_id).className = "ModalWrapper modal-open"
 
         Log.log(`clicked on fab 'add todo'`);
     }
@@ -113,15 +124,6 @@ export default class Board extends Component {
             else SnackbarService.showMessage(`Um erro ocorreu 😔`)
 
         });
-    }
-
-    getRgisteredDialog(): Promise<any> {
-        let _dialog = document.getElementById('dialog');
-
-        window['dialogPolyfill'].registerDialog(_dialog);
-
-        return Promise.resolve(_dialog);
-
     }
 
     getGreeting() {
@@ -155,6 +157,29 @@ export default class Board extends Component {
             </div>)
         }
 
+        const corpoModal = (
+            <div className="mdl-dialog__content">
+                <div className="mdl-textfield mdl-js-textfield">
+                    <input className="mdl-textfield__input" type="text" id="sample3" value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
+                    <label className="mdl-textfield__label" htmlFor="sample3">Titulo...</label>
+                </div>
+                <div className="mdl-textfield mdl-js-textfield">
+                    <textarea className="mdl-textfield__input" type="text" rows="3" id="sample5" value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
+                    <label className="mdl-textfield__label" htmlFor="sample5">Descrição...</label>
+                </div>
+                <div className="mdl-textfield mdl-js-textfield">
+                    <input className="mdl-textfield__input" type="date" id="sample6" onChange={this.handleChangeDate} />
+                </div>
+            </div>
+        )
+
+        const rodapeModal = (
+            <div className="mdl-dialog__actions">
+                <button onClick={this.fecharAddTODO} type="button" className="mdl-button">Fechar</button>
+                <button onClick={this.adicionarTODO} type="button" className="mdl-button">Adidiconar</button>
+            </div>
+        )
+
         return (
             <div className="container">
                 <div className="layout horizontal center justified h-200">
@@ -186,29 +211,13 @@ export default class Board extends Component {
                         )
                     }
                 </ul>
-                <button onClick={this.showAddTODO} className="button button-primary fab">
-                    <i className="icon"><i data-feather='add' /></i>
-                </button>
-                <dialog id="dialog" className="mdl-dialog">
-                    <h4 className="mdl-dialog__title">Novo Item</h4>
-                    <div className="mdl-dialog__content">
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <input className="mdl-textfield__input" type="text" id="sample3" value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
-                            <label className="mdl-textfield__label" htmlFor="sample3">Titulo...</label>
-                        </div>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <textarea className="mdl-textfield__input" type="text" rows="3" id="sample5" value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
-                            <label className="mdl-textfield__label" htmlFor="sample5">Descrição...</label>
-                        </div>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <input className="mdl-textfield__input" type="date" id="sample6" onChange={this.handleChangeDate} />
-                        </div>
-                    </div>
-                    <div className="mdl-dialog__actions">
-                        <button onClick={this.fecharAddTODO} type="button" className="mdl-button">Fechar</button>
-                        <button onClick={this.adicionarTODO} type="button" className="mdl-button">Adidiconar</button>
-                    </div>
-                </dialog>
+                <div onClick={this.showAddTODO} className='button button-primary fab'><Icon name='plus' /></div>
+                <Modal
+                    id={this.state.modal_id}
+                    titulo='Novo Item'
+                    corpo={corpoModal}
+                    rodape={rodapeModal}
+                />
             </div>
         );
     }
