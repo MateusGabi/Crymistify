@@ -5,6 +5,26 @@ import SnackbarService from './../Services/Snackbar'
 import moment from 'moment'
 import Icon from './../Icon/Icon'
 
+const timeToDone = time => {
+    if (time) {
+        return (<div className='button'>
+            <Icon name='calendar' style={{ width: 16}} /> {time}
+        </div>)
+    } else {
+        return []
+    }
+}
+
+const note = note => {
+    if (note) {
+        return ((<div className='button'>
+            <Icon name='file-text' style={{ width: 16}} /> Anotação
+        </div>))
+    } else {
+        return []
+    }
+}
+
 export default class TodoCard extends Component {
 
     constructor(props) {
@@ -125,24 +145,20 @@ export default class TodoCard extends Component {
             color: '#fff',
         };
 
-        let timeToDone = (<div className='button'>
-            <Icon name='calendar' style={{ width: 16}} /> {this.state.to_date || 'no date'}
-        </div>)
+        let _timeToDone = timeToDone(this.state.to_date)
 
-        let description = (<div className='button'>
-            <Icon name='file-text' style={{ width: 16}} /> {this.handleEditDescription ? 'Anotação' : 'no note'}
-        </div>)
+        let _description = note(this.props.todo.descricao)
 
         return (
             <li className="card">
                 <div id={this.state.todo._key} className="form">
-                    <div className="layout horizontal center" style={{padding: '1em 1.5em 0 1.5em'}}>
+                    <div className="layout horizontal center" style={{padding: '1em 1.5em 1em 1.5em'}}>
                         <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name='circle' style={{ width: 20}} /></div>
                         <input className='input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
                     <div className="layout horizontal center">
-                        {timeToDone}
-                        {description}
+                        {_timeToDone}
+                        {_description}
                     </div>
                 </div>
             </li >

@@ -185,22 +185,20 @@ export default class Board extends Component {
 
         return (
             <div>
-                <div className="layout horizontal center justified h-100">
-                    <div className="mdl-cell mdl-cell--8-col">
-                        {this.getGreeting()}
-                    </div>
-
-                    <div className="Board-top-sort mdl-cell mdl-cell--4-col">
+                <div className="layout horizontal end justified h-100" style={{backgroundColor: 'darkseagreen', padding: '5rem'}}>
+                    <div>
                         <div>
-                            <p>Ordenar por: </p>
+                            {this.getGreeting()}
                         </div>
-                        <div><span className="form">
-                            <select className='select' onChange={this.handleChangeSort}>
-                                <option value="date">Data Entrega</option>
-                                <option value="insert">Data Criação</option>
-                                <option value="alfa">Alfabética (Título)</option>
-                            </select>
-                        </span>
+
+                        <div>
+                            <span className="form">
+                                <select className='select' onChange={this.handleChangeSort}>
+                                    <option value="date">Data Entrega</option>
+                                    <option value="insert">Data Criação</option>
+                                    <option value="alfa">Alfabética (Título)</option>
+                                </select>
+                            </span>
                         </div>
                     </div>
                 </div>
