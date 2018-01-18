@@ -29,7 +29,6 @@ export default class TodoCard extends Component {
             () => {
                 this.coolFormatDate();
                 this.setBackgroundColor();
-                this.resize();
             },
             1000
         );
@@ -119,13 +118,6 @@ export default class TodoCard extends Component {
         this.setState({ backgroundColor: color });
     }
 
-    resize() {
-        let textarea = document.querySelector('#' + this.state.todo._key + ' textarea')
-
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-    }
-
     render() {
 
         const restTimeStyle = {
@@ -133,38 +125,24 @@ export default class TodoCard extends Component {
             color: '#fff',
         };
 
-        let timeToDoneDIV =
-            (
-                <div className=''>
-                    <span onClick={this.handleClickEditData} style={restTimeStyle} className='button'>
-                        <Icon name='clock' /> {this.state.to_date || 'Adicinar data de entrega'}
-                    </span>
-                </div>
-            );
+        let timeToDone = (<div className='button'>
+            <Icon name='calendar' style={{ width: 16}} /> {this.state.to_date || 'no date'}
+        </div>)
 
-        let descriptionDIV =
-            (
-                <textarea className='input h6 grid-cell' onBlur={this.showSnackbar} placeholder='Adicionar descrição' onChange={this.handleEditDescription} defaultValue={this.state.todo.descricao} />
-            );
+        let description = (<div className='button'>
+            <Icon name='file-text' style={{ width: 16}} /> {this.handleEditDescription ? 'Anotação' : 'no note'}
+        </div>)
 
         return (
             <li className="card">
                 <div id={this.state.todo._key} className="form">
-                    <div className="grid-wrapper">
-                        <input className='input h5 grid-cell' onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
+                    <div className="layout horizontal center" style={{padding: '1em 1.5em 0 1.5em'}}>
+                        <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name='circle' style={{ width: 20}} /></div>
+                        <input className='input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
-                    <div className="grid-wrapper">
-                        {descriptionDIV}
-                    </div>
-                    <div className="layout horizontal">
-                        <div style={{ marginRight: '1rem' }}>
-                            <a onClick={this.handleMarkAsDone} className="button button-primary">
-                                <Icon name='check' />
-                                <span>Feito</span>
-
-                            </a>
-                        </div>
-                        {timeToDoneDIV}
+                    <div className="layout horizontal center">
+                        {timeToDone}
+                        {description}
                     </div>
                 </div>
             </li >
