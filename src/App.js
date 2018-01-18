@@ -116,7 +116,7 @@ export default class App extends Component {
                 main = (
                     <div className="app grid-wrapper" style={{width: '100vw', height: '100vh'}}>
                         <Sidebar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
-                        <main className="grid-cell" style={{overflowY: 'scroll', marginRight: '-10px'}}>
+                        <main className="grid-cell" style={{overflowY: 'scroll'}}>
                             <Board todos={this.state.todos} />
                             <footer className='footer'>
                                 <div>
