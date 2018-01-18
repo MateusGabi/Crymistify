@@ -152,7 +152,7 @@ export default class Board extends Component {
 
         if (this.props.todos.length < 1) {
             message = (<div>
-                <h4 className='mdl-typography--text-center'>Não há TODOS</h4>
+                <h4 className='text-center'>Não há TODOS</h4>
             </div>)
         }
 
@@ -185,10 +185,10 @@ export default class Board extends Component {
 
         return (
             <div>
-                <div className="layout horizontal end justified h-100" style={{backgroundColor: 'darkseagreen', padding: '5rem'}}>
+                <div className="layout horizontal end justified h-100 bg-primary" style={{padding: '5rem'}}>
                     <div>
                         <div>
-                            {this.getGreeting()}
+                            {this.props.searchPhrase || this.getGreeting()}
                         </div>
 
                         <div>

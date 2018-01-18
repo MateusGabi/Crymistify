@@ -52,7 +52,12 @@ export default class App extends Component {
             return titulo.indexOf(query) > -1 || descricao.indexOf(query) > -1;
         });
 
-        this.setState({ todos: found });
+        let phrase = `🔎 resultado para "${query}"`
+
+        if(query) phrase = (<h4>{phrase}</h4>)
+        else phrase = null
+
+        this.setState({ todos: found, searchPhrase: phrase });
     }
 
     btnLogoutHandler() {
@@ -117,7 +122,7 @@ export default class App extends Component {
                     <div className="app grid-wrapper" style={{width: '100vw', height: '100vh'}}>
                         <Sidebar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
                         <main className="grid-cell" style={{overflowY: 'scroll', padding: '0px'}}>
-                            <Board todos={this.state.todos} />
+                            <Board todos={this.state.todos} searchPhrase={this.state.searchPhrase} />
                             <footer className='footer'>
                                 <div>
                                     &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27

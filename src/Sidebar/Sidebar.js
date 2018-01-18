@@ -20,7 +20,7 @@ export default class Navbar extends Component {
     render() {
 
         return (
-                <div className="grid-cell cell--1of4" style={{backgroundColor: '#fdfdfd', borderRadius: '0px', borderRight: '1px solid #ccc', margin: '0px'}}>
+                <div className="Sidebar grid-cell cell--1of4" style={{borderRadius: '0px', borderRight: '1px solid #ccc', margin: '0px'}}>
                     <span className="brand">Remind! <span role="img" aria-label="">💭</span></span>
 
                     <div className="menu">
