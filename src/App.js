@@ -3,13 +3,13 @@ import __ from 'lodash'
 import LogRocket from 'logrocket'
 
 import API from './API/API'
-import Navbar from './Navbar/Navbar';
-import Board from './Board/Board';
-import Snackbar from './Snackbar/Snackbar';
-import Loading from './Loading/Loading';
+import Sidebar from './Sidebar/Sidebar'
+import Board from './Board/Board'
+import Snackbar from './Snackbar/Snackbar'
+import Loading from './Loading/Loading'
 import Logging from './Logging/Logging'
 import Log from './Services/Log'
-import './App.css';
+import './App.css'
 
 export default class App extends Component {
 
@@ -113,9 +113,9 @@ export default class App extends Component {
         else {
 
             if (this.state.isLogged) {
-                main = (<div className="app">
-                    <div className="">
-                        <Navbar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
+                main = (
+                    <div className="app">
+                        <Sidebar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
                         <main className="mdl-layout__content">
                             <div className="page-content">
                                 <Board todos={this.state.todos} />
@@ -127,8 +127,7 @@ export default class App extends Component {
                             </footer>
                         </main>
                         <Snackbar />
-                    </div>
-                </div>);
+                    </div>);
             }
             else {
                 main = <Logging loggingHandler={this.loggingHandler.bind(this)} />
