@@ -20,8 +20,7 @@ export default class Navbar extends Component {
     render() {
 
         return (
-            <header className="navbar">
-                <div className="container">
+                <div className="grid-cell cell--1of4" style={{backgroundColor: '#fdfdfd', borderRadius: '0px', borderRight: '1px solid #ccc', margin: '0px'}}>
                     <span className="brand">Remind! <span role="img" aria-label="">💭</span></span>
 
                     <div className="menu">
@@ -32,7 +31,6 @@ export default class Navbar extends Component {
                         <a className='button' onClick={this.__logoutHandler}> <Icon name='log-out' /> Sair</a>
                     </div>
                 </div>
-            </header>
         );
     }
 }

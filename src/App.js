@@ -114,19 +114,16 @@ export default class App extends Component {
 
             if (this.state.isLogged) {
                 main = (
-                    <div className="app">
+                    <div className="app grid-wrapper" style={{width: '100vw', height: '100vh'}}>
                         <Sidebar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
-                        <main className="mdl-layout__content">
-                            <div className="page-content">
-                                <Board todos={this.state.todos} />
-                            </div>
+                        <main className="grid-cell" style={{overflowY: 'scroll', marginRight: '-10px'}}>
+                            <Board todos={this.state.todos} />
                             <footer className='footer'>
-                                <div className='container'>
+                                <div>
                                     &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
                                 </div>
                             </footer>
                         </main>
-                        <Snackbar />
                     </div>);
             }
             else {
