@@ -99,8 +99,6 @@ export default class App extends Component {
             // return[1] => false
             // todos = __.partition(todos, (t) => !t.done);
 
-            console.log(todos)
-
             this.setState({
                 todos: todos,
                 isLoading: false,
@@ -126,7 +124,7 @@ export default class App extends Component {
                             <Board todos={this.state.todos} searchPhrase={this.state.searchPhrase} />
                             <footer className='footer'>
                                 <div>
-                                    &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.1.27
+                                    &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.3.2
                                 </div>
                             </footer>
                         </main>
