@@ -192,7 +192,7 @@ export default class Board extends Component {
                         </div>
 
                         <div>
-                            <span className="form">
+                            <span className="form" onClick={this.handleChangeSort}>
                                 <select className='select' onChange={this.handleChangeSort}>
                                     <option value="date">Data Entrega</option>
                                     <option value="insert">Data Criação</option>
