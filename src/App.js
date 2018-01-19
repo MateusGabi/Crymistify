@@ -97,13 +97,14 @@ export default class App extends Component {
             // do a partition in array
             // return[0] => true
             // return[1] => false
-            todos = __.partition(todos, (t) => !t.done);
+            // todos = __.partition(todos, (t) => !t.done);
+
+            console.log(todos)
 
             this.setState({
-                todos: todos[0],
-                todosDone: todos[1],
+                todos: todos,
                 isLoading: false,
-                originalTodos: todos[0]
+                originalTodos: todos
             });
         });
     }

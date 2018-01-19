@@ -149,12 +149,16 @@ export default class TodoCard extends Component {
 
         let _description = note(this.props.todo.descricao)
 
+        let classes = this.props.todo.done ? 'card completed' : 'card'
+
+        let icon_class = this.props.todo.done ? 'check-circle' : 'circle'
+
         return (
-            <li className="card">
+            <li className={classes}>
                 <div id={this.state.todo._key} className="form">
                     <div className="layout horizontal center" style={{padding: '1em 1.5em 1em 1.5em'}}>
-                        <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name='circle' style={{ width: 20}} /></div>
-                        <input className='input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
+                        <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name={icon_class} style={{ width: 20}} /></div>
+                        <input className='name input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
                     </div>
                     <div className="layout horizontal center">
                         {_timeToDone}

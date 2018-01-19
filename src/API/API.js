@@ -91,14 +91,22 @@ export default class Service {
     }
 
     static remover(todo) {
-        todo = { ...todo, done: true }
-        todo = Service.purify(todo)
-        database.child('privateTodos').child(todo._key).set(todo);
+
+
+        Service.getUser().subscribe(user => {
+
+            todo = Service.purify(todo)
+            todo = { ...todo, user: user.uid, done: true }
+            database.child('privateTodos').child(todo._key).set(todo);
+            
+        });
+
+
     }
 
     /**
      * Removes attributes that has null and undefined as value
-     * @param {*} todo 
+     * @param {*} todo
      */
     static purify(obj: Object) {
         return __.pickBy(obj, undefined || null)
