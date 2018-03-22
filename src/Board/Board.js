@@ -18,7 +18,8 @@ export default class Board extends Component {
             modal_id: this.getRandomID(),
             userName: '',
             todos: [],
-            sortBy: ['until_at']
+            sortBy: ['until_at'],
+            onlyDones: false
         };
 
         this.showAddTODO = this.showAddTODO.bind(this);
@@ -30,6 +31,7 @@ export default class Board extends Component {
         this.handleChangeDate = this.handleChangeDate.bind(this);
 
         this.handleChangeSort = this.handleChangeSort.bind(this);
+        this.handleOnlyDones = this.handleOnlyDones.bind(this);
     }
 
     componentDidCatch(error, info) {
@@ -42,7 +44,6 @@ export default class Board extends Component {
         );
 
         let __todos = this.props.todos;
-        __todos.sort(this.order__timeToDone);
 
         this.setState({ todos: __todos });
     }
@@ -83,6 +84,16 @@ export default class Board extends Component {
         }
 
         Log.log('switch sorter', { sortBy: this.state.sortBy[0] });
+    }
+
+    handleOnlyDones(event) {
+        let _r = this.state.onlyDones
+
+        _r = !_r
+
+        this.setState({ onlyDones: _r })
+
+        Log.log('switch only dones: ' + _r)
     }
 
 
@@ -192,6 +203,14 @@ export default class Board extends Component {
                         </div>
 
                         <div>
+                            <label class="checkbox-container" onChange={this.handleOnlyDones}>
+                                Mostrar apenas tarefas feitas
+                                <input type="checkbox" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                        <div>
                             <span className="form" onClick={this.handleChangeSort}>
                                 <select className='select' onChange={this.handleChangeSort}>
                                     <option value="date">Data Entrega</option>
@@ -207,7 +226,7 @@ export default class Board extends Component {
 
                 <ul>
                     {
-                        __.sortBy(this.props.todos, this.state.sortBy).map(
+                        __.sortBy(this.props.todos, this.state.sortBy).filter(t => t.done == this.state.onlyDones).map(
                             (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
                         )
                     }
