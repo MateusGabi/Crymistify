@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Modal} from 'gestalt'
 import UserProfile from './../UserProfile/UserProfile'
 
-const UserProfileModal = ({ closeFunction }) => (
+const UserProfileModal = ({ closeFunction, logoutFunction }) => (
     <Modal
       accessibilityCloseLabel="close"
       accessibilityModalLabel="View random images"
@@ -10,7 +10,7 @@ const UserProfileModal = ({ closeFunction }) => (
       onDismiss={() => closeFunction()}
       size="lg"
     >
-      <UserProfile />
+      <UserProfile logoutFunction={logoutFunction} />
     </Modal>
 )
 

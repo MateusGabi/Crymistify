@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Service from './../API/API'
 
-import { Avatar, Box, Column, Heading, Image, Text } from 'gestalt'
+import { Avatar, Box, Button, Column, Divider, Heading, Image, Text } from 'gestalt'
 
 class UserProfile extends Component {
     constructor(props) {
@@ -35,19 +35,29 @@ class UserProfile extends Component {
 
         return [
 
-            <Box display="flex" direction="row" paddingY={2} paddingX={5}>
-                <Column span={2}>
-                      <Avatar
-                          name={this.state.displayName}
-                          size="lg"
-                          src={this.state.imgURI}
-                          verified={this.state.emailVerified}
-                          />
-                </Column>
-              <Column span={10}>
-                <Heading size="sm">{this.state.displayName}</Heading>
-                <Text>{this.state.email}</Text>
-              </Column>
+            <Box paddingY={2} paddingX={5}>
+
+                <Box display="flex" direction="row">
+                    <Column span={2}>
+                          <Avatar
+                              name={this.state.displayName}
+                              size="lg"
+                              src={this.state.imgURI}
+                              verified={this.state.emailVerified}
+                              />
+                    </Column>
+                  <Column span={10}>
+                    <Heading size="sm">{this.state.displayName}</Heading>
+                    <Text>{this.state.email}</Text>
+                  </Column>
+                </Box>
+
+                <Divider />
+
+                <Box display="flex" direction="row">
+                    <Button text="Sair" onClick={this.props.logoutFunction} />
+                </Box>
+
             </Box>
 
         ]

@@ -14,15 +14,13 @@ export default class Navbar extends Component {
             value : ' ',
             profileModalisOpen: false
         }
-
-        this.__logoutHandler = this.__logoutHandler.bind(this)
     }
 
     __searchHandler(value) {
         this.props.searchHandler(value);
     }
     __logoutHandler(event) {
-        this.props.logoutHandler(event.target.value);
+        this.props.logoutHandler();
     }
 
     openUPModal() {
@@ -73,19 +71,12 @@ export default class Navbar extends Component {
            />
          </Box>
          <Box paddingX={2}>
-           <IconButton
-             accessibilityLabel="Notifications"
-             icon="speech-ellipsis"
-             size="md"
-           />
-         </Box>
-         <Box paddingX={2}>
            <IconButton onClick={() => this.openUPModal() } accessibilityLabel="Profile" icon="person" size="md" />
          </Box>
        </Box>
 
        {this.state.profileModalisOpen && (
-        <UserProfileModal closeFunction={this.closeUPModal.bind(this)} />
+        <UserProfileModal closeFunction={this.closeUPModal.bind(this)} logoutFunction={this.__logoutHandler.bind(this)} />
       )}
 
        </div>
