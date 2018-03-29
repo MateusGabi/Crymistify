@@ -30,7 +30,8 @@
     "heroku-postbuild": "npm run build",
     "deploy": "git push heroku master",
     "semantic-release": "semantic-release --dry-run=true --no-ci=true",
-    "release": "gpom & npm run deploy"
+    "release": "gpom & npm run deploy",
+    "gs": "generate-release"
   },
   "config": {
     "commitizen": {
