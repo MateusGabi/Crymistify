@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
-// import Icon from './../Icon/Icon'
-import { Heading, Text, Box, SearchField, IconButton, Icon } from 'gestalt'
+import { Heading, Text, Box, SearchField, IconButton, Icon, Modal } from 'gestalt'
+
+
+
+import UserProfileModal from './../UserProfileModal/UserProfileModal'
 
 export default class Navbar extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { value : ' '}
+        this.state = {
+            value : ' ',
+            profileModalisOpen: false
+        }
 
         this.__logoutHandler = this.__logoutHandler.bind(this)
     }
@@ -17,6 +23,14 @@ export default class Navbar extends Component {
     }
     __logoutHandler(event) {
         this.props.logoutHandler(event.target.value);
+    }
+
+    openUPModal() {
+        this.setState({ profileModalisOpen: true })
+    }
+
+    closeUPModal() {
+        this.setState({ profileModalisOpen: false })
     }
 
     render() {
@@ -44,6 +58,7 @@ export default class Navbar extends Component {
 
         return (
 
+        <div>
             <Box color="white" shape="rounded" padding={3} display="flex" direction="row" alignItems="center">
          <Box padding={3}>
            <Heading size="xs">Crymistify</Heading>
@@ -65,9 +80,15 @@ export default class Navbar extends Component {
            />
          </Box>
          <Box paddingX={2}>
-           <IconButton accessibilityLabel="Profile" icon="person" size="md" />
+           <IconButton onClick={() => this.openUPModal() } accessibilityLabel="Profile" icon="person" size="md" />
          </Box>
        </Box>
+
+       {this.state.profileModalisOpen && (
+        <UserProfileModal closeFunction={this.closeUPModal.bind(this)} />
+      )}
+
+       </div>
 
         );
     }
