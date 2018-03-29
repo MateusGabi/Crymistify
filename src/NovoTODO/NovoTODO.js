@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import Icon from './../Icon/Icon'
 
-class Modal extends Component {
+
+import { Heading } from 'gestalt'
+
+class NovoTODO extends Component {
 
     constructor(props) {
         super(props);
@@ -18,21 +21,17 @@ class Modal extends Component {
 
     render() {
         return (
-            <div id={this.props.id} className='ModalWrapper modal-close'>
-                <div className='Modal'>
-                    <div onClick={this.fecharModal} className='Fechar'>
-                        <Icon name='x' />
+            <div id={this.props.id}>
+                <div>
+                    <div>
+                        <Heading size="sm" accessibilityLevel={4}>{this.props.titulo}</Heading>
                     </div>
 
-                    <div className='Titulo'>
-                        <h1>{this.props.titulo}</h1>
-                    </div>
-
-                    <div className='Corpo'>
+                    <div>
                         {this.props.corpo}
                     </div>
 
-                    <div className='Rodape'>
+                    <div>
                         {this.props.rodape}
                     </div>
                 </div>
@@ -42,4 +41,4 @@ class Modal extends Component {
 
 }
 
-export default Modal;
+export default NovoTODO;

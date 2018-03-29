@@ -3,13 +3,21 @@ import Service from './../API/API'
 import Log from './../Services/Log'
 import SnackbarService from './../Services/Snackbar'
 import moment from 'moment'
-import Icon from './../Icon/Icon'
+
+import { Icon, Text, Box, Avatar, Button } from 'gestalt'
 
 const timeToDone = time => {
     if (time) {
-        return (<div className='button'>
-            <Icon name='calendar' style={{ width: 16}} /> {time}
-        </div>)
+        return (
+            <Box alignItems="center" display="flex">
+                <Box marginRight={1} padding={1}>
+                    <Icon icon="clock" color="darkGray" />
+                </Box>
+                <Text align="center" color="darkGray">
+                    {time}
+                </Text>
+            </Box>
+        )
     } else {
         return []
     }
@@ -104,7 +112,7 @@ export default class TodoCard extends Component {
 
     coolFormatDate(): string {
         let diff = moment(this.state.todo.created_at).fromNow();
-        let diff1 = moment(this.state.todo.until_at).calendar();
+        let diff1 = moment(this.state.todo.until_at).fromNow();
         return this.setState({ created_at: diff, to_date: diff1 });
     }
 
@@ -152,19 +160,38 @@ export default class TodoCard extends Component {
 
         let classes = this.props.todo.done ? 'card completed' : 'card'
 
+
+
+    // <li className={classes}>
+    //     <div id={this.state.todo._key} className="form">
+    //         <div className="layout horizontal center" style={{padding: '1em 1.5em 1em 1.5em'}}>
+    //             <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name={this.state.iconName} style={{ width: 20}} /></div>
+    //             <input className='name input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
+    //         </div>
+    //         <div className="layout horizontal center">
+    //             {_timeToDone}
+    //             {_description}
+    //         </div>
+    //     </div>
+    // </li >
+
         return (
-            <li className={classes}>
-                <div id={this.state.todo._key} className="form">
-                    <div className="layout horizontal center" style={{padding: '1em 1.5em 1em 1.5em'}}>
-                        <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name={this.state.iconName} style={{ width: 20}} /></div>
-                        <input className='name input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
-                    </div>
-                    <div className="layout horizontal center">
-                        {_timeToDone}
-                        {_description}
-                    </div>
-                </div>
-            </li >
+            <Box
+                alignItems="center"
+                direction="row"
+                display="flex"
+                height={70}>
+                <Box paddingX={1}>
+                  <Avatar name={this.props.todo.titulo} size="md" />
+                </Box>
+                <Box paddingX={1}  flex="grow">
+                  <Text bold>{this.props.todo.titulo}</Text>
+                  <Text>{_timeToDone}</Text>
+                </Box>
+                <Box paddingX={1}>
+                    <Button text="Feito" size="sm" color="white" />
+                </Box>
+                </Box>
         );
     }
 }

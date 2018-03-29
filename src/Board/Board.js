@@ -7,7 +7,10 @@ import Log from './../Services/Log'
 import SnackbarService from './../Services/Snackbar'
 import __ from 'lodash'
 import Icon from './../Icon/Icon'
-import Modal from './../Modal/Modal'
+import NovoTODO from './../NovoTODO/NovoTODO'
+
+
+import { Text, TextField, TextArea, Box, Button, Column, Heading, Tabs } from 'gestalt'
 
 export default class Board extends Component {
 
@@ -19,19 +22,18 @@ export default class Board extends Component {
             userName: '',
             todos: [],
             sortBy: ['until_at'],
-            onlyDones: false
+            onlyDones: false,
+            activeIndex: 0
         };
 
         this.showAddTODO = this.showAddTODO.bind(this);
         this.fecharAddTODO = this.fecharAddTODO.bind(this);
         this.adicionarTODO = this.adicionarTODO.bind(this);
 
-        this.handleChangeTitulo = this.handleChangeTitulo.bind(this);
-        this.handleChangeDescricao = this.handleChangeDescricao.bind(this);
-        this.handleChangeDate = this.handleChangeDate.bind(this);
-
         this.handleChangeSort = this.handleChangeSort.bind(this);
         this.handleOnlyDones = this.handleOnlyDones.bind(this);
+
+        this.handleClickTab = this._handleClickTab.bind(this);
     }
 
     componentDidCatch(error, info) {
@@ -48,21 +50,23 @@ export default class Board extends Component {
         this.setState({ todos: __todos });
     }
 
-    handleChangeTitulo(event) {
-        this.setState({ novoTODO__titulo: event.target.value });
+    handleChangeTitulo(value) {
+        this.setState({ novoTODO__titulo: value })
+
+        console.log(value);
     }
 
-    handleChangeDescricao(event) {
-        this.setState({ novoTODO__descricao: event.target.value });
+    handleChangeDescricao(value) {
+        this.setState({ novoTODO__descricao: value })
     }
 
-    handleChangeDate(event) {
+    handleChangeDate(value) {
 
-        let date: Date = new Date(event.target.value);
+        let date: Date = new Date(value)
 
-        date = moment(date).add(12, 'hours').format();
+        date = moment(date).add(12, 'hours').format()
 
-        this.setState({ novoTODO__toDate: date });
+        this.setState({ novoTODO__toDate: date })
     }
 
     handleChangeSort(event) {
@@ -93,7 +97,18 @@ export default class Board extends Component {
 
         this.setState({ onlyDones: _r })
 
-        Log.log('switch only dones: ' + _r)
+    }
+
+    _handleClickTab({ activeTabIndex, event }) {
+        event.preventDefault();
+
+        this.setState({
+            activeIndex: activeTabIndex,
+            onlyDones: activeTabIndex === 1
+        });
+
+
+        Log.log('switch tab')
     }
 
 
@@ -146,13 +161,13 @@ export default class Board extends Component {
         // 12..18 good afternoon
         // 18..23 good evening
         if (h >= 23 || (h >= 0 && h < 7)) {
-            return (<h4>Good hacking, <strong>{this.state.userName}</strong>! <span role="img" aria-label="nerd">🤓</span></h4>);
+            return (<span>Bom hacking, <strong>{this.state.userName}</strong>! <span role="img" aria-label="nerd">🤓</span></span>);
         } else if (h >= 7 && h < 12) {
-            return (<h4>Good morning, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></h4>);
+            return (<span>Bom dia, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">✌</span></span>);
         } else if (h >= 12 && h < 18) {
-            return (<h4>Good afternoon, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">🤗</span></h4>);
+            return (<span>Boa tarde, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">🤗</span></span>);
         } else if (h >= 18 && h < 23) {
-            return (<h4>Good evening, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">👋</span></h4>);
+            return (<span>Boa noite, <strong>{this.state.userName}</strong>! <span role="img" aria-label="peace">👋</span></span>);
         }
 
     }
@@ -167,49 +182,69 @@ export default class Board extends Component {
             </div>)
         }
 
-        const style =
-            {
-                width: '100%',
-                marginBottom: '1rem'
-            }
-
         const corpoModal = (
-            <div className="layout vertical form">
-                <div className="">
-                    <input className="input h5" style={style} type="text" placeholder='Titulo' value={this.state.novoTODO__titulo} onChange={this.handleChangeTitulo} />
-                </div>
-                <div className="">
-                    <textarea className="input h6" style={style} type="text" rows="3" placeholder='Descrição...' value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} ></textarea>
-                </div>
-                <div className="">
-                    <input className="input h6" style={style} type="date" onChange={this.handleChangeDate} />
-                </div>
+            <div>
+                <Box paddingY={2}>
+                    <TextField type="text" placeholder='Titulo' value={this.state.novoTODO__titulo} onChange={({ value }) => this.handleChangeTitulo(value)} />
+                </Box>
+                <Box paddingY={2}>
+                    <TextArea type="text" rows="3" placeholder='Descrição...' value={this.state.novoTODO__descricao} onChange={this.handleChangeDescricao} />
+                </Box>
+                <Box paddingY={2}>
+                    <TextField type="date" onChange={({ value }) => this.handleChangeDate(value)} />
+                </Box>
             </div >
         )
 
         const rodapeModal = (
-            <div className="layout horizontal center">
-                <button onClick={this.adicionarTODO} type="button" style={{ marginRight: '1rem' }} className="button button-primary">Adidiconar</button>
-                <button onClick={this.fecharAddTODO} type="button" className="button">Fechar</button>
-            </div>
+            <Box
+              display="flex"
+              direction="row"
+              marginLeft={-2}
+              marginRight={-2}
+            >
+              <Box display="flex" direction="row" column={6} paddingX={2}>
+                <Button onClick={this.adicionarTODO} color="red" text="Adicionar" />
+              </Box>
+              <Box column={6} paddingX={2}>
+                <Button onClick={this.fecharAddTODO} color="white" text="Limpar" />
+              </Box>
+            </Box>
         )
 
         return (
             <div>
-                <div className="layout horizontal end justified h-100 bg-primary" style={{padding: '5rem'}}>
+                <Box
+                    padding={12}
+                >
+                    <Heading size="sm" accessibilityLevel={2}>
+                      {this.props.searchPhrase || this.getGreeting()}
+                    </Heading>
+                </Box>
+                <Box
+                    paddingX={12}
+                    >
+                    <Tabs
+                    tabs={[
+                      {
+                        text: "Para Fazer",
+                        href: "#"
+                      },
+                      {
+                        text: "Feitas",
+                        href: "#"
+                      },
+                      {
+                        text: "Todas",
+                        href: "#"
+                      }
+                    ]}
+                    activeTabIndex={this.state.activeIndex}
+                    onChange={this.handleClickTab}
+                  />
+                  </Box>
+                <div className="layout horizontal end justified h-100 bg-primary" style={{padding: '5rem', display: 'none'}}>
                     <div>
-                        <div>
-                            {this.props.searchPhrase || this.getGreeting()}
-                        </div>
-
-                        <div>
-                            <label class="checkbox-container" onChange={this.handleOnlyDones}>
-                                Mostrar apenas tarefas feitas
-                                <input type="checkbox" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-
                         <div>
                             <span className="form" onClick={this.handleChangeSort}>
                                 <select className='select' onChange={this.handleChangeSort}>
@@ -224,20 +259,31 @@ export default class Board extends Component {
 
                 {message}
 
-                <ul>
-                    {
-                        __.sortBy(this.props.todos, this.state.sortBy).filter(t => t.done == this.state.onlyDones).map(
-                            (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
-                        )
-                    }
-                </ul>
+                <Box display="flex" direction="row" paddingY={2}>
+                    <Column span={6}>
+                        <Box paddingX={12}>
+                            {
+                                __.sortBy(this.props.todos, this.state.sortBy).filter(t => t.done == this.state.onlyDones).map(
+                                    (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
+                                )
+                            }
+                        </Box>
+                    </Column>
+                    <Column span={6}>
+                        <Box paddingX={12}>
+                        <NovoTODO
+                            id={this.state.modal_id}
+                            titulo='Novo Item'
+                            corpo={corpoModal}
+                            rodape={rodapeModal}
+                        />
+                        </Box>
+                    </Column>
+                </Box>
+
+
                 <div onClick={this.showAddTODO} className='button button-primary fab'><Icon name='plus' /></div>
-                <Modal
-                    id={this.state.modal_id}
-                    titulo='Novo Item'
-                    corpo={corpoModal}
-                    rodape={rodapeModal}
-                />
+
             </div>
         );
     }

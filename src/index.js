@@ -7,6 +7,8 @@ import moment from 'moment';
 import Log from './Services/Log'
 import LogRocket from 'logrocket';
 
+import 'gestalt/dist/gestalt.css';
+
 import 'moment/locale/pt-br';
 moment.locale('pt-br');
 

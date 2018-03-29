@@ -11,6 +11,9 @@ import Logging from './Logging/Logging'
 import Log from './Services/Log'
 import './App.css'
 
+
+import { Text } from 'gestalt'
+
 export default class App extends Component {
 
     constructor() {
@@ -54,7 +57,7 @@ export default class App extends Component {
 
         let phrase = `🔎 resultado para "${query}"`
 
-        if(query) phrase = (<h4>{phrase}</h4>)
+        if(query) phrase = (<span>{phrase}</span>)
         else phrase = null
 
         this.setState({ todos: found, searchPhrase: phrase });
@@ -118,14 +121,14 @@ export default class App extends Component {
 
             if (this.state.isLogged) {
                 main = (
-                    <div className="app grid-wrapper" style={{width: '100vw', height: '100vh'}}>
+                    <div>
                         <Sidebar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
-                        <main className="grid-cell" style={{overflowY: 'scroll', padding: '0px'}}>
+                        <main>
                             <Board todos={this.state.todos} searchPhrase={this.state.searchPhrase} />
                             <footer className='footer'>
-                                <div>
+                                <Text>
                                     &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.3.2
-                                </div>
+                                </Text>
                             </footer>
                         </main>
                     </div>);
