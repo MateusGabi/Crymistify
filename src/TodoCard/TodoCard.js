@@ -4,7 +4,7 @@ import Log from './../Services/Log'
 import SnackbarService from './../Services/Snackbar'
 import moment from 'moment'
 
-import { Icon, Text, Box, Avatar, Button } from 'gestalt'
+import { Icon, Text, Box, Avatar, Button, Mask } from 'gestalt'
 
 const timeToDone = time => {
     if (time) {
@@ -124,24 +124,24 @@ export default class TodoCard extends Component {
 
         let rest = Math.round((day_to_end - now) / oneday).valueOf();
 
-        let color = "#d0ccd0";
+        let color = "#fff";
 
         if (rest <= 1) {
-            color = "red";
+            color = "#d50000";
 
             if (this.state.todo.until_at === undefined) {
                 this.setState({ to_date: undefined })
-                color = "#737373";
+                color = "#fff";
             }
         }
         else if (rest > 1 && rest <= 3) {
-            color = "#ff9800";
+            color = "#dd2c00";
         }
         else if (rest > 3 && rest <= 5) {
-            color = "#ffc800";
+            color = "#ff6d00";
         }
         else if (rest > 5 && rest <= 7) {
-            color = "#69f0ae";
+            color = "#ffd600";
         }
 
         this.setState({ backgroundColor: color });
@@ -180,7 +180,13 @@ export default class TodoCard extends Component {
                 alignItems="center"
                 direction="row"
                 display="flex"
-                height={70}>
+                height={70}
+                >
+                <Box paddingX={1}>
+                    <Mask height={10} shape="circle" width={10}>
+                        <div style={{ backgroundColor: this.state.backgroundColor, width: 10, height: 10 }} />
+                    </Mask>
+                </Box>
                 <Box paddingX={1}>
                   <Avatar name={this.props.todo.titulo} size="md" />
                 </Box>
@@ -189,7 +195,7 @@ export default class TodoCard extends Component {
                   <Text>{_timeToDone}</Text>
                 </Box>
                 <Box paddingX={1}>
-                    <Button text="Feito" size="md" color="white" />
+                    <Button text="Feito" size="md" color="white" onClick={this.handleMarkAsDone} />
                 </Box>
                 </Box>
         );

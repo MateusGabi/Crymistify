@@ -59,7 +59,7 @@ export default class Navbar extends Component {
         <div>
             <Box color="white" shape="rounded" padding={3} display="flex" direction="row" alignItems="center">
          <Box padding={3}>
-           <Heading size="xs">Crymistify</Heading>
+           <Heading size="xs">Crymistify 😭</Heading>
          </Box>
          <Box flex="grow" paddingX={2}>
            <SearchField
