@@ -280,10 +280,6 @@ export default class Board extends Component {
                         </Box>
                     </Column>
                 </Box>
-
-
-                <div onClick={this.showAddTODO} className='button button-primary fab'><Icon name='plus' /></div>
-
             </div>
         );
     }

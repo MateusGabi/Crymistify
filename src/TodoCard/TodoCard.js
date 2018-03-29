@@ -189,7 +189,7 @@ export default class TodoCard extends Component {
                   <Text>{_timeToDone}</Text>
                 </Box>
                 <Box paddingX={1}>
-                    <Button text="Feito" size="sm" color="white" />
+                    <Button text="Feito" size="md" color="white" />
                 </Box>
                 </Box>
         );

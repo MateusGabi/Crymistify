@@ -5,6 +5,7 @@ import LogRocket from 'logrocket'
 import API from './API/API'
 import Sidebar from './Sidebar/Sidebar'
 import Board from './Board/Board'
+import Footer from './Footer/Footer'
 import Snackbar from './Snackbar/Snackbar'
 import Loading from './Loading/Loading'
 import Logging from './Logging/Logging'
@@ -125,11 +126,7 @@ export default class App extends Component {
                         <Sidebar searchHandler={this.searchHandler.bind(this)} logoutHandler={this.btnLogoutHandler.bind(this)} />
                         <main>
                             <Board todos={this.state.todos} searchPhrase={this.state.searchPhrase} />
-                            <footer className='footer'>
-                                <Text>
-                                    &copy; {new Date().getFullYear()} built by <strong>Mateus Gabi Moreira</strong> v. 0.3.2
-                                </Text>
-                            </footer>
+                            <Footer />
                         </main>
                     </div>);
             }
