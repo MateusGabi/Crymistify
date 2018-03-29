@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import API from './../API/API'
 import SnackbarService from './../Services/Snackbar'
-import Icon from './../Icon/Icon'
+
+
+import { Box, Button, Heading, Icon } from 'gestalt'
 
 export default class Logging extends Component {
 
@@ -21,16 +23,26 @@ export default class Logging extends Component {
 
     render() {
         return (
-            <div style={{ height: 'calc(100vh - 240px)' }} className='layout vertical center-center'>
+            <Box
+                display="flex"
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                width='100vw'
+                height='100vh'
+            >
                 <div>
-                    <h3 class="text-ghost">Welcome back!</h3>
+                    <Heading size="lg">Bem vindo de volta!</Heading>
                 </div>
                 <div>
-                    <button onClick={this.btnLogingWithGoogle} className="button button-google">
-                        <Icon name='user' /> Login with Google
-                    </button>
+                    <Button
+                        color="red"
+                        text="Entrar com o Google"
+                        onClick={() => this.btnLogingWithGoogle()}
+                        inline
+                    />
                 </div>
-            </div>
+            </Box>
         )
     }
 }
