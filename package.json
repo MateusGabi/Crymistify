@@ -8,6 +8,7 @@
     "express": "^4.16.2",
     "feather-icons": "^4.5.0",
     "firebase": "^4.5.2",
+    "generate-release": "^0.14.0",
     "gestalt": "^0.62.1",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
@@ -28,7 +29,8 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build",
     "deploy": "git push heroku master",
-    "release": "semantic-release --dry-run=true --no-ci=true"
+    "semantic-release": "semantic-release --dry-run=true --no-ci=true",
+    "release": "gpom & npm run deploy"
   },
   "config": {
     "commitizen": {
