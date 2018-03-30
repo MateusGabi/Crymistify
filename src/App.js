@@ -3,17 +3,23 @@ import React, { Component } from 'react';
 import __ from 'lodash'
 import LogRocket from 'logrocket'
 
-import { API, Log } from './Services'
-import Sidebar from './Components/Sidebar'
-import Board from './Components/Board'
-import Footer from './Components/Footer'
-import Snackbar from './Components/Snackbar'
-import Loading from './Components/Loading'
-import Logging from './Components/Logging'
-import './App.css'
-
-
 import { Text } from 'gestalt'
+
+import {
+    API,
+    Log
+} from './Services'
+
+import {
+    Board,
+    Footer,
+    Loading,
+    Logging,
+    Sidebar,
+    Snackbar
+} from './Components'
+
+import './App.css'
 
 export default class App extends Component {
 
