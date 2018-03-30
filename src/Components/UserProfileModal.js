@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Modal} from 'gestalt'
-import UserProfile from './../UserProfile/UserProfile'
+import UserProfile from './UserProfile'
 
 const UserProfileModal = ({ closeFunction, logoutFunction }) => (
     <Modal

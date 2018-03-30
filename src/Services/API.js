@@ -17,7 +17,7 @@ const database = firebase
     .ref();
 
 
-export default class Service {
+export default class API {
 
     static getUser(): Observable<any> {
 
@@ -30,9 +30,9 @@ export default class Service {
 
     static addTodo(todo): Promise<boolean> {
 
-        Service.getUser().subscribe(user => {
+        API.getUser().subscribe(user => {
 
-            todo = Service.purify(todo)
+            todo = API.purify(todo)
             todo = { ...todo, user: user.uid, done: false }
 
             database.child('privateTodos').push(todo);
@@ -45,9 +45,9 @@ export default class Service {
 
     static editTodo(todo): Promise<boolean> {
 
-        Service.getUser().subscribe(user => {
+        API.getUser().subscribe(user => {
 
-            todo = Service.purify(todo)
+            todo = API.purify(todo)
             todo = { ...todo, user: user.uid, done: false }
 
             database.child('privateTodos').child(todo._key).set(todo);
@@ -66,9 +66,9 @@ export default class Service {
 
         let result = new ReplaySubject();
 
-        Service.getUser().subscribe(user => {
+        API.getUser().subscribe(user => {
 
-            Service.getTodosRef().orderByChild('user').equalTo(user.uid).on('value', (dataSnapshot) => {
+            API.getTodosRef().orderByChild('user').equalTo(user.uid).on('value', (dataSnapshot) => {
                 var tasks = [];
                 dataSnapshot.forEach((child) => {
                     tasks.push({
@@ -93,12 +93,12 @@ export default class Service {
     static remover(todo) {
 
 
-        Service.getUser().subscribe(user => {
+        API.getUser().subscribe(user => {
 
-            todo = Service.purify(todo)
+            todo = API.purify(todo)
             todo = { ...todo, user: user.uid, done: true }
             database.child('privateTodos').child(todo._key).set(todo);
-            
+
         });
 
 

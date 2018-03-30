@@ -3,14 +3,13 @@ import React, { Component } from 'react';
 import __ from 'lodash'
 import LogRocket from 'logrocket'
 
-import API from './API/API'
-import Sidebar from './Sidebar/Sidebar'
-import Board from './Board/Board'
-import Footer from './Footer/Footer'
-import Snackbar from './Snackbar/Snackbar'
-import Loading from './Loading/Loading'
-import Logging from './Logging/Logging'
-import Log from './Services/Log'
+import { API, Log } from './Services'
+import Sidebar from './Components/Sidebar'
+import Board from './Components/Board'
+import Footer from './Components/Footer'
+import Snackbar from './Components/Snackbar'
+import Loading from './Components/Loading'
+import Logging from './Components/Logging'
 import './App.css'
 
 

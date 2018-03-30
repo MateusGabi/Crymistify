@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Service from './../API/API'
+import { API } from './../Services'
 
 import { Avatar, Box, Button, Column, Divider, Heading, Image, Text } from 'gestalt'
 
@@ -17,7 +17,7 @@ class UserProfile extends Component {
 
 
     componentDidMount() {
-        Service.getUser().subscribe(user => {
+        API.getUser().subscribe(user => {
             console.log('UP', user)
 
 

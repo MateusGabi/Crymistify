@@ -3,7 +3,7 @@ import { Heading, Text, Box, SearchField, IconButton, Icon, Modal } from 'gestal
 
 
 
-import UserProfileModal from './../UserProfileModal/UserProfileModal'
+import UserProfileModal from './UserProfileModal'
 
 export default class Navbar extends Component {
 

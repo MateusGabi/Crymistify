@@ -1,5 +1,5 @@
 import __ from 'lodash'
-import API from './../API/API'
+import API from './API'
 
 const Logger = (log) => {
     console.log('[GabiWatcher]', log);

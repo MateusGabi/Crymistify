@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import API from './../API/API'
+import API from './../Services/API'
 import SnackbarService from './../Services/Snackbar'
 
 

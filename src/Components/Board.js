@@ -1,13 +1,11 @@
 //@ts-check
 import React, { Component } from 'react'
-import TodoCard from './../TodoCard/TodoCard'
+import TodoCard from './TodoCard'
 import moment from 'moment'
-import Service from './../API/API'
-import Log from './../Services/Log'
-import SnackbarService from './../Services/Snackbar'
+import { API, Log, Snackbar } from './../Services'
 import __ from 'lodash'
-import Icon from './../Icon/Icon'
-import NovoTODO from './../NovoTODO/NovoTODO'
+import Icon from './Icon'
+import NovoTODO from './NovoTODO'
 
 
 import { Text, TextField, TextArea, Box, Button, Column, Heading, Tabs } from 'gestalt'
@@ -41,7 +39,7 @@ export default class Board extends Component {
     }
 
     componentDidMount() {
-        Service.getUser().subscribe(
+        API.getUser().subscribe(
             user => this.setState({ userName: user.displayName })
         );
 
@@ -141,12 +139,12 @@ export default class Board extends Component {
             created_at: moment().format()
         };
 
-        Service.addTodo(TODO).then(res => {
+        API.addTodo(TODO).then(res => {
             if (res) {
-                SnackbarService.showMessage(`Item adicionado 😉`)
+                Snackbar.showMessage(`Item adicionado 😉`)
                 this.fecharAddTODO()
             }
-            else SnackbarService.showMessage(`Um erro ocorreu 😔`)
+            else Snackbar.showMessage(`Um erro ocorreu 😔`)
 
         });
     }

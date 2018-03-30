@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Service from './../API/API'
+import Service from './../Services/API'
 import Log from './../Services/Log'
 import SnackbarService from './../Services/Snackbar'
 import moment from 'moment'

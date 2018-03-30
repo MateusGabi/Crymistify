@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Icon from './../Icon/Icon'
+import Icon from './Icon'
 
 
 import { Heading } from 'gestalt'
