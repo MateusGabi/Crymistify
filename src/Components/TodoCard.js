@@ -23,16 +23,6 @@ const timeToDone = time => {
     }
 }
 
-const note = note => {
-    if (note) {
-        return ((<div className='button'>
-            <Icon name='file-text' style={{ width: 16}} /> Anotação
-        </div>))
-    } else {
-        return []
-    }
-}
-
 export default class TodoCard extends Component {
 
     constructor(props) {
@@ -149,31 +139,7 @@ export default class TodoCard extends Component {
 
     render() {
 
-        const restTimeStyle = {
-            backgroundColor: this.state.backgroundColor,
-            color: '#fff',
-        };
-
         let _timeToDone = timeToDone(this.state.to_date)
-
-        let _description = note(this.props.todo.descricao)
-
-        let classes = this.props.todo.done ? 'card completed' : 'card'
-
-
-
-    // <li className={classes}>
-    //     <div id={this.state.todo._key} className="form">
-    //         <div className="layout horizontal center" style={{padding: '1em 1.5em 1em 1.5em'}}>
-    //             <div className='grid-cell' style={{flex: 'none', cursor: 'pointer'}} onClick={this.handleMarkAsDone}><Icon name={this.state.iconName} style={{ width: 20}} /></div>
-    //             <input className='name input grid-cell' style={{backgroundColor: 'transparent', flex: '1'}} onBlur={this.showSnackbar} onChange={this.handleEditTitle} value={this.state.todo.titulo} />
-    //         </div>
-    //         <div className="layout horizontal center">
-    //             {_timeToDone}
-    //             {_description}
-    //         </div>
-    //     </div>
-    // </li >
 
         return (
             <Box

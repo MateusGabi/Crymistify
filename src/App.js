@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import __ from 'lodash'
 import LogRocket from 'logrocket'
 
-import { Text } from 'gestalt'
-
 import {
     API,
     Log
@@ -15,8 +13,7 @@ import {
     Footer,
     Loading,
     Logging,
-    Sidebar,
-    Snackbar
+    Sidebar
 } from './Components'
 
 import './App.css'

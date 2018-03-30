@@ -4,11 +4,10 @@ import TodoCard from './TodoCard'
 import moment from 'moment'
 import { API, Log, Snackbar } from './../Services'
 import __ from 'lodash'
-import Icon from './Icon'
 import NovoTODO from './NovoTODO'
 
 
-import { Text, TextField, TextArea, Box, Button, Column, Heading, Tabs } from 'gestalt'
+import { TextField, TextArea, Box, Button, Column, Heading, Tabs } from 'gestalt'
 
 export default class Board extends Component {
 
@@ -261,7 +260,7 @@ export default class Board extends Component {
                     <Column span={6}>
                         <Box paddingX={12}>
                             {
-                                __.sortBy(this.props.todos, this.state.sortBy).filter(t => t.done == this.state.onlyDones).map(
+                                __.sortBy(this.props.todos, this.state.sortBy).filter(t => t.done === this.state.onlyDones).map(
                                     (todo, i) => (<TodoCard key={todo._key} todo={todo} />)
                                 )
                             }

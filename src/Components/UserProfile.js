@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { API } from './../Services'
 
-import { Avatar, Box, Button, Column, Divider, Heading, Image, Text } from 'gestalt'
+import { Avatar, Box, Button, Column, Divider, Heading, Text } from 'gestalt'
 
 class UserProfile extends Component {
     constructor(props) {

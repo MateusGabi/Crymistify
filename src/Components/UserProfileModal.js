@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Modal} from 'gestalt'
 import UserProfile from './UserProfile'
 

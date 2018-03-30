@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Box, Divider, Text } from 'gestalt'
 
 const Footer = () => [

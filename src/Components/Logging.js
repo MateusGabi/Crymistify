@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import API from './../Services/API'
-import SnackbarService from './../Services/Snackbar'
+import { API } from './../Services'
 
-
-import { Box, Button, Heading, Icon } from 'gestalt'
+import { Box, Button, Heading } from 'gestalt'
 
 export default class Logging extends Component {
 

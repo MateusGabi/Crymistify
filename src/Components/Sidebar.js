@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Heading, Text, Box, SearchField, IconButton, Icon, Modal } from 'gestalt'
-
-
+import { Heading, Box, SearchField, IconButton } from 'gestalt'
 
 import UserProfileModal from './UserProfileModal'
 
@@ -32,34 +30,12 @@ export default class Navbar extends Component {
     }
 
     render() {
-
-        // return (
-        //         <div className="grid-cell cell--1of6" style={{borderRadius: '0px', borderRight: '1px solid #ccc', margin: '0px'}}>
-        //             <div className='layout vertical justified' style={{height: '95vh'}}>
-        //                 <div>
-        //                     <span className="brand h4">Remind! <span role="img" aria-label="">💭</span></span>
-        //
-        //                     <div className="menu">
-        //                         <div className="form no-margin">
-        //                             <input className='input' onChange={this.__searchHandler} type="text" />
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div>
-        //                     <div className="">
-        //                         <a className='button' onClick={this.__logoutHandler}> <Icon name='log-out' /> Sair</a>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        // );
-
         return (
 
         <div>
             <Box color="white" shape="rounded" padding={3} display="flex" direction="row" alignItems="center">
          <Box padding={3}>
-           <Heading size="xs">Crymistify 😭</Heading>
+           <Heading size="xs">Crymistify <span role="img" aria-label="choro">😭</span></Heading>
          </Box>
          <Box flex="grow" paddingX={2}>
            <SearchField

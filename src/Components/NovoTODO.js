@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import Icon from './Icon'
-
-
 import { Heading } from 'gestalt'
 
 class NovoTODO extends Component {
