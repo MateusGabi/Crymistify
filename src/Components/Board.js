@@ -4,7 +4,7 @@ import TodoCard from './TodoCard'
 import moment from 'moment'
 import { API, Log, Snackbar } from './../Services'
 import __ from 'lodash'
-import NovoTODO from './NovoTODO'
+import AddTodo from './AddTodo'
 
 
 import { TextField, TextArea, Box, Button, Column, Heading, Tabs } from 'gestalt'
@@ -268,7 +268,7 @@ export default class Board extends Component {
                     </Column>
                     <Column span={6}>
                         <Box paddingX={12}>
-                        <NovoTODO
+                        <AddTodo
                             id={this.state.modal_id}
                             titulo='Novo Item'
                             corpo={corpoModal}

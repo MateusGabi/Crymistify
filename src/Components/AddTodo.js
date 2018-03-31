@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Heading } from 'gestalt'
 
-class NovoTODO extends Component {
+class AddTodo extends Component {
 
     constructor(props) {
         super(props);
@@ -38,4 +38,4 @@ class NovoTODO extends Component {
 
 }
 
-export default NovoTODO;
+export default AddTodo;
