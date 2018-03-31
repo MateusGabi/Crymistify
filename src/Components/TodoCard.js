@@ -3,12 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-
-import Service from './../Services/API';
-import Log from './../Services/Log';
-import SnackbarService from './../Services/Snackbar';
-
 import { Icon, Text, Box, Avatar, Button, Mask } from 'gestalt';
+
+import { Service, Log, Snackbar } from './../Services';
 
 const timeToDone = time => {
     if (time) {
