@@ -1,3 +1,5 @@
+/** @format */
+
 import API from './API';
 import Log from './Log';
 import Snackbar from './Snackbar';
