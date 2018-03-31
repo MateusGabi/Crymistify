@@ -1,6 +1,7 @@
 {
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "parserOptions": {
         "ecmaVersion": 6,
@@ -20,5 +21,10 @@
         "plugin:react/recommended"
     ],
     "rules": {
+        "indent": [1,4],
+        "linebreak-style": [1,"unix"],
+        "quotes": [1,"double"],
+        "semi": [1,"always"],
+        "prettier/prettier": "error"
     }
 }
