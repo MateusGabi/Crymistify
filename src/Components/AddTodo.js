@@ -35,12 +35,11 @@ class AddTodo extends Component {
   }
 }
 
-
 AddTodo.propTypes = {
-    id: PropTypes.string,
-    titulo: PropTypes.string,
-    corpo: PropTypes.element,
-    rodape: PropTypes.element
-}
+  id: PropTypes.string,
+  titulo: PropTypes.string,
+  corpo: PropTypes.element,
+  rodape: PropTypes.element,
+};
 
 export default AddTodo;

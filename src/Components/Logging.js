@@ -43,9 +43,8 @@ class Logging extends Component {
   }
 }
 
-
 Logging.propTypes = {
-    loggingHandler: PropTypes.func
-}
+  loggingHandler: PropTypes.func,
+};
 
 export default Logging;

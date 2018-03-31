@@ -194,7 +194,7 @@ class TodoCard extends Component {
 }
 
 TodoCard.propTypes = {
-    todo: PropTypes.object
-}
+  todo: PropTypes.object,
+};
 
 export default TodoCard;

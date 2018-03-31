@@ -31,10 +31,9 @@ class Icon extends Component {
   }
 }
 
-
 Icon.propTypes = {
-    name: PropTypes.string,
-    style: PropTypes.object
-}
+  name: PropTypes.string,
+  style: PropTypes.object,
+};
 
 export default Icon;

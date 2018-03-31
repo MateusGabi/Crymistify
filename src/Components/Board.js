@@ -295,7 +295,7 @@ class Board extends Component {
             <Box paddingX={12}>
               {__.sortBy(this.props.todos, this.state.sortBy)
                 .filter(t => t.done === this.state.onlyDones)
-                .map((todo) => <TodoCard key={todo._key} todo={todo} />)}
+                .map(todo => <TodoCard key={todo._key} todo={todo} />)}
             </Box>
           </Column>
           <Column span={6}>
@@ -315,8 +315,8 @@ class Board extends Component {
 }
 
 Board.propTypes = {
-    todos: PropTypes.array,
-    searchPhrase: PropTypes.func
-}
+  todos: PropTypes.array,
+  searchPhrase: PropTypes.func,
+};
 
 export default Board;

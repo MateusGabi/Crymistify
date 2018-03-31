@@ -18,7 +18,7 @@ class Navbar extends Component {
   __searchHandler(value) {
     this.props.searchHandler(value);
   }
-  
+
   __logoutHandler() {
     this.props.logoutHandler();
   }
@@ -80,10 +80,9 @@ class Navbar extends Component {
   }
 }
 
-
 Navbar.propTypes = {
-    searchHandler: PropTypes.func,
-    logoutHandler: PropTypes.func
-}
+  searchHandler: PropTypes.func,
+  logoutHandler: PropTypes.func,
+};
 
 export default Navbar;
