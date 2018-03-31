@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Heading } from 'gestalt';
 
 class AddTodo extends Component {
@@ -32,6 +33,14 @@ class AddTodo extends Component {
       </div>
     );
   }
+}
+
+
+AddTodo.propTypes = {
+    id: PropTypes.string,
+    titulo: PropTypes.string,
+    corpo: PropTypes.element,
+    rodape: PropTypes.element
 }
 
 export default AddTodo;

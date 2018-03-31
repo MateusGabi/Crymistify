@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import feather from 'feather-icons';
 
 class Icon extends Component {
@@ -28,6 +29,12 @@ class Icon extends Component {
   render() {
     return <i id={this.state.id} />;
   }
+}
+
+
+Icon.propTypes = {
+    name: PropTypes.string,
+    style: PropTypes.object
 }
 
 export default Icon;

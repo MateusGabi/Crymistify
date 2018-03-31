@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 import Service from './../Services/API';
 import Log from './../Services/Log';
 import SnackbarService from './../Services/Snackbar';
-import moment from 'moment';
 
 import { Icon, Text, Box, Avatar, Button, Mask } from 'gestalt';
 
@@ -23,7 +25,7 @@ const timeToDone = time => {
   }
 };
 
-export default class TodoCard extends Component {
+class TodoCard extends Component {
   constructor(props) {
     super(props);
 
@@ -92,17 +94,17 @@ export default class TodoCard extends Component {
     Service.editTodo(this.state.todo);
   }
 
-  handleClickEditData(event) {
+  handleClickEditData() {
     SnackbarService.showMessage(
       `Uhh... Nos desculpe, mas essa função não disponível.`
     );
   }
 
-  showSnackbar(event) {
+  showSnackbar() {
     SnackbarService.showMessage(`Item '${this.state.todo.titulo}' editado!`);
   }
 
-  coolFormatDate(): string {
+  coolFormatDate() {
     let diff = moment(this.state.todo.created_at).fromNow();
     let diff1 = moment(this.state.todo.until_at).fromNow();
     return this.setState({ created_at: diff, to_date: diff1 });
@@ -190,3 +192,9 @@ export default class TodoCard extends Component {
     );
   }
 }
+
+TodoCard.propTypes = {
+    todo: PropTypes.object
+}
+
+export default TodoCard;

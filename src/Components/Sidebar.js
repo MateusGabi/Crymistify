@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Heading, Box, SearchField, IconButton } from 'gestalt';
 
 import UserProfileModal from './UserProfileModal';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +18,8 @@ export default class Navbar extends Component {
   __searchHandler(value) {
     this.props.searchHandler(value);
   }
-  __logoutHandler(event) {
+  
+  __logoutHandler() {
     this.props.logoutHandler();
   }
 
@@ -76,3 +79,11 @@ export default class Navbar extends Component {
     );
   }
 }
+
+
+Navbar.propTypes = {
+    searchHandler: PropTypes.func,
+    logoutHandler: PropTypes.func
+}
+
+export default Navbar;

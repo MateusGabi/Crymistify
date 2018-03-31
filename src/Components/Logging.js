@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { API } from './../Services';
 
 import { Box, Button, Heading } from 'gestalt';
 
-export default class Logging extends Component {
+class Logging extends Component {
   constructor(props) {
     super(props);
 
@@ -41,3 +42,10 @@ export default class Logging extends Component {
     );
   }
 }
+
+
+Logging.propTypes = {
+    loggingHandler: PropTypes.func
+}
+
+export default Logging;

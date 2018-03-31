@@ -1,5 +1,6 @@
 //@ts-check
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 import moment from 'moment';
 import { API, Log, Snackbar } from './../Services';
@@ -16,7 +17,7 @@ import {
   Tabs,
 } from 'gestalt';
 
-export default class Board extends Component {
+class Board extends Component {
   constructor(props) {
     super(props);
 
@@ -55,8 +56,6 @@ export default class Board extends Component {
 
   handleChangeTitulo(value) {
     this.setState({ novoTODO__titulo: value });
-
-    console.log(value);
   }
 
   handleChangeDescricao(value) {
@@ -64,7 +63,7 @@ export default class Board extends Component {
   }
 
   handleChangeDate(value) {
-    let date: Date = new Date(value);
+    let date = new Date(value);
 
     date = moment(date)
       .add(12, 'hours')
@@ -94,7 +93,7 @@ export default class Board extends Component {
     Log.log('switch sorter', { sortBy: this.state.sortBy[0] });
   }
 
-  handleOnlyDones(event) {
+  handleOnlyDones() {
     let _r = this.state.onlyDones;
 
     _r = !_r;
@@ -113,7 +112,7 @@ export default class Board extends Component {
     Log.log('switch tab');
   }
 
-  getRandomID(prefix: string) {
+  getRandomID(prefix) {
     prefix = prefix || 'modal';
 
     let id = Math.random().toString(36);
@@ -296,7 +295,7 @@ export default class Board extends Component {
             <Box paddingX={12}>
               {__.sortBy(this.props.todos, this.state.sortBy)
                 .filter(t => t.done === this.state.onlyDones)
-                .map((todo, i) => <TodoCard key={todo._key} todo={todo} />)}
+                .map((todo) => <TodoCard key={todo._key} todo={todo} />)}
             </Box>
           </Column>
           <Column span={6}>
@@ -314,3 +313,10 @@ export default class Board extends Component {
     );
   }
 }
+
+Board.propTypes = {
+    todos: PropTypes.array,
+    searchPhrase: PropTypes.func
+}
+
+export default Board;

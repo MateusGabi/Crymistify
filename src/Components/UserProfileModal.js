@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Modal } from 'gestalt'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Modal } from 'gestalt';
 
-import UserProfile from './UserProfile'
+import UserProfile from './UserProfile';
 
 const UserProfileModal = ({ closeFunction, logoutFunction }) => (
   <Modal
@@ -17,8 +17,8 @@ const UserProfileModal = ({ closeFunction, logoutFunction }) => (
 );
 
 UserProfileModal.propTypes = {
-    closeFunction: PropTypes.func,
-    logoutFunction: PropTypes.func
-}
+  closeFunction: PropTypes.func,
+  logoutFunction: PropTypes.func,
+};
 
 export default UserProfileModal;

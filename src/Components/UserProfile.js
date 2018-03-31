@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { API } from './../Services';
 
 import { Avatar, Box, Button, Column, Divider, Heading, Text } from 'gestalt';
@@ -17,8 +18,6 @@ class UserProfile extends Component {
 
   componentDidMount() {
     API.getUser().subscribe(user => {
-      console.log('UP', user);
-
       this.setState({
         displayName: user.displayName,
         email: user.email,
@@ -30,7 +29,7 @@ class UserProfile extends Component {
 
   render() {
     return [
-      <Box paddingY={2} paddingX={5}>
+      <Box paddingY={2} paddingX={5} key="0">
         <Box display="flex" direction="row">
           <Column span={2}>
             <Avatar
@@ -55,5 +54,9 @@ class UserProfile extends Component {
     ];
   }
 }
+
+UserProfile.propTypes = {
+  logoutFunction: PropTypes.func,
+};
 
 export default UserProfile;
