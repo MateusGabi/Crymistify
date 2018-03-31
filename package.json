@@ -22,20 +22,20 @@
     "semantic-release": "^15.1.4"
   },
   "scripts": {
-    "cm": "npm run prettier && git-cz",
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "test:coverage:ci": "npm test -- --coverage",
+    "cm": "npm run prettier && git-cz",
+    "deploy": "git push heroku master",
     "eject": "react-scripts eject",
+    "gs": "generate-release",
     "heroku-postbuild": "npm run build",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
-    "deploy": "git push heroku master",
-    "semantic-release": "semantic-release --dry-run=true --no-ci=true",
     "prettier": "prettier --single-quote --trailing-comma es5 --write '{src,__{tests,mocks}__}/**/*.js'",
     "release": "gpom & npm run deploy",
+    "semantic-release": "semantic-release --dry-run=true --no-ci=true",
+    "start": "react-scripts start",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "gs": "generate-release"
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage:ci": "npm test -- --coverage"
   },
   "config": {
     "commitizen": {
