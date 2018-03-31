@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "plugins": [
         "react",
         "prettier"
@@ -6,6 +7,7 @@
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
+        "experimentalObjectRestSpread": true,
         "ecmaFeatures": {
             "jsx": true
         }
@@ -21,9 +23,8 @@
         "plugin:react/recommended"
     ],
     "rules": {
-        "indent": [1,4],
-        "linebreak-style": [1,"unix"],
-        "quotes": [1,"double"],
+        "indent": [1,4, {"SwitchCase": 1}],
+        "quotes": [1,"single"],
         "semi": [1,"always"],
         "prettier/prettier": "error"
     }
