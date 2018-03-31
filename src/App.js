@@ -55,7 +55,9 @@ export default class App extends Component {
     }
 
     btnLogoutHandler() {
-        API.logout().subscribe(success => this.setState({ isLogged: false }));
+        API.logout().subscribe(success =>
+            this.setState({ isLogged: !success })
+        );
     }
 
     componentDidMount() {
