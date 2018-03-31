@@ -1,156 +1,135 @@
-import * as firebase from 'firebase'
-import { Observable, ReplaySubject } from 'rxjs'
-import __ from 'lodash'
+import * as firebase from 'firebase';
+import { Observable, ReplaySubject } from 'rxjs';
+import __ from 'lodash';
 
 const config = {
-    apiKey: "AIzaSyAkww8x2nbDwsB9MjUltMn43Erft3LVYCE",
-    authDomain: "todo-app-b2a7b.firebaseapp.com",
-    databaseURL: "https://todo-app-b2a7b.firebaseio.com",
-    storageBucket: "todo-app-b2a7b.appspot.com",
+  apiKey: 'AIzaSyAkww8x2nbDwsB9MjUltMn43Erft3LVYCE',
+  authDomain: 'todo-app-b2a7b.firebaseapp.com',
+  databaseURL: 'https://todo-app-b2a7b.firebaseio.com',
+  storageBucket: 'todo-app-b2a7b.appspot.com',
 };
 
-
-
 const database = firebase
-    .initializeApp(config)
-    .database()
-    .ref();
-
+  .initializeApp(config)
+  .database()
+  .ref();
 
 export default class API {
+  static getUser(): Observable<any> {
+    let subject = new ReplaySubject();
+    firebase.auth().onAuthStateChanged(user => {
+      subject.next(user);
+    });
+    return subject.asObservable();
+  }
 
-    static getUser(): Observable<any> {
+  static addTodo(todo): Promise<boolean> {
+    API.getUser().subscribe(user => {
+      todo = API.purify(todo);
+      todo = { ...todo, user: user.uid, done: false };
 
-        let subject = new ReplaySubject();
-        firebase.auth().onAuthStateChanged(user => {
-            subject.next(user);
-        });
-        return subject.asObservable();
-    }
+      database.child('privateTodos').push(todo);
+    });
 
-    static addTodo(todo): Promise<boolean> {
+    return Promise.resolve(true);
+  }
 
-        API.getUser().subscribe(user => {
+  static editTodo(todo): Promise<boolean> {
+    API.getUser().subscribe(user => {
+      todo = API.purify(todo);
+      todo = { ...todo, user: user.uid, done: false };
 
-            todo = API.purify(todo)
-            todo = { ...todo, user: user.uid, done: false }
+      database
+        .child('privateTodos')
+        .child(todo._key)
+        .set(todo);
+    });
 
-            database.child('privateTodos').push(todo);
-        });
+    return Promise.resolve(true);
+  }
 
+  static getTodosRef() {
+    return database.child('privateTodos');
+  }
 
-        return Promise.resolve(true);
+  static getTodos(): Observable<any[]> {
+    let result = new ReplaySubject();
 
-    }
-
-    static editTodo(todo): Promise<boolean> {
-
-        API.getUser().subscribe(user => {
-
-            todo = API.purify(todo)
-            todo = { ...todo, user: user.uid, done: false }
-
-            database.child('privateTodos').child(todo._key).set(todo);
-        });
-
-
-        return Promise.resolve(true);
-
-    }
-
-    static getTodosRef() {
-        return database.child('privateTodos');
-    }
-
-    static getTodos(): Observable<any[]> {
-
-        let result = new ReplaySubject();
-
-        API.getUser().subscribe(user => {
-
-            API.getTodosRef().orderByChild('user').equalTo(user.uid).on('value', (dataSnapshot) => {
-                var tasks = [];
-                dataSnapshot.forEach((child) => {
-                    tasks.push({
-                        titulo: child.val().titulo,
-                        created_at: child.val().created_at,
-                        descricao: child.val().descricao,
-                        until_at: child.val().until_at,
-                        done: child.val().done,
-                        _key: child.key
-                    });
-                });
-
-                result.next(tasks);
+    API.getUser().subscribe(user => {
+      API.getTodosRef()
+        .orderByChild('user')
+        .equalTo(user.uid)
+        .on('value', dataSnapshot => {
+          var tasks = [];
+          dataSnapshot.forEach(child => {
+            tasks.push({
+              titulo: child.val().titulo,
+              created_at: child.val().created_at,
+              descricao: child.val().descricao,
+              until_at: child.val().until_at,
+              done: child.val().done,
+              _key: child.key,
             });
+          });
 
-
-        })
-
-        return result.asObservable();
-    }
-
-    static remover(todo) {
-
-
-        API.getUser().subscribe(user => {
-
-            todo = API.purify(todo)
-            todo = { ...todo, user: user.uid, done: true }
-            database.child('privateTodos').child(todo._key).set(todo);
-
+          result.next(tasks);
         });
+    });
 
+    return result.asObservable();
+  }
 
-    }
+  static remover(todo) {
+    API.getUser().subscribe(user => {
+      todo = API.purify(todo);
+      todo = { ...todo, user: user.uid, done: true };
+      database
+        .child('privateTodos')
+        .child(todo._key)
+        .set(todo);
+    });
+  }
 
-    /**
-     * Removes attributes that has null and undefined as value
-     * @param {*} todo
-     */
-    static purify(obj: Object) {
-        return __.pickBy(obj, undefined || null)
-    }
+  /**
+   * Removes attributes that has null and undefined as value
+   * @param {*} todo
+   */
+  static purify(obj: Object) {
+    return __.pickBy(obj, undefined || null);
+  }
 
-    static loginWithGoogle(): Observable<boolean> {
+  static loginWithGoogle(): Observable<boolean> {
+    let result = new ReplaySubject();
 
-        let result = new ReplaySubject();
-
+    firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        let provider = new firebase.auth.GoogleAuthProvider();
         firebase
-            .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-            .then(() => {
+          .auth()
+          .signInWithPopup(provider)
+          .then(r => result.next(true))
+          .catch(err => result.error(err));
+      })
+      .catch(err => result.error(err));
 
-                let provider = new firebase.auth.GoogleAuthProvider();
-                firebase
-                    .auth()
-                    .signInWithPopup(provider)
-                    .then(r => result.next(true))
-                    .catch(err => result.error(err));
+    return result.asObservable();
+  }
 
-            })
-            .catch(err => result.error(err));
+  static logout(): Observable<boolean> {
+    let result = new ReplaySubject();
 
-        return result.asObservable();
-    }
+    firebase
+      .auth()
+      .signOut()
+      .then(() => result.next(true))
+      .catch(err => result.error(err));
 
-    static logout(): Observable<boolean> {
-        let result = new ReplaySubject();
+    return result.asObservable();
+  }
 
-        firebase
-            .auth()
-            .signOut()
-            .then(() => result.next(true))
-            .catch(err => result.error(err))
-
-        return result.asObservable();
-    }
-
-
-
-
-    static log(log) {
-        database.child('log').push(log)
-    }
-
+  static log(log) {
+    database.child('log').push(log);
+  }
 }

@@ -1,32 +1,33 @@
-import React, { Component } from 'react'
-import feather from 'feather-icons'
+import React, { Component } from 'react';
+import feather from 'feather-icons';
 
 class Icon extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
+    this.state = {
+      id: this.getRandomID(),
+    };
+  }
 
-        this.state = {
-            id: this.getRandomID()
-        };
-    }
+  getRandomID() {
+    let id = Math.random()
+      .toString(36)
+      .substring(7);
 
-    getRandomID() {
+    return `icon-${id}`;
+  }
 
-        let id = Math.random().toString(36).substring(7);
+  componentDidMount() {
+    let svg = (
+      feather.icons[this.props.name] || feather.icons['feather']
+    ).toSvg(this.props.style);
+    document.getElementById(this.state.id).innerHTML = svg;
+  }
 
-        return `icon-${id}`;
-    }
-
-    componentDidMount() {
-        let svg = (feather.icons[this.props.name] || feather.icons['feather']).toSvg(this.props.style);
-        document.getElementById(this.state.id).innerHTML = svg;
-    }
-
-    render() {
-
-        return (<i id={this.state.id} />)
-    }
+  render() {
+    return <i id={this.state.id} />;
+  }
 }
 
 export default Icon;

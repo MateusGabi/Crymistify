@@ -1,3 +1,3 @@
-require('./footer.js')
-require('./todoCard.js')
-require('./addTodo.js')
+require('./footer.js');
+require('./todoCard.js');
+require('./addTodo.js');

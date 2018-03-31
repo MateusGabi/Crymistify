@@ -22,7 +22,7 @@
     "semantic-release": "^15.1.4"
   },
   "scripts": {
-    "commit": "git-cz",
+    "cm": "npm run prettier && git-cz",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -31,6 +31,7 @@
     "heroku-postbuild": "npm run build",
     "deploy": "git push heroku master",
     "semantic-release": "semantic-release --dry-run=true --no-ci=true",
+    "prettier": "prettier --single-quote --trailing-comma es5 --write '{src,__{tests,mocks}__}/**/*.js'",
     "release": "gpom & npm run deploy",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "gs": "generate-release"
@@ -41,6 +42,7 @@
     }
   },
   "devDependencies": {
-    "@storybook/react": "^3.3.15"
+    "@storybook/react": "^3.3.15",
+    "prettier": "1.11.1"
   }
 }
