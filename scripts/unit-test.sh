@@ -2,12 +2,10 @@
 
 DIR=$PWD
 
-echo "[GabCI]: NPM Install"
-
-echo $PWD
+echo "[GabCI]: npm install"
 
 npm install
 
-echo "[GabCI]: Jest Test"
+echo "[GabCI]: Test with coverage"
 
-npm run test
+npm run test:coverage:ci
