@@ -28,4 +28,5 @@ const mock_not_done = {
 it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<TodoCard todo={mock_done} />, div);
+    ReactDOM.render(<TodoCard todo={mock_not_done} />, div);
 });

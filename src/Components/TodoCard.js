@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Icon, Text, Box, Avatar, Button, Mask } from 'gestalt';
 
-import { Service, Log, Snackbar } from './../Services';
+import { API, Log, Snackbar } from './../Services';
 
 const timeToDone = time => {
     if (time) {
@@ -59,10 +59,8 @@ class TodoCard extends Component {
             `Marcar ${this.state.todo.titulo} como feito ?`
         );
         if (_confirm) {
-            Service.remover(this.state.todo);
-            SnackbarService.showMessage(
-                `Item '${this.state.todo.titulo}' removido!'`
-            );
+            API.remover(this.state.todo);
+            Snackbar.showMessage(`Item '${this.state.todo.titulo}' removido!'`);
 
             Log.log('user marked a todo as done', {
                 todo_key: this.state.todo._key,
@@ -82,7 +80,7 @@ class TodoCard extends Component {
 
         // possível grande demeon aqui!!
         // essa coisa de que a cada type salva no banco não é bom!
-        Service.editTodo(this.state.todo);
+        Snackbar.editTodo(this.state.todo);
     }
 
     handleEditDescription(event) {
@@ -94,19 +92,17 @@ class TodoCard extends Component {
             todo_key: this.state.todo._key,
         });
 
-        Service.editTodo(this.state.todo);
+        API.editTodo(this.state.todo);
     }
 
     handleClickEditData() {
-        SnackbarService.showMessage(
+        Snackbar.showMessage(
             'Uhh... Nos desculpe, mas essa função não disponível.'
         );
     }
 
     showSnackbar() {
-        SnackbarService.showMessage(
-            `Item '${this.state.todo.titulo}' editado!`
-        );
+        Snackbar.showMessage(`Item '${this.state.todo.titulo}' editado!`);
     }
 
     coolFormatDate() {
