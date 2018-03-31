@@ -116,15 +116,15 @@ export default class TodoCard extends Component {
 
         let color = "#fff";
 
-        if (rest <= 1) {
-            color = "#d50000";
+        if (rest <= 0) {
+            color = "#000";
 
             if (this.state.todo.until_at === undefined) {
                 this.setState({ to_date: undefined })
                 color = "#fff";
             }
         }
-        else if (rest > 1 && rest <= 3) {
+        else if (rest > 0 && rest <= 3) {
             color = "#dd2c00";
         }
         else if (rest > 3 && rest <= 5) {
@@ -134,6 +134,11 @@ export default class TodoCard extends Component {
             color = "#ffd600";
         }
 
+
+        if (this.state.todo.done) {
+            color = 'transparent'
+        }
+
         this.setState({ backgroundColor: color });
     }
 
@@ -141,12 +146,16 @@ export default class TodoCard extends Component {
 
         let _timeToDone = timeToDone(this.state.to_date)
 
+        let done_text = this.state.todo.done ? "Marcar como não Feito" : "Marcar como Feito"
+
+        let style = this.state.todo.done ? {textDecoration: 'line-through'} : {}
+
         return (
             <Box
                 alignItems="center"
                 direction="row"
                 display="flex"
-                height={70}
+                paddingY={5}
                 >
                 <Box paddingX={1}>
                     <Mask height={10} shape="circle" width={10}>
@@ -156,12 +165,29 @@ export default class TodoCard extends Component {
                 <Box paddingX={1}>
                   <Avatar name={this.props.todo.titulo} size="md" />
                 </Box>
-                <Box paddingX={1}  flex="grow">
-                  <Text bold>{this.props.todo.titulo}</Text>
-                  <Text>{_timeToDone}</Text>
+                <Box paddingX={1} flex="grow">
+                    <Box
+                        paddingY={1}
+                    >
+                        <Text bold><span style={style}>{this.props.todo.titulo}</span></Text>
+                    </Box>
+                    <Box
+                        paddingY={1}
+                    >
+                        <Text italic><span style={style}>{this.props.todo.descricao}</span></Text>
+                    </Box>
+                    {
+                        this.state.todo.done ? '' : (
+                            <Box
+                                paddingY={1}
+                            >
+                                <Text>{_timeToDone}</Text>
+                            </Box>
+                        )
+                    }
                 </Box>
                 <Box paddingX={1}>
-                    <Button text="Feito" size="md" color="white" onClick={this.handleMarkAsDone} />
+                    <Button text={done_text} size="md" onClick={this.handleMarkAsDone} />
                 </Box>
                 </Box>
         );

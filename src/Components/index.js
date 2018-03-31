@@ -4,6 +4,7 @@ import Loading from './Loading'
 import Logging from './Logging'
 import Sidebar from './Sidebar'
 import Snackbar from './Snackbar'
+import TodoCard from './TodoCard'
 
 export {
     Board,
@@ -11,5 +12,6 @@ export {
     Loading,
     Logging,
     Sidebar,
-    Snackbar
+    Snackbar,
+    TodoCard
 }
