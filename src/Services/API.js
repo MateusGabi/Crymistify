@@ -15,7 +15,7 @@ const database = firebase
   .ref();
 
 export default class API {
-  static getUser(): Observable<any> {
+  static getUser() {
     let subject = new ReplaySubject();
     firebase.auth().onAuthStateChanged(user => {
       subject.next(user);
@@ -23,7 +23,7 @@ export default class API {
     return subject.asObservable();
   }
 
-  static addTodo(todo): Promise<boolean> {
+  static addTodo(todo) {
     API.getUser().subscribe(user => {
       todo = API.purify(todo);
       todo = { ...todo, user: user.uid, done: false };
@@ -34,7 +34,7 @@ export default class API {
     return Promise.resolve(true);
   }
 
-  static editTodo(todo): Promise<boolean> {
+  static editTodo(todo) {
     API.getUser().subscribe(user => {
       todo = API.purify(todo);
       todo = { ...todo, user: user.uid, done: false };
@@ -52,7 +52,7 @@ export default class API {
     return database.child('privateTodos');
   }
 
-  static getTodos(): Observable<any[]> {
+  static getTodos() {
     let result = new ReplaySubject();
 
     API.getUser().subscribe(user => {
