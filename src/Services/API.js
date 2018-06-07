@@ -17,7 +17,18 @@ const database = firebase
     .ref();
 
 export default class API {
-    static getUser() {
+
+    static getTodosDatabaseURI(): Observable<Ref> {
+
+        const subject = new ReplaySubject();
+        firebase.auth().onAuthStateChanged(user => {
+            subject.next(database.child(`users/${user.uid}/todos`))
+        })
+        return subject.asObservable()
+
+    }
+
+    static getUser(): Observable<any> {
         let subject = new ReplaySubject();
         firebase.auth().onAuthStateChanged(user => {
             subject.next(user);
@@ -53,6 +64,9 @@ export default class API {
         return Promise.resolve(true);
     }
 
+    /**
+     * @deprecated use getTodosDatabaseURI
+     */
     static getTodosRef() {
         return database.child('privateTodos');
     }
@@ -60,17 +74,16 @@ export default class API {
     static getTodos() {
         let result = new ReplaySubject();
 
-        API.getUser().subscribe(user => {
-            API.getTodosRef()
-                .orderByChild('user')
-                .equalTo(user.uid)
+        API.getTodosDatabaseURI().subscribe(ref => {
+            ref
+                .orderByChild('created_at')
                 .on('value', dataSnapshot => {
                     var tasks = [];
-                    dataSnapshot.forEach(child => {
+                    dataSnapshot.forEach(child => {                        
                         tasks.push({
-                            titulo: child.val().titulo,
+                            titulo: child.val().title,
                             created_at: child.val().created_at,
-                            descricao: child.val().descricao,
+                            descricao: child.val().description,
                             until_at: child.val().until_at,
                             done: child.val().done,
                             _key: child.key,
@@ -79,7 +92,8 @@ export default class API {
 
                     result.next(tasks);
                 });
-        });
+        })
+            
 
         return result.asObservable();
     }
