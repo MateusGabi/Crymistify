@@ -15,7 +15,7 @@ const mock_done = {
     descricao: 'Descrição do TODO',
     created_at: moment(),
     updated_at: moment(),
-    until_at: moment().add(7, 'days'),
+    expire_in: moment().add(7, 'days'),
 };
 
 const mock_not_done = {
@@ -25,7 +25,7 @@ const mock_not_done = {
     descricao: 'Descrição do TODO',
     created_at: moment(),
     updated_at: moment(),
-    until_at: moment().add(7, 'days'),
+    expire_in: moment().add(7, 'days'),
 };
 
 storiesOf('TodoCard', module)

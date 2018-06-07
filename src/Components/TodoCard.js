@@ -114,14 +114,14 @@ class TodoCard extends Component {
 
     coolFormatDate() {
         let diff = moment(this.state.todo.created_at).fromNow();
-        let diff1 = moment(this.state.todo.until_at).fromNow();
+        let diff1 = moment(this.state.todo.expire_in).fromNow();
         return this.setState({ created_at: diff, to_date: diff1 });
     }
 
     setBackgroundColor() {
         let oneday = 1000 * 60 * 60 * 24;
         let now = moment().valueOf();
-        let day_to_end = moment(this.state.todo.until_at).valueOf();
+        let day_to_end = moment(this.state.todo.expire_in).valueOf();
 
         let rest = Math.round((day_to_end - now) / oneday).valueOf();
 
@@ -130,7 +130,7 @@ class TodoCard extends Component {
         if (rest <= 0) {
             color = '#000';
 
-            if (this.state.todo.until_at === undefined) {
+            if (this.state.todo.expire_in === undefined) {
                 this.setState({ to_date: undefined });
                 color = '#fff';
             }

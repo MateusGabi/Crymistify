@@ -27,7 +27,7 @@ class Board extends Component {
             modal_id: this.getRandomID(),
             userName: '',
             todos: [],
-            sortBy: ['until_at'],
+            sortBy: ['expire_in'],
             onlyDones: false,
             activeIndex: 0,
         };
@@ -79,7 +79,7 @@ class Board extends Component {
 
         switch (value) {
             case 'date':
-                this.setState({ sortBy: ['until_at'] });
+                this.setState({ sortBy: ['expire_in'] });
                 break;
             case 'insert':
                 this.setState({ sortBy: ['created_at'] });
@@ -88,7 +88,7 @@ class Board extends Component {
                 this.setState({ sortBy: ['titulo'] });
                 break;
             default:
-                this.setState({ sortBy: ['until_at'] });
+                this.setState({ sortBy: ['expire_in'] });
                 break;
         }
 
@@ -135,9 +135,9 @@ class Board extends Component {
 
     adicionarTODO() {
         let TODO = {
-            titulo: this.state.novoTODO__titulo,
-            descricao: this.state.novoTODO__descricao,
-            until_at: this.state.novoTODO__toDate,
+            title: this.state.novoTODO__titulo,
+            description: this.state.novoTODO__descricao,
+            expire_in: this.state.novoTODO__toDate,
             created_at: moment().format(),
         };
 

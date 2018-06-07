@@ -36,16 +36,22 @@ export default class API {
         return subject.asObservable();
     }
 
-    static addTodo(todo) {
-        API.getUser().subscribe(user => {
+    static addTodo(todo): Promise<Boolean> {
+
+        API.getTodosDatabaseURI()
+        .subscribe(databaseRef => {
+            
+            console.log("sdjnajksd");
+            
             todo = API.purify(todo);
 
             /* eslint-disable */
-            todo = { ...todo, user: user.uid, done: false };
+            todo = { ...todo, done: false };
             /* eslint-enable */
 
-            database.child('privateTodos').push(todo);
-        });
+            databaseRef.push(todo);
+
+        })
 
         return Promise.resolve(true);
     }
@@ -84,7 +90,7 @@ export default class API {
                             titulo: child.val().title,
                             created_at: child.val().created_at,
                             descricao: child.val().description,
-                            until_at: child.val().until_at,
+                            expire_in: child.val().expire_in,
                             done: child.val().done,
                             _key: child.key,
                         });
