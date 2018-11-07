@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "@storybook/react": "^3.3.15",
-    "prettier": "1.14.3"
+    "prettier": "1.15.0"
   }
 }
