@@ -1,6 +1,6 @@
 {
   "name": "remind-web-app",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "private": true,
   "dependencies": {
     "commitizen": "^3.0.0",
