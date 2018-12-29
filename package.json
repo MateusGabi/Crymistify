@@ -1,6 +1,6 @@
 {
   "name": "remind-web-app",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "private": true,
   "dependencies": {
     "commitizen": "^3.0.0",
@@ -44,8 +44,8 @@
     }
   },
   "devDependencies": {
-    "prettier": "1.15.0",
-    "@storybook/react": "^4.0.0"
+    "@storybook/react": "^4.0.0",
+    "prettier": "1.15.0"
   },
   "browserslist": [
     ">0.2%",
