@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react';
-import * as Package from '../../package.json';
+import * as Package from '../../package.json'
 import { Box, Divider, Text } from 'gestalt';
 
 const Footer = () => [
