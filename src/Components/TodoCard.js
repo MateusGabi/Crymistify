@@ -1,26 +1,59 @@
 /** @format */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
 
-import Service from './../Services/API';
+import { Avatar } from 'gestalt';
+import Icon from './../Components/Icon';
 import Log from './../Services/Log';
+import PropTypes from 'prop-types';
+import Service from './../Services/API';
 import SnackbarService from './../Services/Snackbar';
+import moment from 'moment';
+import styled from 'styled-components';
 
-import { Icon, Text, Box, Avatar, Button, Mask } from 'gestalt';
+const Button = styled.button`
+    cursor: pointer;
+    border: 0;
+`;
+
+const Text = styled.p`
+    font-family: ${props => props.theme.fontFamily}, Arial, sans-serif;
+`;
+
+const Box = styled.div``;
+
+const TimeToDone = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const TodoCardWrapper = styled.div`
+    width: 250px;
+    background: #f5f5f542;
+    border-radius: 15px;
+    box-shadow: 5px 5px 12px 0px #e2e1e1;
+    padding: 1rem;
+    margin: 1rem;
+`;
+
+const TodoCardHeader = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const TodoCardFooter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
 
 const timeToDone = time => {
     if (time) {
         return (
-            <Box alignItems="center" display="flex">
-                <Box marginRight={1} padding={1}>
-                    <Icon icon="clock" color="darkGray" />
-                </Box>
-                <Text align="center" color="darkGray">
-                    {time}
-                </Text>
-            </Box>
+            <TimeToDone>
+                <Icon name="clock" />
+                <Text>{time}</Text>
+            </TimeToDone>
         );
     } else {
         return [];
@@ -161,55 +194,33 @@ class TodoCard extends Component {
             : {};
 
         return (
-            <Box
-                alignItems="center"
-                direction="row"
-                display="flex"
-                paddingY={5}
-            >
-                <Box paddingX={1}>
-                    <Mask height={10} shape="circle" width={10}>
-                        <div
-                            style={{
-                                backgroundColor: this.state.backgroundColor,
-                                width: 10,
-                                height: 10,
-                            }}
-                        />
-                    </Mask>
-                </Box>
-                <Box paddingX={1}>
+            <TodoCardWrapper>
+                <TodoCardHeader>
                     <Avatar name={this.props.todo.titulo} size="md" />
-                </Box>
-                <Box paddingX={1} flex="grow">
+                    <Text>{this.props.todo.titulo}</Text>
+                </TodoCardHeader>
+                <Box>
                     <Box paddingY={1}>
-                        <Text bold>
-                            <span style={style}>{this.props.todo.titulo}</span>
-                        </Text>
-                    </Box>
-                    <Box paddingY={1}>
-                        <Text italic>
+                        <Text>
                             <span style={style}>
                                 {this.props.todo.descricao}
                             </span>
                         </Text>
                     </Box>
+                </Box>
+                <TodoCardFooter>
                     {this.state.todo.done ? (
                         ''
                     ) : (
-                        <Box paddingY={1}>
-                            <Text>{_timeToDone}</Text>
-                        </Box>
+                        <Box paddingY={1}>{_timeToDone}</Box>
                     )}
-                </Box>
-                <Box paddingX={1}>
-                    <Button
-                        text={done_text}
-                        size="md"
-                        onClick={this.handleMarkAsDone}
-                    />
-                </Box>
-            </Box>
+                    <Button onClick={this.handleMarkAsDone}>
+                        {/* <Text>{done_text}</Text> */}
+
+                        <Icon name="archive" />
+                    </Button>
+                </TodoCardFooter>
+            </TodoCardWrapper>
         );
     }
 }

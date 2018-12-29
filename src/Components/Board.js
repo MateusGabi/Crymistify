@@ -1,23 +1,23 @@
 /** @format */
 
-//@ts-check
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import TodoCard from './TodoCard';
-import moment from 'moment';
 import { API, Log, Snackbar } from './../Services';
-import __ from 'lodash';
-import AddTodo from './AddTodo';
-
 import {
-    TextField,
-    TextArea,
     Box,
     Button,
     Column,
     Heading,
     Tabs,
+    TextArea,
+    TextField,
 } from 'gestalt';
+//@ts-check
+import React, { Component } from 'react';
+
+import AddTodo from './AddTodo';
+import PropTypes from 'prop-types';
+import TodoCard from './TodoCard';
+import __ from 'lodash';
+import moment from 'moment';
 
 class Board extends Component {
     constructor(props) {
@@ -314,25 +314,13 @@ class Board extends Component {
                 {message}
 
                 <Box display="flex" direction="row" paddingY={2}>
-                    <Column span={6}>
-                        <Box paddingX={12}>
-                            {__.sortBy(this.props.todos, this.state.sortBy)
-                                .filter(t => t.done === this.state.onlyDones)
-                                .map(todo => (
-                                    <TodoCard key={todo._key} todo={todo} />
-                                ))}
-                        </Box>
-                    </Column>
-                    <Column span={6}>
-                        <Box paddingX={12}>
-                            <AddTodo
-                                id={this.state.modal_id}
-                                titulo="Novo Item"
-                                corpo={corpoModal}
-                                rodape={rodapeModal}
-                            />
-                        </Box>
-                    </Column>
+                    <Box>
+                        {__.sortBy(this.props.todos, this.state.sortBy)
+                            .filter(t => t.done === this.state.onlyDones)
+                            .map(todo => (
+                                <TodoCard key={todo._key} todo={todo} />
+                            ))}
+                    </Box>
                 </Box>
             </div>
         );
