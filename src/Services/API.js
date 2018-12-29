@@ -1,7 +1,9 @@
 /** @format */
 
 import * as firebase from 'firebase';
+
 import { Observable, ReplaySubject } from 'rxjs';
+
 import __ from 'lodash';
 
 const config = {
@@ -53,32 +55,29 @@ export default class API {
         return Promise.resolve(true);
     }
 
-    static getTodosRef() {
-        return database.child('privateTodos');
+    static getTodosRef({ uid }) {
+        return database.child(`users/${uid}/todos`);
     }
 
     static getTodos() {
         let result = new ReplaySubject();
 
         API.getUser().subscribe(user => {
-            API.getTodosRef()
-                .orderByChild('user')
-                .equalTo(user.uid)
-                .on('value', dataSnapshot => {
-                    var tasks = [];
-                    dataSnapshot.forEach(child => {
-                        tasks.push({
-                            titulo: child.val().titulo,
-                            created_at: child.val().created_at,
-                            descricao: child.val().descricao,
-                            until_at: child.val().until_at,
-                            done: child.val().done,
-                            _key: child.key,
-                        });
+            API.getTodosRef(user).on('value', dataSnapshot => {
+                var tasks = [];
+                dataSnapshot.forEach(child => {
+                    tasks.push({
+                        titulo: child.val().title,
+                        created_at: child.val().created_at,
+                        descricao: child.val().description,
+                        until_at: child.val().expire_in,
+                        done: child.val().done,
+                        _key: child.key,
                     });
-
-                    result.next(tasks);
                 });
+
+                result.next(tasks);
+            });
         });
 
         return result.asObservable();
@@ -87,9 +86,10 @@ export default class API {
     static remover(todo) {
         API.getUser().subscribe(user => {
             todo = API.purify(todo);
-            todo = { ...todo, user: user.uid, done: true };
+            todo = { ...todo, done: true };
+
             database
-                .child('privateTodos')
+                .child(`users/${user.uid}/todos`)
                 .child(todo._key)
                 .set(todo);
         });
