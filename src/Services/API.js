@@ -64,20 +64,20 @@ export default class API {
 
         API.getUser().subscribe(user => {
             API.getTodosRef(user).on('value', dataSnapshot => {
-                    var tasks = [];
-                    dataSnapshot.forEach(child => {
-                        tasks.push({
-                            titulo: child.val().title,
-                            created_at: child.val().created_at,
-                            descricao: child.val().description,
-                            until_at: child.val().expire_in,
-                            done: child.val().done,
-                            _key: child.key,
-                        });
+                var tasks = [];
+                dataSnapshot.forEach(child => {
+                    tasks.push({
+                        titulo: child.val().title,
+                        created_at: child.val().created_at,
+                        descricao: child.val().description,
+                        until_at: child.val().expire_in,
+                        done: child.val().done,
+                        _key: child.key,
                     });
-
-                    result.next(tasks);
                 });
+
+                result.next(tasks);
+            });
         });
 
         return result.asObservable();
@@ -87,10 +87,11 @@ export default class API {
         API.getUser().subscribe(user => {
             todo = API.purify(todo);
             todo = { ...todo, done: true };
-            
-            database.child(`users/${user.uid}/todos`)
-            .child(todo._key)
-            .set(todo);
+
+            database
+                .child(`users/${user.uid}/todos`)
+                .child(todo._key)
+                .set(todo);
         });
     }
 
