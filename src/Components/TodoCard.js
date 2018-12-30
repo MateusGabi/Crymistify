@@ -11,13 +11,14 @@ import SnackbarService from './../Services/Snackbar';
 import moment from 'moment';
 import styled from 'styled-components';
 
-const Button = styled.button`
-    cursor: pointer;
-    border: 0;
-`;
+const Button = styled.button``;
 
 const Text = styled.p`
     font-family: ${props => props.theme.fontFamily}, Arial, sans-serif;
+    font-size: 12px;
+    margin: 0.2rem 0;
+    font-style: ${props => (props.italic ? 'italic' : 'initial')};
+    font-weight: ${props => (props.bold ? 'bold' : 'initial')};
 `;
 
 const Box = styled.div``;
@@ -28,10 +29,10 @@ const TimeToDone = styled.div`
 `;
 
 const TodoCardWrapper = styled.div`
-    width: 250px;
+    width: 200px;
     background: #f5f5f542;
-    border-radius: 15px;
-    box-shadow: 5px 5px 12px 0px #e2e1e1;
+    border-radius: 5px;
+    box-shadow: 5px 5px 12px 0px #e1e1e1;
     padding: 1rem;
     margin: 1rem;
 `;
@@ -51,7 +52,6 @@ const timeToDone = time => {
     if (time) {
         return (
             <TimeToDone>
-                <Icon name="clock" />
                 <Text>{time}</Text>
             </TimeToDone>
         );
@@ -196,8 +196,7 @@ class TodoCard extends Component {
         return (
             <TodoCardWrapper>
                 <TodoCardHeader>
-                    <Avatar name={this.props.todo.titulo} size="md" />
-                    <Text>{this.props.todo.titulo}</Text>
+                    <Text bold>{this.props.todo.titulo}</Text>
                 </TodoCardHeader>
                 <Box>
                     <Box paddingY={1}>
@@ -209,15 +208,13 @@ class TodoCard extends Component {
                     </Box>
                 </Box>
                 <TodoCardFooter>
-                    {this.state.todo.done ? (
-                        ''
-                    ) : (
-                        <Box paddingY={1}>{_timeToDone}</Box>
+                    {!this.state.todo.done && (
+                        <TimeToDone>
+                            <Text italic>{this.state.to_date}</Text>
+                        </TimeToDone>
                     )}
                     <Button onClick={this.handleMarkAsDone}>
-                        {/* <Text>{done_text}</Text> */}
-
-                        <Icon name="archive" />
+                        <Text>Arquivar</Text>
                     </Button>
                 </TodoCardFooter>
             </TodoCardWrapper>
