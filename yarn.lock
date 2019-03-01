@@ -6088,10 +6088,10 @@ gentle-fs@^2.0.0, gentle-fs@^2.0.1:
     read-cmd-shim "^1.0.1"
     slide "^1.1.6"
 
-gestalt@^0.82.0:
-  version "0.82.0"
-  resolved "https://registry.yarnpkg.com/gestalt/-/gestalt-0.82.0.tgz#e4fc770893c58154fb12931bd5bbda6070c49f5f"
-  integrity sha512-STuA1kQ+7uakLKKUuJhFV3C9Z3/WOeTe8THYDfnVdcdLskoM3Ys6zM2//51RK5xZwCfroiM5lHdRw7R8DKAsDw==
+gestalt@^0.91.0:
+  version "0.91.0"
+  resolved "https://registry.yarnpkg.com/gestalt/-/gestalt-0.91.0.tgz#c100e05ba32e1e2cc93affaaa69d5fc98b8a7e11"
+  integrity sha512-AHt9GjT4xJQYONZVVA5Nrutei2TKNJ7EK7ZZgYCXydA+kr1C58tl4mwc9AH0TIvBBLF71Y3gyS/IRxLpIjWsMg==
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
