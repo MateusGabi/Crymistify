@@ -44,7 +44,7 @@
     }
   },
   "devDependencies": {
-    "@storybook/react": "^4.0.0",
+    "@storybook/react": "^5.0.0",
     "prettier": "1.15.0"
   },
   "browserslist": [
