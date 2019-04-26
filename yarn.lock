@@ -8497,10 +8497,10 @@ loglevel@^1.4.1:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
   integrity sha1-4PyVEztu8nbNyIh82vJKpvFW+Po=
 
-logrocket@^0.6.10:
-  version "0.6.19"
-  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-0.6.19.tgz#7dfbaf3383370f0cc4fa5f61bef51541f86c628b"
-  integrity sha512-awRidM5W/hYnkezpSG4gpX0O0izioWItn7ExmLfMGg3/4WGbDRBW91HPlv1hHItB9eou68qrIDlEqNlvZYi1dQ==
+logrocket@^0.6.21:
+  version "0.6.21"
+  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-0.6.21.tgz#f19749a4bc2ea51821a0f5acb08e811ac3d3f314"
+  integrity sha512-fyCA8PfNQqeuQyedqLQLiw47ibG8476a7C/amuusHKmqPdGo5GQmFD4Ba9vKRFbbakz+MmUdBGbYrQgq9K4e+g==
 
 long@~3:
   version "3.2.0"
