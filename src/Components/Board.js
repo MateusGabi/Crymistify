@@ -18,6 +18,7 @@ import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 import __ from 'lodash';
 import moment from 'moment';
+import { Card, Text } from './index';
 
 class Board extends Component {
     constructor(props) {
@@ -261,11 +262,12 @@ class Board extends Component {
 
         return (
             <div>
-                <Box padding={12}>
-                    <Heading size="sm" accessibilityLevel={2}>
-                        {this.props.searchPhrase || this.getGreeting()}
-                    </Heading>
-                </Box>
+                <Card style={{
+                    background: 'rgb(238,174,202)',
+                    background: `radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)`
+                }}>
+                    <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
+                </Card>
                 <Box paddingX={12}>
                     <Tabs
                         tabs={[

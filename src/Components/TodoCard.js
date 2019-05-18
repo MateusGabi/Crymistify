@@ -10,7 +10,7 @@ import Service from './../Services/API';
 import SnackbarService from './../Services/Snackbar';
 import moment from 'moment';
 
-import { TimeToDone, Text, TodoCardWrapper, TodoCardHeader, Box, Button, TodoCardFooter } from './index'
+import { TimeToDone, Text, Card, CardHeader, Box, Button, CardFooter } from './index'
 
 const timeToDone = time => {
     if (time) {
@@ -158,10 +158,10 @@ class TodoCard extends Component {
             : {};
 
         return (
-            <TodoCardWrapper>
-                <TodoCardHeader>
+            <Card>
+                <CardHeader>
                     <Text bold>{this.props.todo.titulo}</Text>
-                </TodoCardHeader>
+                </CardHeader>
                 <Box>
                     <Box paddingY={1}>
                         <Text>
@@ -171,7 +171,7 @@ class TodoCard extends Component {
                         </Text>
                     </Box>
                 </Box>
-                <TodoCardFooter>
+                <CardFooter>
                     {!this.state.todo.done && (
                         <TimeToDone>
                             <Text italic>{this.state.to_date}</Text>
@@ -180,8 +180,8 @@ class TodoCard extends Component {
                     <Button onClick={this.handleMarkAsDone}>
                         <Text>Feito</Text>
                     </Button>
-                </TodoCardFooter>
-            </TodoCardWrapper>
+                </CardFooter>
+            </Card>
         );
     }
 }
