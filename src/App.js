@@ -1,14 +1,19 @@
 /** @format */
 
-import React, { Component } from 'react';
-import __ from 'lodash';
-import LogRocket from 'logrocket';
+import './App.css';
 
 import { API, Log } from './Services';
-
 import { Board, Footer, Loading, Logging, Sidebar } from './Components';
+import React, { Component } from 'react';
 
-import './App.css';
+import LogRocket from 'logrocket';
+import { ThemeProvider } from 'styled-components';
+import __ from 'lodash';
+
+const theme = {
+    main: 'mediumseagreen',
+    fontFamily: 'Muli',
+};
 
 export default class App extends Component {
     constructor() {
@@ -63,9 +68,9 @@ export default class App extends Component {
     componentDidMount() {
         // check if user is isLogged
         API.getUser().subscribe(user => {
+            this.setState({ isLogged: true });
             if (user) {
                 this.getTodos();
-                this.setState({ isLogged: true });
 
                 LogRocket.identify(user.uid, {
                     name: user.displayName,
@@ -123,6 +128,6 @@ export default class App extends Component {
             }
         }
 
-        return [main];
+        return <ThemeProvider theme={theme}>{main}</ThemeProvider>;
     }
 }

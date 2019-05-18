@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Heading, Box, SearchField, IconButton } from 'gestalt';
+import { Heading, SearchField, IconButton } from 'gestalt';
+
+import { Box, Text, Input } from './index'
 
 import UserProfileModal from './UserProfileModal';
 
@@ -15,10 +17,6 @@ class Navbar extends Component {
             value: ' ',
             profileModalisOpen: false,
         };
-    }
-
-    __searchHandler(value) {
-        this.props.searchHandler(value);
     }
 
     __logoutHandler() {
@@ -35,35 +33,17 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
-                <Box
-                    color="white"
-                    shape="rounded"
-                    padding={3}
-                    display="flex"
-                    direction="row"
-                    alignItems="center"
-                >
-                    <Box padding={3}>
-                        <Heading size="xs">
-                            Crymistify{' '}
-                            <span role="img" aria-label="choro">
-                                😭
-                            </span>
-                        </Heading>
+            <>
+                <Box container fixed fillHorizontal style={{
+                    background: 'rgba(255, 255, 255, 0.75)',
+                    backdropFilter: 'blur(5px)'
+                }}>
+                    <Box>
+                        <Text variant="title" cursive>
+                            Crymistify
+                        </Text>
                     </Box>
-                    <Box flex="grow" paddingX={2}>
-                        <SearchField
-                            accessibilityLabel="Demo Search Field"
-                            id="searchField"
-                            onChange={({ value }) =>
-                                this.__searchHandler(value)
-                            }
-                            placeholder="Buscar"
-                            value={this.state.searchValue}
-                        />
-                    </Box>
-                    <Box paddingX={2}>
+                    <Box>
                         <IconButton
                             onClick={() => this.openUPModal()}
                             accessibilityLabel="Profile"
@@ -72,6 +52,7 @@ class Navbar extends Component {
                         />
                     </Box>
                 </Box>
+                <Box style={{ height: 90}}></Box>
 
                 {this.state.profileModalisOpen && (
                     <UserProfileModal
@@ -79,7 +60,7 @@ class Navbar extends Component {
                         logoutFunction={this.__logoutHandler.bind(this)}
                     />
                 )}
-            </div>
+            </>
         );
     }
 }

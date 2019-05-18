@@ -1,26 +1,23 @@
 /** @format */
 
 import React, { Component } from 'react';
+
+import { Avatar } from 'gestalt';
+import Icon from './../Components/Icon';
+import Log from './../Services/Log';
 import PropTypes from 'prop-types';
+import Service from './../Services/API';
+import SnackbarService from './../Services/Snackbar';
 import moment from 'moment';
 
-import Service from './../Services/API';
-import Log from './../Services/Log';
-import SnackbarService from './../Services/Snackbar';
-
-import { Icon, Text, Box, Avatar, Button, Mask } from 'gestalt';
+import { TimeToDone, Text, Card, CardHeader, Box, Button, CardFooter } from './index'
 
 const timeToDone = time => {
     if (time) {
         return (
-            <Box alignItems="center" display="flex">
-                <Box marginRight={1} padding={1}>
-                    <Icon icon="clock" color="darkGray" />
-                </Box>
-                <Text align="center" color="darkGray">
-                    {time}
-                </Text>
-            </Box>
+            <TimeToDone>
+                <Text>{time}</Text>
+            </TimeToDone>
         );
     } else {
         return [];
@@ -161,55 +158,30 @@ class TodoCard extends Component {
             : {};
 
         return (
-            <Box
-                alignItems="center"
-                direction="row"
-                display="flex"
-                paddingY={5}
-            >
-                <Box paddingX={1}>
-                    <Mask height={10} shape="circle" width={10}>
-                        <div
-                            style={{
-                                backgroundColor: this.state.backgroundColor,
-                                width: 10,
-                                height: 10,
-                            }}
-                        />
-                    </Mask>
-                </Box>
-                <Box paddingX={1}>
-                    <Avatar name={this.props.todo.titulo} size="md" />
-                </Box>
-                <Box paddingX={1} flex="grow">
+            <Card noVerticalMargin>
+                <CardHeader>
+                    <Text bold>{this.props.todo.titulo}</Text>
+                </CardHeader>
+                <Box>
                     <Box paddingY={1}>
-                        <Text bold>
-                            <span style={style}>{this.props.todo.titulo}</span>
-                        </Text>
-                    </Box>
-                    <Box paddingY={1}>
-                        <Text italic>
+                        <Text>
                             <span style={style}>
                                 {this.props.todo.descricao}
                             </span>
                         </Text>
                     </Box>
-                    {this.state.todo.done ? (
-                        ''
-                    ) : (
-                        <Box paddingY={1}>
-                            <Text>{_timeToDone}</Text>
-                        </Box>
+                </Box>
+                <CardFooter>
+                    {!this.state.todo.done && (
+                        <TimeToDone>
+                            <Text italic>{this.state.to_date}</Text>
+                        </TimeToDone>
                     )}
-                </Box>
-                <Box paddingX={1}>
-                    <Button
-                        text={done_text}
-                        size="md"
-                        onClick={this.handleMarkAsDone}
-                    />
-                </Box>
-            </Box>
+                    <Button onClick={this.handleMarkAsDone}>
+                        <Text inverted>Feito</Text>
+                    </Button>
+                </CardFooter>
+            </Card>
         );
     }
 }
