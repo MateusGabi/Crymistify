@@ -17,8 +17,6 @@ const Button = styled.button`
     border: 0;
     padding: .5rem 2rem;
     border-radius: 1rem;
-    color: white;
-    text-transform: uppercase;
 `;
 
 const Text = styled.p`
@@ -28,9 +26,14 @@ const Text = styled.p`
     font-style: ${props => (props.italic ? 'italic' : 'initial')};
     font-weight: ${props => (props.bold ? 'bold' : 'initial')};
     letter-spacing: .025rem;
+    color: #733a3a;
 
     ${props => props.variant === 'title' && css`
         font-size: 2rem;
+    `}
+
+    ${props => props.variant === 'subtitle' && css`
+        font-size: 1.5rem;
     `}
 
     ${props => props.inverted && css`
@@ -42,7 +45,24 @@ const Text = styled.p`
     `}
 `;
 
-const Box = styled.div``;
+const Box = styled.div`
+    ${props => props.container && css`
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        padding: 1rem;
+    `}
+
+    ${props => props.fixed && css`
+        position: fixed;
+        z-index: 5;
+    `}
+
+    ${props => props.fillHorizontal && css`
+        width: -webkit-fill-available;
+    `}
+`;
 
 const TimeToDone = styled.div`
     display: flex;

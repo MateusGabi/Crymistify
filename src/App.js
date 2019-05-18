@@ -68,8 +68,8 @@ export default class App extends Component {
     componentDidMount() {
         // check if user is isLogged
         API.getUser().subscribe(user => {
+            this.setState({ isLogged: true });
             if (user) {
-                this.setState({ isLogged: true });
                 this.getTodos();
 
                 LogRocket.identify(user.uid, {

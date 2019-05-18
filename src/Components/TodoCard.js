@@ -178,7 +178,7 @@ class TodoCard extends Component {
                         </TimeToDone>
                     )}
                     <Button onClick={this.handleMarkAsDone}>
-                        <Text>Feito</Text>
+                        <Text inverted>Feito</Text>
                     </Button>
                 </CardFooter>
             </Card>

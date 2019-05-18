@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Heading, Box, SearchField, IconButton } from 'gestalt';
+import { Heading, SearchField, IconButton } from 'gestalt';
+
+import { Box, Text } from './index'
 
 import UserProfileModal from './UserProfileModal';
 
@@ -35,24 +37,27 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
-                <Box
-                    color="white"
-                    shape="rounded"
-                    padding={3}
-                    display="flex"
-                    direction="row"
-                    alignItems="center"
-                >
-                    <Box padding={3}>
-                        <Heading size="xs">
-                            Crymistify{' '}
-                            <span role="img" aria-label="choro">
-                                😭
-                            </span>
-                        </Heading>
+            <>
+                <Box container fixed fillHorizontal style={{
+                    background: 'rgba(255, 255, 255, 0.75)',
+                    backdropFilter: 'blur(5px)'
+                }}>
+                    <Box item>
+                        <Text variant="title" cursive>
+                            Crymistify
+                        </Text>
                     </Box>
-                    <Box flex="grow" paddingX={2}>
+                    <Box item>
+                        <IconButton
+                            onClick={() => this.openUPModal()}
+                            accessibilityLabel="Profile"
+                            icon="person"
+                            size="md"
+                        />
+                    </Box>
+                </Box>
+                <Box style={{ height: 90}}></Box>
+                <Box item>
                         <SearchField
                             accessibilityLabel="Demo Search Field"
                             id="searchField"
@@ -63,15 +68,6 @@ class Navbar extends Component {
                             value={this.state.searchValue}
                         />
                     </Box>
-                    <Box paddingX={2}>
-                        <IconButton
-                            onClick={() => this.openUPModal()}
-                            accessibilityLabel="Profile"
-                            icon="person"
-                            size="md"
-                        />
-                    </Box>
-                </Box>
 
                 {this.state.profileModalisOpen && (
                     <UserProfileModal
@@ -79,7 +75,7 @@ class Navbar extends Component {
                         logoutFunction={this.__logoutHandler.bind(this)}
                     />
                 )}
-            </div>
+            </>
         );
     }
 }

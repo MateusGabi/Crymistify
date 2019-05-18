@@ -204,7 +204,7 @@ class Board extends Component {
             message = (
                 <Card>
                     <CardHeader>
-                        <Text bold>Não encontramos a fazeres com esse nome.</Text>
+                        <Text bold>Não encontramos afazeres com esse nome.</Text>
                     </CardHeader>
                 </Card>
             );
@@ -272,7 +272,7 @@ class Board extends Component {
                 </Card>
                 <Card ghost noGutters>
                     <CardHeader>
-                        <Text variant="title" cursive>Meus Afazeres</Text>
+                        <Text variant="subtitle" cursive>Meus Afazeres</Text>
                     </CardHeader>
                     <CardBody>
                         {__.sortBy(this.props.todos, this.state.sortBy)
