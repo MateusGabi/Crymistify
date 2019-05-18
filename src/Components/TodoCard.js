@@ -11,14 +11,23 @@ import SnackbarService from './../Services/Snackbar';
 import moment from 'moment';
 import styled from 'styled-components';
 
-const Button = styled.button``;
+const Button = styled.button`
+    background: rgb(57,255,51);
+    background: linear-gradient(45deg, #2196F3 30%, #21CBF3 90%);
+    border: 0;
+    padding: .5rem 2rem;
+    border-radius: 1rem;
+    color: white;
+    text-transform: uppercase;
+`;
 
 const Text = styled.p`
     font-family: ${props => props.theme.fontFamily}, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 1rem;
     margin: 0.2rem 0;
     font-style: ${props => (props.italic ? 'italic' : 'initial')};
     font-weight: ${props => (props.bold ? 'bold' : 'initial')};
+    letter-spacing: .025rem;
 `;
 
 const Box = styled.div``;
@@ -29,10 +38,9 @@ const TimeToDone = styled.div`
 `;
 
 const TodoCardWrapper = styled.div`
-    width: 200px;
     background: #f5f5f542;
-    border-radius: 5px;
-    box-shadow: 5px 5px 12px 0px #e1e1e1;
+    border-radius: 1rem;
+    box-shadow: .5rem .5rem 1rem 0 #e1e1e1;
     padding: 1rem;
     margin: 1rem;
 `;
@@ -214,7 +222,7 @@ class TodoCard extends Component {
                         </TimeToDone>
                     )}
                     <Button onClick={this.handleMarkAsDone}>
-                        <Text>Arquivar</Text>
+                        <Text>Feito</Text>
                     </Button>
                 </TodoCardFooter>
             </TodoCardWrapper>
