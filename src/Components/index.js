@@ -36,6 +36,10 @@ const Text = styled.p`
     ${props => props.inverted && css`
         color: #fff;
     `}
+
+    ${props => props.cursive && css`
+        font-family: 'Leckerli One', cursive;
+    `}
 `;
 
 const Box = styled.div``;
@@ -48,15 +52,27 @@ const TimeToDone = styled.div`
 const Card = styled.div`
     background: #f5f5f542;
     border-radius: 1rem;
-    box-shadow: .5rem .5rem 1rem 0 #e1e1e1;
-    padding: 1rem;
     margin: 1rem;
+
+    ${props => !props.noGutters && css`
+        padding: 1rem;
+    `}
+
+    ${props => !props.ghost && css`
+        box-shadow: .5rem .5rem 1rem 0 #e1e1e1;
+    `}
+
+    ${props => props.noVerticalMargin && css`
+        margin: 1rem 0;
+    `}
 `;
 
 const CardHeader = styled.div`
     display: flex;
     align-items: center;
 `;
+
+const CardBody = styled.div``;
 
 const CardFooter = styled.div`
     display: flex;
@@ -79,5 +95,6 @@ export {
     TimeToDone,
     Card,
     CardHeader,
+    CardBody,
     CardFooter
 };

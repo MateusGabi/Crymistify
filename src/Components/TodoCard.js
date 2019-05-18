@@ -158,7 +158,7 @@ class TodoCard extends Component {
             : {};
 
         return (
-            <Card>
+            <Card noVerticalMargin>
                 <CardHeader>
                     <Text bold>{this.props.todo.titulo}</Text>
                 </CardHeader>

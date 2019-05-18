@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 import __ from 'lodash';
 import moment from 'moment';
-import { Card, Text } from './index';
+import { Card, Text, CardHeader, CardBody } from './index';
 
 class Board extends Component {
     constructor(props) {
@@ -202,14 +202,16 @@ class Board extends Component {
 
         if (this.props.todos.length < 1) {
             message = (
-                <div>
-                    <h4 className="text-center">Não há TODOS</h4>
-                </div>
+                <Card>
+                    <CardHeader>
+                        <Text bold>Não encontramos a fazeres com esse nome.</Text>
+                    </CardHeader>
+                </Card>
             );
         }
 
         const corpoModal = (
-            <div>
+            <>
                 <Box paddingY={2}>
                     <TextField
                         type="text"
@@ -233,7 +235,7 @@ class Board extends Component {
                         onChange={({ value }) => this.handleChangeDate(value)}
                     />
                 </Box>
-            </div>
+            </>
         );
 
         const rodapeModal = (
@@ -268,62 +270,19 @@ class Board extends Component {
                 }}>
                     <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
                 </Card>
-                <Box paddingX={12}>
-                    <Tabs
-                        tabs={[
-                            {
-                                text: 'Para Fazer',
-                                href: '#',
-                            },
-                            {
-                                text: 'Feitas',
-                                href: '#',
-                            },
-                            {
-                                text: 'Todas',
-                                href: '#',
-                            },
-                        ]}
-                        activeTabIndex={this.state.activeIndex}
-                        onChange={this.handleClickTab}
-                    />
-                </Box>
-                <div
-                    className="layout horizontal end justified h-100 bg-primary"
-                    style={{ padding: '5rem', display: 'none' }}
-                >
-                    <div>
-                        <div>
-                            <span
-                                className="form"
-                                onClick={this.handleChangeSort}
-                            >
-                                <select
-                                    className="select"
-                                    onChange={this.handleChangeSort}
-                                >
-                                    <option value="date">Data Entrega</option>
-                                    <option value="insert">Data Criação</option>
-                                    <option value="alfa">
-                                        Alfabética (Título)
-                                    </option>
-                                </select>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                {message}
-
-                <Box display="flex" direction="row" paddingY={2}>
-                    <Box>
+                <Card ghost noGutters>
+                    <CardHeader>
+                        <Text variant="title" cursive>Meus Afazeres</Text>
+                    </CardHeader>
+                    <CardBody>
                         {__.sortBy(this.props.todos, this.state.sortBy)
                             .filter(t => t.done === this.state.onlyDones)
                             .map(todo => (
                                 <TodoCard key={todo._key} todo={todo} />
                             ))}
-                    </Box>
-                </Box>
+                        {message}
+                    </CardBody>
+                </Card>
             </div>
         );
     }
