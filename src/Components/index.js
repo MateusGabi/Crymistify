@@ -11,6 +11,11 @@ import Sidebar from './Sidebar';
 import Snackbar from './Snackbar';
 import TodoCard from './TodoCard';
 
+export const coolBackground = {
+    background: 'rgb(238,174,202)',
+    background: `linear-gradient(45deg, rgb(130, 208, 90) 0%, rgb(5, 194, 251) 90%)`
+}
+
 const Button = styled.button`
     background: rgb(57,255,51);
     background: linear-gradient(45deg, #2196F3 30%, #21CBF3 80%);
@@ -56,6 +61,10 @@ const Box = styled.div`
         padding: 1rem;
     `}
 
+    ${props => props.horizontalScroll && css`
+        overflow-x: scroll;
+    `}
+    
     ${props => props.fixed && css`
         position: fixed;
         z-index: 5;
@@ -63,6 +72,14 @@ const Box = styled.div`
 
     ${props => props.fillHorizontal && css`
         width: -webkit-fill-available;
+    `}
+
+    ${props => props.item && css`
+        margin: 1rem;
+    `}
+
+    ${props => props.noGutters && css`
+        margin: 0rem;
     `}
 `;
 

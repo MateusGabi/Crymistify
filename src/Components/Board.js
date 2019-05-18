@@ -2,8 +2,6 @@
 
 import { API, Log, Snackbar } from './../Services';
 import {
-    Box,
-    Button,
     Column,
     Heading,
     Tabs,
@@ -18,7 +16,8 @@ import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 import __ from 'lodash';
 import moment from 'moment';
-import { Card, Text, CardHeader, CardBody } from './index';
+import { Card, Text, CardHeader, CardBody, Box, coolBackground, Button } from './index';
+import SearchTodoContainer from '../Containers/SearchTodo';
 
 class Board extends Component {
     constructor(props) {
@@ -271,6 +270,21 @@ class Board extends Component {
                 }}>
                     <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
                 </Card>
+                <Box container horizontalScroll style={{ padding: '0 1rem'}}>
+                    <Box item noGutters>
+                        <SearchTodoContainer />
+                    </Box>
+                    <Box item>                        
+                        <Button style={coolBackground}>
+                            <Text inverted>Adicionar</Text>
+                        </Button>
+                    </Box>
+                    <Box item noGutters style={{ paddingRight: '1rem'}}>
+                        <Button style={coolBackground}>
+                            <Text inverted>Feitos</Text>
+                        </Button>
+                    </Box>
+                </Box>
                 <Card ghost noGutters>
                     <CardHeader>
                         <Text variant="subtitle" cursive>Meus Afazeres</Text>
