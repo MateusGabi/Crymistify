@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Heading, SearchField, IconButton } from 'gestalt';
 
-import { Box, Text } from './index'
+import { Box, Text, Input } from './index'
 
 import UserProfileModal from './UserProfileModal';
 
@@ -17,10 +17,6 @@ class Navbar extends Component {
             value: ' ',
             profileModalisOpen: false,
         };
-    }
-
-    __searchHandler(value) {
-        this.props.searchHandler(value);
     }
 
     __logoutHandler() {
@@ -42,12 +38,12 @@ class Navbar extends Component {
                     background: 'rgba(255, 255, 255, 0.75)',
                     backdropFilter: 'blur(5px)'
                 }}>
-                    <Box item>
+                    <Box>
                         <Text variant="title" cursive>
                             Crymistify
                         </Text>
                     </Box>
-                    <Box item>
+                    <Box>
                         <IconButton
                             onClick={() => this.openUPModal()}
                             accessibilityLabel="Profile"
@@ -57,17 +53,6 @@ class Navbar extends Component {
                     </Box>
                 </Box>
                 <Box style={{ height: 90}}></Box>
-                <Box item>
-                        <SearchField
-                            accessibilityLabel="Demo Search Field"
-                            id="searchField"
-                            onChange={({ value }) =>
-                                this.__searchHandler(value)
-                            }
-                            placeholder="Buscar"
-                            value={this.state.searchValue}
-                        />
-                    </Box>
 
                 {this.state.profileModalisOpen && (
                     <UserProfileModal

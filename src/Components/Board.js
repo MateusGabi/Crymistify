@@ -266,7 +266,8 @@ class Board extends Component {
             <div>
                 <Card style={{
                     background: 'rgb(238,174,202)',
-                    background: `radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)`
+                    background: `linear-gradient(45deg, rgba(131,58,180,1) 0%, rgba(29,201,253,1) 80%)`,
+                    padding: '4rem 1rem'
                 }}>
                     <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
                 </Card>

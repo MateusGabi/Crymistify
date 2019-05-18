@@ -13,7 +13,7 @@ import TodoCard from './TodoCard';
 
 const Button = styled.button`
     background: rgb(57,255,51);
-    background: linear-gradient(45deg, #2196F3 30%, #21CBF3 90%);
+    background: linear-gradient(45deg, #2196F3 30%, #21CBF3 80%);
     border: 0;
     padding: .5rem 2rem;
     border-radius: 1rem;
@@ -44,6 +44,8 @@ const Text = styled.p`
         font-family: 'Leckerli One', cursive;
     `}
 `;
+
+const Input = styled.input``
 
 const Box = styled.div`
     ${props => props.container && css`
@@ -116,5 +118,6 @@ export {
     Card,
     CardHeader,
     CardBody,
-    CardFooter
+    CardFooter,
+    Input
 };
