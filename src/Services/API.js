@@ -61,6 +61,22 @@ export default class API {
         return response;
     }
 
+    static async finish({ _key }) {
+        const url = API_ENDPOINT.replace('<function>', 'finishTodo')
+        const token = await firebase.auth().currentUser.getIdToken(false)
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer <token>'.replace('<token>', token),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ _key })
+        }).then(res => res.json())
+
+        return response;
+    }
+
     static editTodo(todo) {
         // API.getUser().subscribe(user => {
         //     todo = API.purify(todo);

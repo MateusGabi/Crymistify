@@ -28,16 +28,18 @@ class TodoCard extends Component {
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
     }
 
-    handleMarkAsDone() {
+    async handleMarkAsDone() {
         let _confirm = window.confirm(
             `Marcar ${this.state.todo.title} como feito ?`
         );
         if (_confirm) {
-            Service.remover(this.state.todo);
+            const response = await Service.finish(this.state.todo);
             
             Log.log('user marked a todo as done', {
                 todo_key: this.state.todo._key,
             });
+
+            alert(`${this.state.todo.title} feito!`)
         } else {
             Log.log('user give up to mark a todo as done', {
                 todo_key: this.state.todo._key,
