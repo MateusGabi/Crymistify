@@ -5,9 +5,9 @@ import { API, Log, Snackbar } from './../Services';
 import {FormGroup, Text, Card, CardHeader, Label, Box, coolBackground, Button, Modal, ModalHeader, ModalBody, Input } from '../Components/index';
 
 const initialTodo = {
-    titulo: '',
-    descricao: '',
-    until_at: ''
+    title: '',
+    description: '',
+    expire_in: ''
 }
 
 class NewTodoContainer extends React.Component {
@@ -22,14 +22,14 @@ class NewTodoContainer extends React.Component {
 
     setTodoTitulo = value => {
         const { todo } = this.state;
-        const newTodo = Object.assign(todo, { titulo: value });
+        const newTodo = Object.assign(todo, { title: value });
 
         this.setState({ todo: newTodo })
     }
 
     setTodoDescricao = value => {
         const { todo } = this.state;
-        const newTodo = Object.assign(todo, { descricao: value });
+        const newTodo = Object.assign(todo, { description: value });
 
         this.setState({ todo: newTodo })
     }
@@ -38,18 +38,15 @@ class NewTodoContainer extends React.Component {
         const { todo } = this.state;
 
         const untilAt = moment(value).format()
-        const newTodo = Object.assign(todo, { until_at: untilAt });
+        const newTodo = Object.assign(todo, { expire_in: untilAt });
 
         this.setState({ todo: newTodo })
     }
 
     publishTodo = async () => {
         const { todo } = this.state;
-        const newTodo = Object.assign(todo, {
-            created_at: moment().format(),
-        });
 
-        const response = await API.addTodo(newTodo);
+        const response = await API.addTodo(todo);
 
         if (response) {
             Snackbar.showMessage('Item adicionado 😉');

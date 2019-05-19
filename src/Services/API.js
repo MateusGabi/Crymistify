@@ -33,7 +33,7 @@ export default class API {
         return subject.asObservable();
     }
 
-    static addTodo(todo) {
+    static async addTodo(todo) {
         // API.getUser().subscribe(user => {
         //     todo = API.purify(todo);
 
@@ -45,7 +45,20 @@ export default class API {
         // });
 
         // return Promise.resolve(true);
-        throw new Error('Not implemented yet.')
+        // throw new Error('Not implemented yet.')
+        const url = API_ENDPOINT.replace('<function>', 'addTodo')
+        const token = await firebase.auth().currentUser.getIdToken(false)
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer <token>'.replace('<token>', token),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(todo)
+        }).then(res => res.json())
+
+        return response;
     }
 
     static editTodo(todo) {
