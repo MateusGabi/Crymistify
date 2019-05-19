@@ -10,13 +10,23 @@ import Snackbar from './Snackbar';
 import TodoCard from './TodoCard';
 
 export const coolBackground = {
-    background: 'rgb(238,174,202)',
-    background: `linear-gradient(45deg, rgb(130, 208, 90) 0%, rgb(5, 194, 251) 90%)`
+    background: 'rgb(102, 125, 182)',
+    background: `linear-gradient(to right, rgb(102, 125, 182), rgb(0, 130, 200), rgb(0, 130, 200), rgb(102, 125, 182))`
+}
+
+export const primaryBackground = {
+    background: 'rgb(252, 70, 107)',
+    background: `linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251))`,
+}
+
+export const successBackground = {
+    background: 'rgb(67, 198, 172)',
+    background: `linear-gradient(to right, rgb(67, 198, 172), rgb(248, 255, 174))`,
 }
 
 export const Button = styled.button`
-    background: rgb(57,255,51);
-    background: linear-gradient(45deg, #2196F3 30%, #21CBF3 80%);
+    background: rgb(252, 70, 107);
+    background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
     border: 0;
     padding: .5rem 2rem;
     border-radius: 1rem;
