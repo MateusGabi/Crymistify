@@ -20,7 +20,7 @@ const database = firebase
     .ref();
 
 
-const PROXY = `http://cors-anywhere.herokuapp.com/<url>`
+const PROXY = `https://cors-anywhere.herokuapp.com/<url>`
 const URL_BASE = `https://us-central1-todo-app-b2a7b.cloudfunctions.net/<function>`
 const API_ENDPOINT = PROXY.replace('<url>', URL_BASE)
 
