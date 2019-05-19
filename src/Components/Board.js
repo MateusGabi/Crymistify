@@ -24,19 +24,20 @@ const DEFAULT_SHOW = 1
 class Lated extends React.Component {
 
     state = {
-        shown: DEFAULT_SHOW
+        shown: DEFAULT_SHOW,
+        shownAll: false
     }
 
     shownAll = () => {
-        this.setState({ shown: this.props.lates.length })
+        this.setState({ shown: this.props.lates.length, shownAll: true })
     }
 
     resume = () => {
-        this.setState({ shown: DEFAULT_SHOW })
+        this.setState({ shown: DEFAULT_SHOW, shownAll: false })
     }
 
     render() {
-        const { shown } = this.state;
+        const { shown, shownAll } = this.state;
 
         return (
             <>
@@ -45,7 +46,7 @@ class Lated extends React.Component {
                       <Text bold>Atrasados</Text>
                     </Box>
                     <Box>
-                        {this.props.lates.length === shown && (
+                        {shownAll && (
                             <Button onClick={() => this.resume()} variant="outlined" fillHorizontal>
                                 <Text italic>Ver menos</Text>
                             </Button>
@@ -60,6 +61,12 @@ class Lated extends React.Component {
                 {this.props.lates.length - shown > 0 && (
                     <Button onClick={() => this.shownAll()} variant="outlined" fillHorizontal>
                         <Text italic>Ver outras {this.props.lates.length - shown} tarefas atrasadas...</Text>
+                    </Button>
+                )}
+
+                {shownAll && (
+                    <Button onClick={() => this.resume()} variant="outlined" fillHorizontal>
+                        <Text italic>Ver menos</Text>
                     </Button>
                 )}
             </>

@@ -49,7 +49,8 @@ export const Button = styled.button`
         border-image-slice: 1;
         background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-text-fill-color: rgb(166, 81, 179);
+        color: rgb(252, 70, 107);
     `}
 
     ${props => props.fillHorizontal && css`
