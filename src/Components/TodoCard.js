@@ -65,7 +65,7 @@ class TodoCard extends Component {
                         <Text italic>{moment(this.state.todo.expire_in).fromNow()}</Text>
                     </TimeToDone>
                     <Button onClick={this.handleMarkAsDone}>
-                        <Text inverted>Feito</Text>
+                        <Text inverted>Já fiz 🤘</Text>
                     </Button>
                 </CardFooter>
             </Card>

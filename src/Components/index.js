@@ -24,6 +24,11 @@ export const successBackground = {
     background: `linear-gradient(to right, rgb(67, 198, 172), rgb(248, 255, 174))`,
 }
 
+export const mangoesBackground = {
+    background: 'rgb(247, 255, 0)',
+    background: `linear-gradient(to right, rgb(247, 255, 0), rgb(219, 54, 164))`,
+}
+
 export const Button = styled.button`
     background: rgb(252, 70, 107);
     background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
@@ -31,9 +36,20 @@ export const Button = styled.button`
     padding: .5rem 2rem;
     border-radius: 1rem;
     min-height: 2.5rem;
+    cursor: pointer;
 
     ${props => props.variant === 'text' && css`
         background: transparent;
+    `}
+
+    ${props => props.variant === 'outlined' && css`
+        background: inherit;
+        border: 1px solid;
+        border-image-source: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
+        border-image-slice: 1;
+        background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     `}
 
     ${props => props.fillHorizontal && css`
@@ -127,6 +143,7 @@ export const Card = styled.div`
     background: #f5f5f542;
     border-radius: 1rem;
     margin: 1rem;
+    transition: 0.5s;
 
     ${props => !props.noGutters && css`
         padding: 1rem;

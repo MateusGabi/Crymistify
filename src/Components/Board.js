@@ -15,9 +15,57 @@ import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 import __ from 'lodash';
 import moment from 'moment';
-import { Card, Text, CardHeader, CardBody, Box, coolBackground, Button, primaryBackground } from './index';
+import { Card, Text, CardHeader, CardBody, Box, coolBackground, Button, primaryBackground, lightBackground, mangoesBackground } from './index';
 import SearchTodoContainer from '../Containers/SearchTodo';
 import NewTodoContainer from '../Containers/NewTodo';
+
+
+const DEFAULT_SHOW = 1
+class Lated extends React.Component {
+
+    state = {
+        shown: DEFAULT_SHOW
+    }
+
+    shownAll = () => {
+        this.setState({ shown: this.props.lates.length })
+    }
+
+    resume = () => {
+        this.setState({ shown: DEFAULT_SHOW })
+    }
+
+    render() {
+        const { shown } = this.state;
+
+        return (
+            <>
+                <Box container style={{ padding: 0, marginTop: '2rem'}} >
+                    <Box>
+                      <Text bold>Atrasados</Text>
+                    </Box>
+                    <Box>
+                        {this.props.lates.length === shown && (
+                            <Button onClick={() => this.resume()} variant="outlined" fillHorizontal>
+                                <Text italic>Ver menos</Text>
+                            </Button>
+                        )}
+                    </Box>
+                </Box>
+
+                {this.props.lates.slice(-1 * shown).map(todo => (
+                    <TodoCard key={todo._key} todo={todo} />
+                ))}
+    
+                {this.props.lates.length - shown > 0 && (
+                    <Button onClick={() => this.shownAll()} variant="outlined" fillHorizontal>
+                        <Text italic>Ver outras {this.props.lates.length - shown} tarefas atrasadas...</Text>
+                    </Button>
+                )}
+            </>
+        )
+    }
+}
 
 class Board extends Component {
     constructor(props) {
@@ -26,6 +74,7 @@ class Board extends Component {
         this.state = {
             userName: '',
             todos: [],
+            lates: [],
         };
     }
 
@@ -39,7 +88,10 @@ class Board extends Component {
         );
 
         const todos = await API.getTodos();
-        this.setState({ todos })
+        const lates = todos.filter(t => t.late)
+        const inTime = todos.filter(t => !t.late)
+
+        this.setState({ todos: inTime, lates })
     }
 
     getGreeting() {
@@ -128,9 +180,12 @@ class Board extends Component {
                         <Text variant="subtitle" cursive>Meus Afazeres</Text>
                     </CardHeader>
                     <CardBody>
+                        <Lated lates={this.state.lates} />
+
+                        <Text bold style={{ marginTop: '2rem' }}>Próximos</Text>
                         {this.state.todos.map(todo => (
-                                <TodoCard key={todo._key} todo={todo} />
-                            ))}
+                            <TodoCard key={todo._key} todo={todo} />
+                        ))}
                         {message}
                     </CardBody>
                 </Card>
