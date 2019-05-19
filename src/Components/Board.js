@@ -39,6 +39,15 @@ class Lated extends React.Component {
     render() {
         const { shown, shownAll } = this.state;
 
+        const hasLated = this.props.lates.length > 0
+
+        if (!hasLated) {
+            return (
+                <>
+                </>
+            )
+        }
+
         return (
             <>
                 <Box container style={{ padding: 0, marginTop: '2rem'}} >
