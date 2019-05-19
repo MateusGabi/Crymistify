@@ -20,27 +20,19 @@ export default class App extends Component {
         super();
 
         this.state = {
-            todos: [],
-            todosDone: [],
             isLoading: true,
             isLogged: false,
-            originalTodos: [],
         };
-
-        // this.loggingHandler = this.loggingHandler.bind(this);
-        // this.btnLogoutHandler = this.btnLogoutHandler.bind(this);
     }
 
-    loggingHandler(success: boolean) {
+    loggingHandler(success) {
         this.setState({
             isLogged: success || false,
             isLoading: true,
         });
-
-        this.getTodos();
     }
 
-    searchHandler(query: string) {
+    searchHandler(query) {
         Log.log('search todo', { query: query });
 
         let found = __.filter(this.state.originalTodos, t => {
@@ -68,9 +60,8 @@ export default class App extends Component {
     componentDidMount() {
         // check if user is isLogged
         API.getUser().subscribe(user => {
-            this.setState({ isLogged: true });
             if (user) {
-                this.getTodos();
+                this.setState({ isLogged: true, isLoading: false });
 
                 LogRocket.identify(user.uid, {
                     name: user.displayName,
@@ -81,21 +72,6 @@ export default class App extends Component {
             } else {
                 this.setState({ isLoading: false });
             }
-        });
-    }
-
-    getTodos() {
-        API.getTodos().subscribe(todos => {
-            // do a partition in array
-            // return[0] => true
-            // return[1] => false
-            // todos = __.partition(todos, (t) => !t.done);
-
-            this.setState({
-                todos: todos,
-                isLoading: false,
-                originalTodos: todos,
-            });
         });
     }
 
@@ -114,7 +90,6 @@ export default class App extends Component {
                         />
                         <main>
                             <Board
-                                todos={this.state.todos}
                                 searchPhrase={this.state.searchPhrase}
                             />
                             <Footer />

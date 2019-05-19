@@ -9,6 +9,7 @@ import __ from 'lodash';
 const config = {
     apiKey: 'AIzaSyAkww8x2nbDwsB9MjUltMn43Erft3LVYCE',
     authDomain: 'todo-app-b2a7b.firebaseapp.com',
+    projectId: 'todo-app-b2a7b',
     databaseURL: 'https://todo-app-b2a7b.firebaseio.com',
     storageBucket: 'todo-app-b2a7b.appspot.com',
 };
@@ -17,6 +18,11 @@ const database = firebase
     .initializeApp(config)
     .database()
     .ref();
+
+
+const PROXY = `http://cors-anywhere.herokuapp.com/<url>`
+const URL_BASE = `https://us-central1-todo-app-b2a7b.cloudfunctions.net/<function>`
+const API_ENDPOINT = PROXY.replace('<url>', URL_BASE)
 
 export default class API {
     static getUser() {
@@ -27,72 +33,77 @@ export default class API {
         return subject.asObservable();
     }
 
-    static addTodo(todo) {
-        API.getUser().subscribe(user => {
-            todo = API.purify(todo);
+    static async addTodo(todo) {
+        // API.getUser().subscribe(user => {
+        //     todo = API.purify(todo);
 
-            /* eslint-disable */
-            todo = { ...todo, user: user.uid, done: false };
-            /* eslint-enable */
+        //     /* eslint-disable */
+        //     todo = { ...todo, user: user.uid, done: false };
+        //     /* eslint-enable */
 
-            database.child('privateTodos').push(todo);
-        });
+        //     database.child('privateTodos').push(todo);
+        // });
 
-        return Promise.resolve(true);
+        // return Promise.resolve(true);
+        // throw new Error('Not implemented yet.')
+        const url = API_ENDPOINT.replace('<function>', 'addTodo')
+        const token = await firebase.auth().currentUser.getIdToken(false)
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer <token>'.replace('<token>', token),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(todo)
+        }).then(res => res.json())
+
+        return response;
     }
 
     static editTodo(todo) {
-        API.getUser().subscribe(user => {
-            todo = API.purify(todo);
-            todo = { ...todo, user: user.uid, done: false };
+        // API.getUser().subscribe(user => {
+        //     todo = API.purify(todo);
+        //     todo = { ...todo, user: user.uid, done: false };
 
-            database
-                .child('privateTodos')
-                .child(todo._key)
-                .set(todo);
-        });
+        //     database
+        //         .child('privateTodos')
+        //         .child(todo._key)
+        //         .set(todo);
+        // });
 
-        return Promise.resolve(true);
+        // return Promise.resolve(true);
+        throw new Error('Not implemented yet.')
     }
 
     static getTodosRef({ uid }) {
-        return database.child(`users/${uid}/todos`);
+        // return database.child(`users/${uid}/todos`);
     }
 
-    static getTodos() {
-        let result = new ReplaySubject();
+    static async getTodos() {
+        const url = API_ENDPOINT.replace('<function>', 'todos')
+        const token = await firebase.auth().currentUser.getIdToken(false)
 
-        API.getUser().subscribe(user => {
-            API.getTodosRef(user).on('value', dataSnapshot => {
-                var tasks = [];
-                dataSnapshot.forEach(child => {
-                    tasks.push({
-                        titulo: child.val().title,
-                        created_at: child.val().created_at,
-                        descricao: child.val().description,
-                        until_at: child.val().expire_in,
-                        done: child.val().done,
-                        _key: child.key,
-                    });
-                });
+        const response = await fetch(url, {
+            headers: {
+                Authorization: 'Bearer <token>'.replace('<token>', token)
+            }
+        }).then(res => res.json())
 
-                result.next(tasks);
-            });
-        });
-
-        return result.asObservable();
+        return response;
     }
 
     static remover(todo) {
-        API.getUser().subscribe(user => {
-            todo = API.purify(todo);
-            todo = { ...todo, done: true };
+        // API.getUser().subscribe(user => {
+        //     todo = API.purify(todo);
+        //     todo = { ...todo, done: true };
 
-            database
-                .child(`users/${user.uid}/todos`)
-                .child(todo._key)
-                .set(todo);
-        });
+        //     database
+        //         .child(`users/${user.uid}/todos`)
+        //         .child(todo._key)
+        //         .set(todo);
+        // });
+        throw new Error('Not implemented yet.')
     }
 
     /**
