@@ -1,8 +1,6 @@
 /** @format */
 import styled, { css } from 'styled-components';
 
-
-import AddTodo from './AddTodo';
 import Board from './Board';
 import Footer from './Footer';
 import Loading from './Loading';
@@ -16,15 +14,24 @@ export const coolBackground = {
     background: `linear-gradient(45deg, rgb(130, 208, 90) 0%, rgb(5, 194, 251) 90%)`
 }
 
-const Button = styled.button`
+export const Button = styled.button`
     background: rgb(57,255,51);
     background: linear-gradient(45deg, #2196F3 30%, #21CBF3 80%);
     border: 0;
     padding: .5rem 2rem;
     border-radius: 1rem;
+    min-height: 2.5rem;
+
+    ${props => props.variant === 'text' && css`
+        background: transparent;
+    `}
+
+    ${props => props.fillHorizontal && css`
+        width: -webkit-fill-available;
+    `}
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
     font-family: ${props => props.theme.fontFamily}, Arial, sans-serif;
     font-size: 1rem;
     margin: 0.2rem 0;
@@ -50,9 +57,27 @@ const Text = styled.p`
     `}
 `;
 
-const Input = styled.input``
+export const FormGroup = styled.div`
+    margin-bottom: 1rem;
+`
 
-const Box = styled.div`
+export const Label = styled(Text)``
+
+export const Input = styled.input`
+    font-family: ${props => props.theme.fontFamily}, Arial, sans-serif;
+    padding: .5rem 1rem;
+    margin: 0;
+    border-radius: 1rem;
+    min-height: 2.5rem;
+    border: 1px solid #ccc;
+    color: #905c5c;
+
+    ${props => props.fillHorizontal && css`
+        width: -webkit-fill-available;
+    `}
+`
+
+export const Box = styled.div`
     ${props => props.container && css`
         display: flex;
         align-items: center;
@@ -83,12 +108,12 @@ const Box = styled.div`
     `}
 `;
 
-const TimeToDone = styled.div`
+export const TimeToDone = styled.div`
     display: flex;
     align-items: center;
 `;
 
-const Card = styled.div`
+export const Card = styled.div`
     background: #f5f5f542;
     border-radius: 1rem;
     margin: 1rem;
@@ -106,21 +131,45 @@ const Card = styled.div`
     `}
 `;
 
-const CardHeader = styled.div`
+export const CardHeader = styled.div`
     display: flex;
     align-items: center;
 `;
 
-const CardBody = styled.div``;
+export const CardBody = styled.div``;
 
-const CardFooter = styled.div`
+export const CardFooter = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
 `;
 
+export const Modal = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background: #fff;
+    overflow: overlay;
+    display: flex;
+`
+
+export const ModalHeader = styled.div`
+`;
+
+export const ModalBody = styled.div`
+    flex: 1;
+    background: #fff;
+    margin-top: 90px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1rem;
+`;
+
+
 export {
-    AddTodo,
     Board,
     Footer,
     Loading,
@@ -128,13 +177,4 @@ export {
     Sidebar,
     Snackbar,
     TodoCard,
-    Button,
-    Text,
-    Box,
-    TimeToDone,
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Input
 };

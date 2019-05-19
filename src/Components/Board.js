@@ -11,13 +11,13 @@ import {
 //@ts-check
 import React, { Component } from 'react';
 
-import AddTodo from './AddTodo';
 import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 import __ from 'lodash';
 import moment from 'moment';
 import { Card, Text, CardHeader, CardBody, Box, coolBackground, Button } from './index';
 import SearchTodoContainer from '../Containers/SearchTodo';
+import NewTodoContainer from '../Containers/NewTodo';
 
 class Board extends Component {
     constructor(props) {
@@ -271,19 +271,17 @@ class Board extends Component {
                     <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
                 </Card>
                 <Box container horizontalScroll style={{ padding: '0 1rem'}}>
-                    <Box item noGutters>
+                    {false && <Box item noGutters>
                         <SearchTodoContainer />
-                    </Box>
+                    </Box>}
                     <Box item>                        
-                        <Button style={coolBackground}>
-                            <Text inverted>Adicionar</Text>
-                        </Button>
+                        <NewTodoContainer />
                     </Box>
-                    <Box item noGutters style={{ paddingRight: '1rem'}}>
+                    {false && <Box item noGutters style={{ paddingRight: '1rem'}}>
                         <Button style={coolBackground}>
                             <Text inverted>Feitos</Text>
                         </Button>
-                    </Box>
+                    </Box>}
                 </Box>
                 <Card ghost noGutters>
                     <CardHeader>
