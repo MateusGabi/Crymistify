@@ -182,13 +182,13 @@ class Board extends Component {
                         }}>
                             <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
                         </Card>
-                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content'}}>
+                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content', display: 'flex'}}>
                             <NewTodoContainer />
                         </Card>
-                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content'}}>
+                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content', display: 'flex'}}>
                             <SearchTodoContainer />
                         </Card>
-                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content'}}>
+                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content', display: 'flex'}}>
                             <Button variant="outlined" fillHorizontal>
                                 <Text>Feitas 🎉</Text>
                             </Button>
