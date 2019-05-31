@@ -172,25 +172,28 @@ class Board extends Component {
 
         return (
             <div>
-                <Card style={{
-                    ...primaryBackground,
-                    padding: '4rem 1rem'
-                }}>
-                    <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
-                </Card>
-                <Box container horizontalScroll style={{ padding: '0 1rem'}}>
-                    {false && <Box item noGutters>
-                        <SearchTodoContainer />
-                    </Box>}
-                    <Box item>                        
-                        <NewTodoContainer />
-                    </Box>
-                    {false && <Box item noGutters style={{ paddingRight: '1rem'}}>
-                        <Button style={coolBackground}>
-                            <Text inverted>Feitos</Text>
-                        </Button>
-                    </Box>}
-                </Box>
+                <div style={{ display: 'flex', 
+    alignItems: 'stretch',
+    flexWrap: 'wrap'}}>
+                        <Card style={{
+                            ...coolBackground,
+                            padding: '4rem 1rem',
+                            flex: 3, minWidth: 'fit-content'
+                        }}>
+                            <Text variant="title" bold inverted>{this.props.searchPhrase || this.getGreeting()}</Text>
+                        </Card>
+                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content'}}>
+                            <NewTodoContainer />
+                        </Card>
+                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content'}}>
+                            <SearchTodoContainer />
+                        </Card>
+                        <Card ghost noGutters style={{ flex: 1, minWidth: 'fit-content'}}>
+                            <Button variant="outlined" fillHorizontal>
+                                <Text>Feitas 🎉</Text>
+                            </Button>
+                        </Card>
+                </div>
                 <Card ghost noGutters>
                     <CardHeader>
                         <Text variant="subtitle" cursive>Meus Afazeres</Text>

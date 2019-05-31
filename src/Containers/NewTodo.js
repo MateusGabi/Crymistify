@@ -60,8 +60,8 @@ class NewTodoContainer extends React.Component {
     render() {
         return (
             <>
-                <Button style={coolBackground} onClick={() => this.openModal()}>
-                    <Text inverted>Adicionar</Text>
+                <Button fillHorizontal outlined onClick={() => this.openModal()}>
+                    <Text inverted>Novo afazer 🆕</Text>
                 </Button>
                 {this.state.open && <Modal style={coolBackground}>
                     <ModalHeader>

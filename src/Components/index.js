@@ -11,7 +11,7 @@ import TodoCard from './TodoCard';
 
 export const coolBackground = {
     background: 'rgb(102, 125, 182)',
-    background: `linear-gradient(to right, rgb(102, 125, 182), rgb(0, 130, 200), rgb(0, 130, 200), rgb(102, 125, 182))`
+    background: `linear-gradient(to right, #2980B9, #65b4d0)`
 }
 
 export const primaryBackground = {
