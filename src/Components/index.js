@@ -95,6 +95,12 @@ export const Text = styled.p`
       `}
 
     ${props =>
+      props.variant === 'small' &&
+      css`
+        font-size: 0.75rem;
+      `}
+
+    ${props =>
       props.inverted &&
       css`
         color: #fff;

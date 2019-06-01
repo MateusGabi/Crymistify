@@ -45,6 +45,7 @@ const initialTodo = {
   title: '',
   description: '',
   expire_in: '',
+  tags: []
 };
 
 class NewTodoContainer extends React.Component {
@@ -69,6 +70,13 @@ class NewTodoContainer extends React.Component {
 
     this.setState({ todo: newTodo });
   };
+  
+  setTodoTags = value => {
+    const { todo } = this.state;
+    const newTodo = Object.assign(todo, { tags: value.split(',') });
+
+    this.setState({ todo: newTodo });
+  };
 
   setTodoDate = value => {
     const { todo } = this.state;
@@ -90,7 +98,7 @@ class NewTodoContainer extends React.Component {
           title: todo.title,
           description: todo.description,
           expireIn: todo.expire_in,
-          tags: ['Eskolare', 'Institution Platform'],
+          tags: todo.tags,
         },
       });
 
@@ -158,6 +166,18 @@ class NewTodoContainer extends React.Component {
                     </FormGroup>
 
                     <FormGroup>
+                      <Label>marcadores</Label>
+                      <Input
+                        placeholder="Trabalho, Projeto Alpha, Protótipo"
+                        fillHorizontal
+                        onChange={e => this.setTodoTags(e.target.value)}
+                      />
+                      <Text italic variant="small">
+                        utilize a vírgula para separar marcadores
+                      </Text>
+                    </FormGroup>
+
+                    <FormGroup>
                       <Label>até o dia</Label>
                       <Input
                         type="datetime-local"
@@ -166,7 +186,10 @@ class NewTodoContainer extends React.Component {
                       />
                     </FormGroup>
 
-                    <Button fillHorizontal onClick={() => this.publishTodo(createTodo)}>
+                    <Button
+                      fillHorizontal
+                      onClick={() => this.publishTodo(createTodo)}
+                    >
                       <Text inverted bold>
                         Eu vou fazer isso! 🚀👉
                       </Text>
