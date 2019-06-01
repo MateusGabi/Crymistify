@@ -3,6 +3,9 @@
 import React from 'react';
 import moment from 'moment';
 
+import { Mutation } from 'react-apollo';
+import { gql } from 'apollo-boost';
+
 import { API, Log, Snackbar } from './../Services';
 import {
   FormGroup,
@@ -19,6 +22,24 @@ import {
   Input,
   ArrowBack,
 } from '../Components/index';
+
+const CREATE_TODO_MUTATION = gql`
+  mutation AddTodo(
+    $title: String!
+    $description: String
+    $expireIn: String
+    $tags: [String!]
+  ) {
+    addTodo(
+      title: $title
+      description: $description
+      expireIn: $expireIn
+      tags: $tags
+    ) {
+      ID
+    }
+  }
+`;
 
 const initialTodo = {
   title: '',
@@ -58,17 +79,27 @@ class NewTodoContainer extends React.Component {
     this.setState({ todo: newTodo });
   };
 
-  publishTodo = async () => {
+  publishTodo = async callback => {
     const { todo } = this.state;
 
-    const response = await API.addTodo(todo);
+    // const response = await API.addTodo(todo);
 
-    if (response) {
-      Snackbar.showMessage('Item adicionado 😉');
-      this.closeModal();
-    } else {
-      Snackbar.showMessage('Um erro ocorreu 😔');
-    }
+    if (callback instanceof Function)
+      callback({
+        variables: {
+          title: todo.title,
+          description: todo.description,
+          expireIn: todo.expire_in,
+          tags: ['Eskolare', 'Institution Platform'],
+        },
+      });
+
+    // if (response) {
+    //   Snackbar.showMessage('Item adicionado 😉');
+    //   this.closeModal();
+    // } else {
+    //   Snackbar.showMessage('Um erro ocorreu 😔');
+    // }
   };
 
   render() {
@@ -105,38 +136,44 @@ class NewTodoContainer extends React.Component {
               </Box>
             </ModalHeader>
             <ModalBody>
-              <FormGroup>
-                <Label>Tenho que</Label>
-                <Input
-                  placeholder="Título"
-                  fillHorizontal
-                  onChange={e => this.setTodoTitulo(e.target.value)}
-                />
-              </FormGroup>
+              <Mutation mutation={CREATE_TODO_MUTATION}>
+                {(createTodo, { data }) => (
+                  <>
+                    <FormGroup>
+                      <Label>Tenho que</Label>
+                      <Input
+                        placeholder="Título"
+                        fillHorizontal
+                        onChange={e => this.setTodoTitulo(e.target.value)}
+                      />
+                    </FormGroup>
 
-              <FormGroup>
-                <Label>da seguinte forma</Label>
-                <Input
-                  placeholder="Descrição"
-                  fillHorizontal
-                  onChange={e => this.setTodoDescricao(e.target.value)}
-                />
-              </FormGroup>
+                    <FormGroup>
+                      <Label>da seguinte forma</Label>
+                      <Input
+                        placeholder="Descrição"
+                        fillHorizontal
+                        onChange={e => this.setTodoDescricao(e.target.value)}
+                      />
+                    </FormGroup>
 
-              <FormGroup>
-                <Label>até o dia</Label>
-                <Input
-                  type="datetime-local"
-                  fillHorizontal
-                  onChange={e => this.setTodoDate(e.target.value)}
-                />
-              </FormGroup>
+                    <FormGroup>
+                      <Label>até o dia</Label>
+                      <Input
+                        type="datetime-local"
+                        fillHorizontal
+                        onChange={e => this.setTodoDate(e.target.value)}
+                      />
+                    </FormGroup>
 
-              <Button fillHorizontal onClick={() => this.publishTodo()}>
-                <Text inverted bold>
-                  Eu vou fazer isso! 🚀👉
-                </Text>
-              </Button>
+                    <Button fillHorizontal onClick={() => this.publishTodo(createTodo)}>
+                      <Text inverted bold>
+                        Eu vou fazer isso! 🚀👉
+                      </Text>
+                    </Button>
+                  </>
+                )}
+              </Mutation>
             </ModalBody>
           </Modal>
         )}
