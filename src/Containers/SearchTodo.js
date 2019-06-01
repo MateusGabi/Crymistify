@@ -12,8 +12,8 @@ class SearchTodoContainer extends React.Component {
     render() {
         return (
             <>
-                <Button style={coolBackground} onClick={() => this.openModal()}>
-                    <Text inverted>Buscar</Text>
+                <Button fillHorizontal variant="outlined" onClick={() => this.openModal()}>
+                    <Text inverted>Buscar 🔍</Text>
                 </Button>
                 {this.state.open && <Modal>
                     <ModalHeader>

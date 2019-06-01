@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import { API, Log, Snackbar } from './../Services';
-import {FormGroup, Text, Card, CardHeader, Label, Box, coolBackground, Button, Modal, ModalHeader, ModalBody, Input } from '../Components/index';
+import {FormGroup, Text, Card, CardHeader, Label, Box, coolBackground, Button, Modal, ModalHeader, ModalBody, Input, ArrowBack } from '../Components/index';
 
 const initialTodo = {
     title: '',
@@ -60,19 +60,20 @@ class NewTodoContainer extends React.Component {
     render() {
         return (
             <>
-                <Button style={coolBackground} onClick={() => this.openModal()}>
-                    <Text inverted>Adicionar</Text>
+                <Button fillHorizontal variant="outlined" onClick={() => this.openModal()}>
+                    <Text inverted>Novo afazer 🆕</Text>
                 </Button>
                 {this.state.open && <Modal style={coolBackground}>
                     <ModalHeader>
-                        <Box container fixed fillHorizontal>
-                            <Box item>
+                        <Box noGutters container fixed fillHorizontal>
+                            <Box noGutters item style={{    background: "#0000002e",
+    padding: '0 1rem',
+    borderRadius: '1rem'}}>
                                 <Button variant="text" onClick={() => this.closeModal()} style={{padding: 0}}>
-                                    <Text inverted>👈 Voltar</Text>
+                                    <Text inverted>I'm out!</Text>
                                 </Button>
                             </Box>
                         </Box>
-                        <Box style={{ height: 90}}></Box>
                     </ModalHeader>
                     <ModalBody>
                         <FormGroup>

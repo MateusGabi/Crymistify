@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react'
 import styled, { css } from 'styled-components';
 
 import Board from './Board';
@@ -11,7 +12,7 @@ import TodoCard from './TodoCard';
 
 export const coolBackground = {
     background: 'rgb(102, 125, 182)',
-    background: `linear-gradient(to right, rgb(102, 125, 182), rgb(0, 130, 200), rgb(0, 130, 200), rgb(102, 125, 182))`
+    background: `linear-gradient(to right, #2980B9, #65b4d0)`
 }
 
 export const primaryBackground = {
@@ -49,7 +50,8 @@ export const Button = styled.button`
         border-image-slice: 1;
         background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-text-fill-color: rgb(166, 81, 179);
+        color: rgb(252, 70, 107);
     `}
 
     ${props => props.fillHorizontal && css`
@@ -189,11 +191,13 @@ export const ModalHeader = styled.div`
 export const ModalBody = styled.div`
     flex: 1;
     background: #fff;
-    margin-top: 90px;
+    margin-top: 70px;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     padding: 1rem;
 `;
+
+export const ArrowBack = () => <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAAAXNSR0IArs4c6QAAAQlJREFUeJzt2uFNg0AYBuBXJ2CEbqAjOIIjuJKT2BF0guIGjtBOgD9KU9McLQmnSHie5ELC3Y8vb74AByQAAAAAAAAAAEBJk2SXpOuPzbzlLMvP8E5jO2tFC1IKr0vyPmdRSzEUXpfkeca6FuFaeC8z1rUIwptAeBMIbwLhTSC8CYQ30l3h3CbJW5LHwtw+SfurFf1fbZLXJF+3Fg51nlHYqpY6sLuW7sodcvHC5L6w6ONvalmkUR246Rc+FOYOWe81cNuPm9fA5NimbdyFJxFiBUKsQIgVCLECIVYgxAqEWMFQiKv7Klfayo2xT/KU5PPi/KindM6aHLvu1H3+TAAAAAAAAAAAzr4BFwPQSsI8Zl0AAAAASUVORK5CYII="></img>
 
 
 export {
