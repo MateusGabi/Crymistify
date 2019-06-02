@@ -30,6 +30,15 @@ export const mangoesBackground = {
   background: `linear-gradient(to right, rgb(247, 255, 0), rgb(219, 54, 164))`,
 };
 
+export const Badge = styled.div`
+  background-color: ${props =>
+    props.color || 'red'};
+  padding: .5rem 1rem;
+  margin-right: .25rem;
+  width: fit-content;
+  border-radius: 1rem;
+`
+
 export const Button = styled.button`
     background: rgb(252, 70, 107);
     background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));

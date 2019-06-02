@@ -187,6 +187,9 @@ class Board extends Component {
                     expireIn
                     late
                     done
+                    tags {
+                      title
+                    }
                   }
                 }
               `}
