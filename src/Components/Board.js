@@ -114,7 +114,7 @@ class Board extends Component {
     }
 
     return (
-      <div>
+      <div style={{ maxWidth: '40rem', margin: '0 auto'}}>
         <div
           style={{
             display: 'flex',
@@ -145,7 +145,7 @@ class Board extends Component {
           >
             <NewTodoContainer />
           </Card>
-          <Card
+         {false && <Card
             ghost
             noGutters
             style={{
@@ -155,8 +155,8 @@ class Board extends Component {
             }}
           >
             <SearchTodoContainer />
-          </Card>
-          <Card
+          </Card>}
+          {false && <Card
             ghost
             noGutters
             style={{
@@ -168,7 +168,7 @@ class Board extends Component {
             <Button variant="outlined" fillHorizontal>
               <Text>Feitas 🎉</Text>
             </Button>
-          </Card>
+          </Card>}
         </div>
         <Card ghost noGutters>
           <CardHeader>

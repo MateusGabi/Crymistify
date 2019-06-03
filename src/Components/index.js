@@ -247,10 +247,11 @@ export const ModalHeader = styled.div``;
 export const ModalBody = styled.div`
   flex: 1;
   background: #fff;
-  margin-top: 70px;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   padding: 1rem;
+  max-width: 40rem;
+  margin: 70px auto 0 auto;
 `;
 
 export const ArrowBack = () => (
