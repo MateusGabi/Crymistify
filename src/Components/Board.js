@@ -114,7 +114,7 @@ class Board extends Component {
     }
 
     return (
-      <div style={{ maxWidth: '40rem', margin: '0 auto'}}>
+      <div style={{ maxWidth: '40rem', margin: '0 auto' }}>
         <div
           style={{
             display: 'flex',
@@ -145,30 +145,34 @@ class Board extends Component {
           >
             <NewTodoContainer />
           </Card>
-         {false && <Card
-            ghost
-            noGutters
-            style={{
-              flex: 1,
-              minWidth: 'fit-content',
-              display: 'flex',
-            }}
-          >
-            <SearchTodoContainer />
-          </Card>}
-          {false && <Card
-            ghost
-            noGutters
-            style={{
-              flex: 1,
-              minWidth: 'fit-content',
-              display: 'flex',
-            }}
-          >
-            <Button variant="outlined" fillHorizontal>
-              <Text>Feitas 🎉</Text>
-            </Button>
-          </Card>}
+          {false && (
+            <Card
+              ghost
+              noGutters
+              style={{
+                flex: 1,
+                minWidth: 'fit-content',
+                display: 'flex',
+              }}
+            >
+              <SearchTodoContainer />
+            </Card>
+          )}
+          {false && (
+            <Card
+              ghost
+              noGutters
+              style={{
+                flex: 1,
+                minWidth: 'fit-content',
+                display: 'flex',
+              }}
+            >
+              <Button variant="outlined" fillHorizontal>
+                <Text>Feitas 🎉</Text>
+              </Button>
+            </Card>
+          )}
         </div>
         <Card ghost noGutters>
           <CardHeader>
@@ -193,6 +197,7 @@ class Board extends Component {
                   }
                 }
               `}
+              pollInterval={5000}
             >
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
