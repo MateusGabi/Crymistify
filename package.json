@@ -41,8 +41,8 @@
     "semantic-release": "semantic-release --dry-run=true --no-ci=true",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "test": "react-scripts test --env=jsdom",
-    "test:coverage:ci": "npm test -- --coverage"
+    "test": "jest",
+    "test:coverage:ci": "npm test -- --coverage --ci --forceExit"
   },
   "config": {
     "commitizen": {

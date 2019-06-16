@@ -8,6 +8,6 @@ install:
   - npm install
 script:
   - npm run lint
-  - npm run test:coverage:ci
+  - npm run test -- --ci --forceExit
 before_deploy:
   - npm run build
