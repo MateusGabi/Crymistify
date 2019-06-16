@@ -23,7 +23,7 @@
         "plugin:react/recommended"
     ],
     "rules": {
-        "indent": [1,4, {"SwitchCase": 1}],
+        "indent": [1,2, {"SwitchCase": 1}],
         "quotes": [1,"single"],
         "semi": [1,"always"],
         "prettier/prettier": "error"
