@@ -5,9 +5,9 @@ cache:
   directories:
   - node_modules
 install:
-  - npm install
+  - yarn
 script:
-  - npm run lint
-  - npm run test -- --ci --forceExit
+  - yarn lint
+  - yarn test --ci --forceExit
 before_deploy:
-  - npm run build
+  - yarn build
