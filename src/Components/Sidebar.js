@@ -5,69 +5,74 @@ import PropTypes from 'prop-types';
 
 import { Heading, SearchField, IconButton } from 'gestalt';
 
-import { Box, Text, Input } from './index'
+import { Box, Text, Input } from './index';
 
 import UserProfileModal from './UserProfileModal';
 
 class Navbar extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            value: ' ',
-            profileModalisOpen: false,
-        };
-    }
+    this.state = {
+      value: ' ',
+      profileModalisOpen: false,
+    };
+  }
 
-    __logoutHandler() {
-        this.props.logoutHandler();
-    }
+  __logoutHandler() {
+    this.props.logoutHandler();
+  }
 
-    openUPModal() {
-        this.setState({ profileModalisOpen: true });
-    }
+  openUPModal() {
+    this.setState({ profileModalisOpen: true });
+  }
 
-    closeUPModal() {
-        this.setState({ profileModalisOpen: false });
-    }
+  closeUPModal() {
+    this.setState({ profileModalisOpen: false });
+  }
 
-    render() {
-        return (
-            <>
-                <Box container fixed fillHorizontal style={{
-                    background: 'rgba(255, 255, 255, 0.75)',
-                    backdropFilter: 'blur(5px)'
-                }}>
-                    <Box>
-                        <Text variant="title" cursive>
-                            Crymistify
-                        </Text>
-                    </Box>
-                    <Box>
-                        <IconButton
-                            onClick={() => this.openUPModal()}
-                            accessibilityLabel="Profile"
-                            icon="person"
-                            size="md"
-                        />
-                    </Box>
-                </Box>
-                <Box style={{ height: 90}}></Box>
+  render() {
+    return (
+      <>
+        <Box
+          container
+          fixed
+          fillHorizontal
+          style={{
+            background: 'rgba(255, 255, 255, 0.75)',
+            backdropFilter: 'blur(5px)',
+          }}
+        >
+          <Box>
+            <Text variant="title" cursive>
+              Crymistify
+            </Text>
+          </Box>
+          <Box>
+            <IconButton
+              onClick={() => this.openUPModal()}
+              accessibilityLabel="Profile"
+              icon="person"
+              size="md"
+            />
+          </Box>
+        </Box>
+        <Box style={{ height: 90 }} />
 
-                {this.state.profileModalisOpen && (
-                    <UserProfileModal
-                        closeFunction={this.closeUPModal.bind(this)}
-                        logoutFunction={this.__logoutHandler.bind(this)}
-                    />
-                )}
-            </>
-        );
-    }
+        {this.state.profileModalisOpen && (
+          <UserProfileModal
+            closeFunction={this.closeUPModal.bind(this)}
+            logoutFunction={this.__logoutHandler.bind(this)}
+          />
+        )}
+      </>
+    );
+  }
 }
 
 Navbar.propTypes = {
-    searchHandler: PropTypes.func,
-    logoutHandler: PropTypes.func,
+  searchHandler: PropTypes.func,
+  logoutHandler: PropTypes.func,
 };
 
 export default Navbar;
