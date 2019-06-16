@@ -13,7 +13,7 @@ export default class Log {
   static user_key;
   static session_id;
 
-  static init(api_key: string) {
+  static init(api_key) {
     Log.api_key = api_key;
     Log.user_key = 'anonymous';
 
@@ -36,13 +36,13 @@ export default class Log {
     }
   }
 
-  static setUser(user: Object) {
+  static setUser(user) {
     Log.user_key = user.uid;
 
     Log.log('user connected', { user: user.uid });
   }
 
-  static log(message: string, payload?: Object) {
+  static log(message, payload = {}) {
     let obj = { message: message, payload: payload };
     Log.next('log', obj);
   }
@@ -51,14 +51,14 @@ export default class Log {
 
   static warning() {}
 
-  static error(message: string, payload: Object) {
+  static error(message, payload) {
     let obj = { message: message, payload: payload };
     Log.next('error', obj);
   }
 
   static trace() {}
 
-  static next(type: string, obj: Object) {
+  static next(type, obj) {
     let storageLog = {
       api_key: Log.api_key,
       session_id: Log.session_id,
@@ -81,11 +81,11 @@ export default class Log {
     }
   }
 
-  static purify(obj: Object) {
+  static purify(obj) {
     return __.pickBy(obj, undefined || null);
   }
 
-  static makeid(length: number): string {
+  static makeid(length) {
     var text = '';
     var possible =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

@@ -34,18 +34,6 @@ export default class API {
   }
 
   static async addTodo(todo) {
-    // API.getUser().subscribe(user => {
-    //     todo = API.purify(todo);
-
-    //     /* eslint-disable */
-    //     todo = { ...todo, user: user.uid, done: false };
-    //     /* eslint-enable */
-
-    //     database.child('privateTodos').push(todo);
-    // });
-
-    // return Promise.resolve(true);
-    // throw new Error('Not implemented yet.')
     const url = API_ENDPOINT.replace('<function>', 'addTodo');
     const token = await firebase.auth().currentUser.getIdToken(false);
 
@@ -110,11 +98,11 @@ export default class API {
    * Removes attributes that has null and undefined as value
    * @param {*} todo
    */
-  static purify(obj: Object) {
+  static purify(obj) {
     return __.pickBy(obj, undefined || null);
   }
 
-  static loginWithGoogle(): Observable<boolean> {
+  static loginWithGoogle() {
     let result = new ReplaySubject();
 
     firebase
@@ -134,7 +122,7 @@ export default class API {
     return result.asObservable();
   }
 
-  static logout(): Observable<boolean> {
+  static logout() {
     let result = new ReplaySubject();
 
     firebase
