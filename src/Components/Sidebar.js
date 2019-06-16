@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Heading, SearchField, IconButton } from 'gestalt';
+import { IconButton } from 'gestalt';
 
-import { Box, Text, Input } from './index';
+import { Box, Text } from './index';
 
 import UserProfileModal from './UserProfileModal';
 

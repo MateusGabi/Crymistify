@@ -81,23 +81,12 @@ export default class API {
     return response;
   }
 
-  static editTodo(todo) {
-    // API.getUser().subscribe(user => {
-    //     todo = API.purify(todo);
-    //     todo = { ...todo, user: user.uid, done: false };
-
-    //     database
-    //         .child('privateTodos')
-    //         .child(todo._key)
-    //         .set(todo);
-    // });
-
-    // return Promise.resolve(true);
+  static editTodo() {
     throw new Error('Not implemented yet.');
   }
 
-  static getTodosRef({ uid }) {
-    // return database.child(`users/${uid}/todos`);
+  static getTodosRef() {
+    throw new Error('Not implemented yet.');
   }
 
   static async getTodos() {
@@ -113,16 +102,7 @@ export default class API {
     return response;
   }
 
-  static remover(todo) {
-    // API.getUser().subscribe(user => {
-    //     todo = API.purify(todo);
-    //     todo = { ...todo, done: true };
-
-    //     database
-    //         .child(`users/${user.uid}/todos`)
-    //         .child(todo._key)
-    //         .set(todo);
-    // });
+  static remover() {
     throw new Error('Not implemented yet.');
   }
 

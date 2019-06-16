@@ -3,10 +3,7 @@
 import React from 'react';
 import {
   Text,
-  Card,
-  CardHeader,
   Box,
-  coolBackground,
   Button,
   Modal,
   ModalHeader,

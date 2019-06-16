@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 import Snackbar from './Snackbar';
 import TodoCard from './TodoCard';
 
+/* eslint-disable no-dupe-keys */
 export const coolBackground = {
   background: 'rgb(102, 125, 182)',
   background: 'linear-gradient(to right, #2980B9, #65b4d0)',
@@ -30,6 +31,7 @@ export const mangoesBackground = {
   background: 'rgb(247, 255, 0)',
   background: 'linear-gradient(to right, rgb(247, 255, 0), rgb(219, 54, 164))',
 };
+/* eslint-enable no-dupe-keys */
 
 export const Badge = styled.div`
   background-color: ${props => props.color || 'red'};
@@ -39,6 +41,7 @@ export const Badge = styled.div`
   border-radius: 1rem;
 `;
 
+/* eslint-disable indent */
 export const Button = styled.button`
     background: rgb(252, 70, 107);
     background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));
@@ -216,6 +219,7 @@ export const Card = styled.div`
         margin: 1rem 0;
       `}
 `;
+/* eslint-enable indent */
 
 export const CardHeader = styled.div`
   display: flex;

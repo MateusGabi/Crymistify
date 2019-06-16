@@ -1,18 +1,8 @@
 /** @format */
 
 import React from 'react';
-import {
-  Card,
-  Text,
-  CardHeader,
-  CardBody,
-  Box,
-  coolBackground,
-  Button,
-  primaryBackground,
-  lightBackground,
-  mangoesBackground,
-} from './index';
+import PropTypes from 'prop-types';
+import { Text, Box, Button } from './index';
 import TodoCard from './TodoCard';
 
 const DEFAULT_SHOW = 1;
@@ -90,5 +80,9 @@ class Lated extends React.Component {
     );
   }
 }
+
+Lated.propTypes = {
+  lates: PropTypes.array,
+};
 
 export default Lated;

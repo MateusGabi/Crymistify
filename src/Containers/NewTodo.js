@@ -6,12 +6,9 @@ import moment from 'moment';
 import { Mutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
-import { API, Log, Snackbar } from './../Services';
 import {
   FormGroup,
   Text,
-  Card,
-  CardHeader,
   Label,
   Box,
   coolBackground,
@@ -20,7 +17,6 @@ import {
   ModalHeader,
   ModalBody,
   Input,
-  ArrowBack,
 } from '../Components/index';
 
 const CREATE_TODO_MUTATION = gql`
@@ -101,13 +97,6 @@ class NewTodoContainer extends React.Component {
           tags: todo.tags,
         },
       });
-
-    // if (response) {
-    //   Snackbar.showMessage('Item adicionado 😉');
-    //   this.closeModal();
-    // } else {
-    //   Snackbar.showMessage('Um erro ocorreu 😔');
-    // }
   };
 
   render() {
@@ -138,14 +127,14 @@ class NewTodoContainer extends React.Component {
                     onClick={() => this.closeModal()}
                     style={{ padding: 0 }}
                   >
-                    <Text inverted>I'm out!</Text>
+                    <Text inverted>{"I'm out!"}</Text>
                   </Button>
                 </Box>
               </Box>
             </ModalHeader>
             <ModalBody>
               <Mutation mutation={CREATE_TODO_MUTATION}>
-                {(createTodo, { data }) => (
+                {createTodo => (
                   <>
                     <FormGroup>
                       <Label>Tenho que</Label>

@@ -1,25 +1,19 @@
 /** @format */
 
-import { API, Log, Snackbar } from './../Services';
+import { API, Log } from './../Services';
 //@ts-check
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 import PropTypes from 'prop-types';
-import TodoCard from './TodoCard';
-import __ from 'lodash';
 import {
   Card,
   Text,
   CardHeader,
   CardBody,
-  Box,
   coolBackground,
   Button,
-  primaryBackground,
-  lightBackground,
-  mangoesBackground,
 } from './index';
 import SearchTodoContainer from '../Containers/SearchTodo';
 import NewTodoContainer from '../Containers/NewTodo';
@@ -48,7 +42,6 @@ class Board extends Component {
 
     const todos = await API.getTodos();
     const lates = todos.filter(t => t.late);
-    const inTime = todos.filter(t => !t.late);
 
     this.setState({ todos: [], lates });
   }
@@ -101,18 +94,6 @@ class Board extends Component {
   }
 
   render() {
-    let message = '';
-
-    if (this.state.todos.length < 1) {
-      message = (
-        <Card>
-          <CardHeader>
-            <Text bold>Não encontramos afazeres com esse nome.</Text>
-          </CardHeader>
-        </Card>
-      );
-    }
-
     return (
       <div style={{ maxWidth: '40rem', margin: '0 auto' }}>
         <div

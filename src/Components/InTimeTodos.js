@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TodoCard, Text } from './index';
 
 class Todos extends React.Component {
@@ -15,11 +16,15 @@ class Todos extends React.Component {
           Próximos
         </Text>
         {this.props.todos.map(todo => (
-          <TodoCard todo={todo} />
+          <TodoCard key={todo.ID} todo={todo} />
         ))}
       </>
     );
   }
 }
+
+Todos.propTypes = {
+  todos: PropTypes.array,
+};
 
 export default Todos;
