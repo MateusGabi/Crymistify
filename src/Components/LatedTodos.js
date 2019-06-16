@@ -58,9 +58,12 @@ class Lated extends React.Component {
           </Box>
         </Box>
 
-        {this.props.lates.reverse().slice(-1 * shown).map(todo => (
-          <TodoCard key={todo._key} todo={todo} />
-        ))}
+        {this.props.lates
+          .reverse()
+          .slice(-1 * shown)
+          .map(todo => (
+            <TodoCard key={todo._key} todo={todo} />
+          ))}
 
         {this.props.lates.length - shown > 0 && (
           <Button

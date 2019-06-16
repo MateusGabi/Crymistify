@@ -5,9 +5,8 @@ import { TodoCard, Text } from './index';
 
 class Todos extends React.Component {
   render() {
-
     if (this.props.todos.length === 0) {
-      return null
+      return null;
     }
 
     return (

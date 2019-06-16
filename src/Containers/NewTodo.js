@@ -45,7 +45,7 @@ const initialTodo = {
   title: '',
   description: '',
   expire_in: '',
-  tags: []
+  tags: [],
 };
 
 class NewTodoContainer extends React.Component {
@@ -70,7 +70,7 @@ class NewTodoContainer extends React.Component {
 
     this.setState({ todo: newTodo });
   };
-  
+
   setTodoTags = value => {
     const { todo } = this.state;
     const newTodo = Object.assign(todo, { tags: value.split(',') });

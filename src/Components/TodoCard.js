@@ -61,11 +61,13 @@ class TodoCard extends Component {
           <Text bold>{this.props.todo.title}</Text>
         </CardHeader>
         <Box>
-          {this.props.todo.tags.length > 0 && <Box paddingY={1}>
-            <Text italic variant="small">Tags: {
-              this.props.todo.tags.map(t => t.title).join(', ')
-            }</Text>
-          </Box>}
+          {this.props.todo.tags.length > 0 && (
+            <Box paddingY={1}>
+              <Text italic variant="small">
+                Tags: {this.props.todo.tags.map(t => t.title).join(', ')}
+              </Text>
+            </Box>
+          )}
           <Box paddingY={1}>
             <Text>{this.props.todo.description}</Text>
           </Box>

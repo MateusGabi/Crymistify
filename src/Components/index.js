@@ -12,32 +12,32 @@ import TodoCard from './TodoCard';
 
 export const coolBackground = {
   background: 'rgb(102, 125, 182)',
-  background: `linear-gradient(to right, #2980B9, #65b4d0)`,
+  background: 'linear-gradient(to right, #2980B9, #65b4d0)',
 };
 
 export const primaryBackground = {
   background: 'rgb(252, 70, 107)',
-  background: `linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251))`,
+  background: 'linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251))',
 };
 
 export const successBackground = {
   background: 'rgb(67, 198, 172)',
-  background: `linear-gradient(to right, rgb(67, 198, 172), rgb(248, 255, 174))`,
+  background:
+    'linear-gradient(to right, rgb(67, 198, 172), rgb(248, 255, 174))',
 };
 
 export const mangoesBackground = {
   background: 'rgb(247, 255, 0)',
-  background: `linear-gradient(to right, rgb(247, 255, 0), rgb(219, 54, 164))`,
+  background: 'linear-gradient(to right, rgb(247, 255, 0), rgb(219, 54, 164))',
 };
 
 export const Badge = styled.div`
-  background-color: ${props =>
-    props.color || 'red'};
-  padding: .5rem 1rem;
-  margin-right: .25rem;
+  background-color: ${props => props.color || 'red'};
+  padding: 0.5rem 1rem;
+  margin-right: 0.25rem;
   width: fit-content;
   border-radius: 1rem;
-`
+`;
 
 export const Button = styled.button`
     background: rgb(252, 70, 107);
