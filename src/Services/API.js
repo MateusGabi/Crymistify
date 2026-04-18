@@ -19,8 +19,9 @@ const database = firebase
   .database()
   .ref();
 
-const PROXY = `https://cors-anywhere.herokuapp.com/<url>`;
-const URL_BASE = `https://us-central1-todo-app-b2a7b.cloudfunctions.net/<function>`;
+const PROXY = 'https://cors-anywhere.herokuapp.com/<url>';
+const URL_BASE =
+  'https://us-central1-todo-app-b2a7b.cloudfunctions.net/<function>';
 const API_ENDPOINT = PROXY.replace('<url>', URL_BASE);
 
 export default class API {
@@ -33,18 +34,6 @@ export default class API {
   }
 
   static async addTodo(todo) {
-    // API.getUser().subscribe(user => {
-    //     todo = API.purify(todo);
-
-    //     /* eslint-disable */
-    //     todo = { ...todo, user: user.uid, done: false };
-    //     /* eslint-enable */
-
-    //     database.child('privateTodos').push(todo);
-    // });
-
-    // return Promise.resolve(true);
-    // throw new Error('Not implemented yet.')
     const url = API_ENDPOINT.replace('<function>', 'addTodo');
     const token = await firebase.auth().currentUser.getIdToken(false);
 
@@ -80,23 +69,12 @@ export default class API {
     return response;
   }
 
-  static editTodo(todo) {
-    // API.getUser().subscribe(user => {
-    //     todo = API.purify(todo);
-    //     todo = { ...todo, user: user.uid, done: false };
-
-    //     database
-    //         .child('privateTodos')
-    //         .child(todo._key)
-    //         .set(todo);
-    // });
-
-    // return Promise.resolve(true);
+  static editTodo() {
     throw new Error('Not implemented yet.');
   }
 
-  static getTodosRef({ uid }) {
-    // return database.child(`users/${uid}/todos`);
+  static getTodosRef() {
+    throw new Error('Not implemented yet.');
   }
 
   static async getTodos() {
@@ -112,16 +90,7 @@ export default class API {
     return response;
   }
 
-  static remover(todo) {
-    // API.getUser().subscribe(user => {
-    //     todo = API.purify(todo);
-    //     todo = { ...todo, done: true };
-
-    //     database
-    //         .child(`users/${user.uid}/todos`)
-    //         .child(todo._key)
-    //         .set(todo);
-    // });
+  static remover() {
     throw new Error('Not implemented yet.');
   }
 
@@ -129,11 +98,11 @@ export default class API {
    * Removes attributes that has null and undefined as value
    * @param {*} todo
    */
-  static purify(obj: Object) {
+  static purify(obj) {
     return __.pickBy(obj, undefined || null);
   }
 
-  static loginWithGoogle(): Observable<boolean> {
+  static loginWithGoogle() {
     let result = new ReplaySubject();
 
     firebase
@@ -153,7 +122,7 @@ export default class API {
     return result.asObservable();
   }
 
-  static logout(): Observable<boolean> {
+  static logout() {
     let result = new ReplaySubject();
 
     firebase

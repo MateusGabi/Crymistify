@@ -2,12 +2,9 @@
 
 import React, { Component } from 'react';
 
-import { Avatar } from 'gestalt';
-import Icon from './../Components/Icon';
 import Log from './../Services/Log';
 import PropTypes from 'prop-types';
 import Service from './../Services/API';
-import SnackbarService from './../Services/Snackbar';
 import moment from 'moment';
 
 import {
@@ -40,7 +37,7 @@ class TodoCard extends Component {
       `Marcar ${this.state.todo.title} como feito ?`
     );
     if (_confirm) {
-      const response = await Service.finish(this.state.todo);
+      await Service.finish(this.state.todo);
 
       Log.log('user marked a todo as done', {
         todo_key: this.state.todo.ID,
@@ -61,11 +58,13 @@ class TodoCard extends Component {
           <Text bold>{this.props.todo.title}</Text>
         </CardHeader>
         <Box>
-          {this.props.todo.tags.length > 0 && <Box paddingY={1}>
-            <Text italic variant="small">Tags: {
-              this.props.todo.tags.map(t => t.title).join(', ')
-            }</Text>
-          </Box>}
+          {this.props.todo.tags.length > 0 && (
+            <Box paddingY={1}>
+              <Text italic variant="small">
+                Tags: {this.props.todo.tags.map(t => t.title).join(', ')}
+              </Text>
+            </Box>
+          )}
           <Box paddingY={1}>
             <Text>{this.props.todo.description}</Text>
           </Box>

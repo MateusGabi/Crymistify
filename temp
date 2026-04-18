@@ -1,4 +1,0 @@
-
-> remind-web-app@1.1.0-0 lint /mnt/c/Users/mateu/workspace/remind-web-app
-> eslint src/**/*.js "-fix"
-
